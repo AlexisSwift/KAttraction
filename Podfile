@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'KWeather' do
+target 'KAttraction' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'SnapKit'
@@ -10,6 +10,6 @@ target 'KWeather' do
   pod 'RxRelay'
   pod 'Alamofire', '~> 5.2'
   pod 'Kingfisher'
-  # Pods for KWeather
+  # Pods for KAttraction
 
 end
