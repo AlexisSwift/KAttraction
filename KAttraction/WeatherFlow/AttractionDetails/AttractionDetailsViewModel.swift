@@ -10,7 +10,7 @@ final class AttractionDetailsViewModel: ViewModel {
     private let attractionService: AttractionsServiceAbstract
     
     init(attractionName: String, city: City, attractionService: AttractionsServiceAbstract) {
-        state = State(attraction: attractionName, city: city)
+        state = State(attractionName: attractionName, city: city)
         self.attractionService = attractionService
     }
     
@@ -62,8 +62,8 @@ extension AttractionDetailsViewModel {
                                                                                     longitude: 0,
                                                                                     latitude: 0)
         
-        init (attraction: String, city: City) {
-            self.attractionName = attraction
+        init (attractionName: String, city: City) {
+            self.attractionName = attractionName
             self.city = city
         }
     }

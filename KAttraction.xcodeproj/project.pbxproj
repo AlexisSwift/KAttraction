@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000BF23C27A48C1A0047A792 /* UINavigationController + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000BF23B27A48C1A0047A792 /* UINavigationController + extension.swift */; };
 		00103AAE278240D2002B5588 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00103AAD278240D1002B5588 /* Localization.swift */; };
 		005E7CF827906C4A0076DD93 /* CoordinatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E7CE127906C4A0076DD93 /* CoordinatesView.swift */; };
 		005E7CF927906C4A0076DD93 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E7CE327906C4A0076DD93 /* LoadingView.swift */; };
@@ -135,6 +136,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000BF23B27A48C1A0047A792 /* UINavigationController + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + extension.swift"; sourceTree = "<group>"; };
 		00103AAD278240D1002B5588 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		005E7CE127906C4A0076DD93 /* CoordinatesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatesView.swift; sourceTree = "<group>"; };
 		005E7CE327906C4A0076DD93 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 		005E7D1B27906DF30076DD93 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				000BF23B27A48C1A0047A792 /* UINavigationController + extension.swift */,
 				005E7D1C27906DF30076DD93 /* UIImageView + extension.swift */,
 				005E7D1D27906DF30076DD93 /* UIImageView+Kingfisher.swift */,
 				005E7D1E27906DF30076DD93 /* UIView + extension.swift */,
@@ -1107,6 +1110,7 @@
 				005E7D1627906CA60076DD93 /* Attraction.swift in Sources */,
 				00EC51A92782333500BD6AB1 /* RawDeeplink.swift in Sources */,
 				00EC51C22782333500BD6AB1 /* UIButton+Style.swift in Sources */,
+				000BF23C27A48C1A0047A792 /* UINavigationController + extension.swift in Sources */,
 				00EC51D02782333500BD6AB1 /* UIWeight+HTML.swift in Sources */,
 				005E7CF927906C4A0076DD93 /* LoadingView.swift in Sources */,
 				005E7CFB27906C4A0076DD93 /* AttaractionCell.swift in Sources */,
