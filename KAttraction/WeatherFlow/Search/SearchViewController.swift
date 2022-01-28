@@ -38,6 +38,7 @@ final class SearchViewController: UIViewController {
         searchBar.layer.cornerRadius = 12
         
         searchBar.placeholder = Localization.SearchFlow.Search.find
+        searchBar.keyboardAppearance = .dark
         searchBar.tintColor = .white
         searchBar.searchField?.textColor = .white
     }
