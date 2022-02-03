@@ -6,8 +6,6 @@ final class CheckWeatherView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    var onWeatherScreen: CityHandler?
-    
     init(config: WeatherConfig) {
         super.init(frame: .zero)
         setup(config: config)
