@@ -282,18 +282,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		000A169427823A1600EDB65E /* WeatherFlow */ = {
+		000A169427823A1600EDB65E /* AttractionFlow */ = {
 			isa = PBXGroup;
 			children = (
-				005E7CE227906C4A0076DD93 /* LoadingView */,
 				005E7CEA27906C4A0076DD93 /* Search */,
-				005E7CEE27906C4A0076DD93 /* CityWeather */,
 				005E7CE427906C4A0076DD93 /* AttractionList */,
 				005E7CF327906C4A0076DD93 /* AttractionDetails */,
-				005E7CE027906C4A0076DD93 /* CoorditantesView */,
-				005E7CEC27906C4A0076DD93 /* MapView */,
+				005E7CEE27906C4A0076DD93 /* CityWeather */,
 			);
-			path = WeatherFlow;
+			path = AttractionFlow;
 			sourceTree = "<group>";
 		};
 		00103A9427823FDF002B5588 /* Services */ = {
@@ -303,6 +300,16 @@
 				005E7D0C27906CA50076DD93 /* AttrationService */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		0045C67B27AEC7DF00C61CAE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				005E7CE227906C4A0076DD93 /* LoadingView */,
+				005E7CEC27906C4A0076DD93 /* MapView */,
+				005E7CE027906C4A0076DD93 /* CoorditantesView */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		005E7CE027906C4A0076DD93 /* CoorditantesView */ = {
@@ -442,6 +449,7 @@
 		005E7D1B27906DF30076DD93 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0045C67B27AEC7DF00C61CAE /* Views */,
 				000BF23B27A48C1A0047A792 /* UINavigationController + keyboard extension.swift */,
 				005E7D1C27906DF30076DD93 /* UIImageView + extension.swift */,
 				005E7D1D27906DF30076DD93 /* UIImageView + Kingfisher.swift */,
@@ -517,7 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				00EC50F22782324C00BD6AB1 /* Application */,
-				000A169427823A1600EDB65E /* WeatherFlow */,
+				000A169427823A1600EDB65E /* AttractionFlow */,
 				00103A9427823FDF002B5588 /* Services */,
 				00EC511B2782333400BD6AB1 /* Library */,
 				00EC51822782333500BD6AB1 /* Networking */,

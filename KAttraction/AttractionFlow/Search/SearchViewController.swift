@@ -27,20 +27,17 @@ final class SearchViewController: UIViewController {
         searchBar.delegate = self
         
         view.addSubview(searchBar)
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        searchBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        searchBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        searchBar.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+        }
         
-        searchBar.barTintColor = .white
         searchBar.searchBarStyle = .minimal
-        searchBar.barStyle = .default
         searchBar.layer.cornerRadius = 12
         
         searchBar.placeholder = Localization.SearchFlow.Search.find
-        searchBar.keyboardAppearance = .dark
-        searchBar.tintColor = .white
         searchBar.searchField?.textColor = .white
+        searchBar.tintColor = .white
+        searchBar.keyboardAppearance = .dark
     }
     
     private func setupTableView() {
@@ -49,11 +46,10 @@ final class SearchViewController: UIViewController {
         tableView.dataSource = self
         
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
+        }
         
         tableView.backgroundColor = Palette.backgroundPrimary
         tableView.separatorStyle = .none
