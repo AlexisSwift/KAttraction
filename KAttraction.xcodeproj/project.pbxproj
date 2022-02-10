@@ -540,7 +540,6 @@
 			children = (
 				00EC51E22782333D00BD6AB1 /* AppCoordinator.swift */,
 				00EC50DE278231EB00BD6AB1 /* AppDelegate.swift */,
-				00EC50EC278231EC00BD6AB1 /* Info.plist */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -548,12 +547,13 @@
 		00EC50F3278232EC00BD6AB1 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				005E7D1827906D970076DD93 /* Attractions.json */,
+				00EC50F8278232EC00BD6AB1 /* Asset.swift */,
+				00EC50F4278232EC00BD6AB1 /* Palette.swift */,
+				00103AAD278240D1002B5588 /* Localization.swift */,
 				00EC50E7278231EC00BD6AB1 /* Assets.xcassets */,
 				00EC50E9278231EC00BD6AB1 /* LaunchScreen.storyboard */,
-				00EC50F4278232EC00BD6AB1 /* Palette.swift */,
-				00EC50F8278232EC00BD6AB1 /* Asset.swift */,
-				00103AAD278240D1002B5588 /* Localization.swift */,
+				005E7D1827906D970076DD93 /* Attractions.json */,
+				00EC50EC278231EC00BD6AB1 /* Info.plist */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
