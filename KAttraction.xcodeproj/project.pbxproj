@@ -285,6 +285,7 @@
 		000A169427823A1600EDB65E /* AttractionFlow */ = {
 			isa = PBXGroup;
 			children = (
+				0045C67B27AEC7DF00C61CAE /* Views */,
 				005E7CEA27906C4A0076DD93 /* Search */,
 				005E7CE427906C4A0076DD93 /* AttractionList */,
 				005E7CF327906C4A0076DD93 /* AttractionDetails */,
@@ -449,7 +450,6 @@
 		005E7D1B27906DF30076DD93 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0045C67B27AEC7DF00C61CAE /* Views */,
 				000BF23B27A48C1A0047A792 /* UINavigationController + keyboard extension.swift */,
 				005E7D1C27906DF30076DD93 /* UIImageView + extension.swift */,
 				005E7D1D27906DF30076DD93 /* UIImageView + Kingfisher.swift */,
@@ -503,6 +503,15 @@
 			path = Table;
 			sourceTree = "<group>";
 		};
+		00BBAA5E27BF98A00040CBA6 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				005E7D1827906D970076DD93 /* Attractions.json */,
+				00EC50EC278231EC00BD6AB1 /* Info.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		00EC50D2278231EB00BD6AB1 = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +540,7 @@
 				00EC51822782333500BD6AB1 /* Networking */,
 				005E7D1A27906DF30076DD93 /* UI */,
 				00EC50F3278232EC00BD6AB1 /* Resourses */,
+				00BBAA5E27BF98A00040CBA6 /* Configuration */,
 			);
 			path = KAttraction;
 			sourceTree = "<group>";
@@ -547,13 +557,11 @@
 		00EC50F3278232EC00BD6AB1 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
-				00EC50F8278232EC00BD6AB1 /* Asset.swift */,
-				00EC50F4278232EC00BD6AB1 /* Palette.swift */,
-				00103AAD278240D1002B5588 /* Localization.swift */,
 				00EC50E7278231EC00BD6AB1 /* Assets.xcassets */,
 				00EC50E9278231EC00BD6AB1 /* LaunchScreen.storyboard */,
-				005E7D1827906D970076DD93 /* Attractions.json */,
-				00EC50EC278231EC00BD6AB1 /* Info.plist */,
+				00103AAD278240D1002B5588 /* Localization.swift */,
+				00EC50F8278232EC00BD6AB1 /* Asset.swift */,
+				00EC50F4278232EC00BD6AB1 /* Palette.swift */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -1315,20 +1323,20 @@
 				INFOPLIST_FILE = KAttraction/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = KO.KAttraction;
+				MARKETING_VERSION = 1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KAttraction;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1345,20 +1353,20 @@
 				INFOPLIST_FILE = KAttraction/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = KO.KAttraction;
+				MARKETING_VERSION = 1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KAttraction;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
