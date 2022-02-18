@@ -8,8 +8,6 @@ target 'KAttraction' do
   pod 'RxCocoa'
   pod 'RxSwift'
   pod 'RxRelay'
-  pod 'Alamofire', '~> 5.2'
+  pod 'Alamofire'
   pod 'Kingfisher'
-  # Pods for KAttraction
-
 end
