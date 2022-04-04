@@ -3,6 +3,10 @@ import UIKit
 enum Asset {
     
     enum GlobalIcon {
+        enum SystemStatus {
+            static let noEthernet = UIImage(named: "noEthernet")
+        }
+        static let loading = UIImage(named: "loading")
         static let backArrow = UIImage(named: "backArrow")
     }
     
@@ -22,9 +26,5 @@ enum Asset {
         static let cloudy = UIImage(named: "cloudyBackground")
         static let rain = UIImage(named: "rainBackground")
         static let snow = UIImage(named: "snowBackground")
-    }
-    
-    enum statusOfLoading {
-        static let loading = UIImage(named: "loading")
     }
 }

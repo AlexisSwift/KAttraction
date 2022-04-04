@@ -1,6 +1,6 @@
 import UIKit
 
-final class SearchViewController: UIViewController {
+final class SearchViewController: BaseViewController {
     
     private(set) var state = State()
     
@@ -64,6 +64,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.selectionStyle = .none
         cell.textLabel?.font = .systemFont(ofSize: 32, weight: .heavy)
         cell.backgroundColor = Palette.backgroundPrimary
         cell.textLabel?.textColor = .white

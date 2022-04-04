@@ -42,9 +42,6 @@ final class LoadingView: UIView {
         UIView.animate(withDuration: 0.5) { [weak self] in
             guard let self = self else { return }
             self.removeFromSuperview()
-        } completion: { [weak self] _ in
-            guard let self = self else { return }
-            self.removeFromSuperview()
         }
     }
 }

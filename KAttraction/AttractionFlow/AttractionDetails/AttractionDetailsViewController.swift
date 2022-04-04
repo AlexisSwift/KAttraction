@@ -1,6 +1,6 @@
 import RxSwift
 
-final class AttractionDetailsViewController: UIViewController {
+final class AttractionDetailsViewController: BaseViewController {
     typealias ViewModel = AttractionDetailsViewModel
     
     private var viewModel: ViewModel
@@ -103,6 +103,7 @@ extension AttractionDetailsViewController {
     }
     
     enum InputEvent {
+        case loading
         case error
     }
 }

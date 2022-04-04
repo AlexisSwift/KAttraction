@@ -1,13 +1,12 @@
 import RxSwift
     
-final class AttaractionListViewController: UIViewController {
+final class AttaractionListViewController: BaseViewController {
     typealias ViewModel = AttaractionListViewModel
     typealias Event = InputEvent
     
     private var viewModel: ViewModel
     private let disposeBag = DisposeBag()
     private let tableContainer = BaseTableContainerView()
-    private var loadingView = LoadingView()
     
     var onDetailAttractionsScreen: StringHandler?
     
@@ -51,11 +50,11 @@ final class AttaractionListViewController: UIViewController {
     
     func handle(_ event: Event) {
         switch event {
-        case .updateAttaractionList:
-            loadingView.hideLoading()
-            buildTable(source: viewModel.state.attraction)
         case .loading:
-            loadingView.embedInWithInsets(view)
+            startLoading()
+        case .updateAttaractionList:
+            endLoading()
+            buildTable(source: viewModel.state.attraction)
         }
     }
 }

@@ -1,10 +1,8 @@
 import RxSwift
 
-final class CityWeatherViewContoller: UIViewController {
+final class CityWeatherViewContoller: BaseViewController {
     typealias ViewModel = CityWeatherViewModel
     typealias Event = InputEvent
-    
-    private var loadingView = LoadingView()
     
     private var viewModel: ViewModel
     private let disposeBag = DisposeBag()
@@ -53,11 +51,11 @@ final class CityWeatherViewContoller: UIViewController {
 
     func handle(_ event: Event) {
         switch event {
-        case .setBackground(let weatherStatus):
-            loadingView.hideLoading()
-            setBackgroundImage(weatherStatus: weatherStatus)
         case .loading:
-            loadingView.embedInWithInsets(view)
+            startLoading()
+        case .setBackground(let weatherStatus):
+            endLoading()
+            setBackgroundImage(weatherStatus: weatherStatus)
         }
     }
     
