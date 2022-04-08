@@ -57,6 +57,9 @@
 		005E7D4F27906DF40076DD93 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E7D3627906DF30076DD93 /* BaseView.swift */; };
 		005E7D5027906DF40076DD93 /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E7D3727906DF30076DD93 /* ForEach.swift */; };
 		005F3E48279ED25800AA405C /* CheckWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005F3E47279ED25800AA405C /* CheckWeatherView.swift */; };
+		00CED6BE28003B1D00644A34 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6BD28003B1D00644A34 /* Target.swift */; };
+		00CED6C02800426E00644A34 /* BasicEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6BF2800426E00644A34 /* BasicEndpoints.swift */; };
+		00CED6C22800431C00644A34 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6C12800431C00644A34 /* GlobalConstants.swift */; };
 		00D29C2A27FB185200EA1A05 /* BaseNoEthernetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D29C2927FB185200EA1A05 /* BaseNoEthernetViewController.swift */; };
 		00D29C2C27FB1F0800EA1A05 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D29C2B27FB1F0800EA1A05 /* AlertViewController.swift */; };
 		00EA6D9B27FB1711004F90FB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EA6D9A27FB1711004F90FB /* BaseViewController.swift */; };
@@ -189,6 +192,9 @@
 		005E7D3627906DF30076DD93 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		005E7D3727906DF30076DD93 /* ForEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
 		005F3E47279ED25800AA405C /* CheckWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckWeatherView.swift; sourceTree = "<group>"; };
+		00CED6BD28003B1D00644A34 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
+		00CED6BF2800426E00644A34 /* BasicEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicEndpoints.swift; sourceTree = "<group>"; };
+		00CED6C12800431C00644A34 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		00D29C2927FB185200EA1A05 /* BaseNoEthernetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNoEthernetViewController.swift; sourceTree = "<group>"; };
 		00D29C2B27FB1F0800EA1A05 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		00EA6D9A27FB1711004F90FB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -517,6 +523,33 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		00CED6BC28003B0100644A34 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				00CED6BD28003B1D00644A34 /* Target.swift */,
+				00CED6BF2800426E00644A34 /* BasicEndpoints.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		00CED6C32800523500644A34 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				00EC51822782333500BD6AB1 /* Networking */,
+				00EC511B2782333400BD6AB1 /* Library */,
+				005E7D1A27906DF30076DD93 /* UI */,
+			);
+			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		00CED6C42800528000644A34 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				00CED6BC28003B0100644A34 /* EndPoint */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		00D29C2D27FB23BE00EA1A05 /* AlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,12 +579,11 @@
 		00EC50DD278231EB00BD6AB1 /* KAttraction */ = {
 			isa = PBXGroup;
 			children = (
+				00CED6C32800523500644A34 /* BusinessLogic */,
 				00EC50F22782324C00BD6AB1 /* Application */,
 				000A169427823A1600EDB65E /* AttractionFlow */,
 				00103A9427823FDF002B5588 /* Services */,
-				00EC511B2782333400BD6AB1 /* Library */,
-				00EC51822782333500BD6AB1 /* Networking */,
-				005E7D1A27906DF30076DD93 /* UI */,
+				00CED6C42800528000644A34 /* Networking */,
 				00EC50F3278232EC00BD6AB1 /* Resourses */,
 				00BBAA5E27BF98A00040CBA6 /* Configuration */,
 			);
@@ -563,6 +595,7 @@
 			children = (
 				00EC51E22782333D00BD6AB1 /* AppCoordinator.swift */,
 				00EC50DE278231EB00BD6AB1 /* AppDelegate.swift */,
+				00CED6C12800431C00644A34 /* GlobalConstants.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1102,6 +1135,7 @@
 				005E7CFD27906C4A0076DD93 /* AttaractionListViewController.swift in Sources */,
 				00EC51A22782333500BD6AB1 /* CellViewModel.swift in Sources */,
 				00EC519D2782333500BD6AB1 /* PreparableForReuse.swift in Sources */,
+				00CED6BE28003B1D00644A34 /* Target.swift in Sources */,
 				00D29C2C27FB1F0800EA1A05 /* AlertViewController.swift in Sources */,
 				00EC51A52782333500BD6AB1 /* TemplateTableCell.swift in Sources */,
 				00EC51C32782333500BD6AB1 /* UIButton+Heightable.swift in Sources */,
@@ -1114,6 +1148,7 @@
 				00EC51E12782333500BD6AB1 /* NetworkRequestManager.swift in Sources */,
 				00EC51CD2782333500BD6AB1 /* UIView+Shadow.swift in Sources */,
 				00EC51DC2782333500BD6AB1 /* VisualEffectView.swift in Sources */,
+				00CED6C02800426E00644A34 /* BasicEndpoints.swift in Sources */,
 				005E7D0227906C4A0076DD93 /* WeatherView.swift in Sources */,
 				00EC51D92782333500BD6AB1 /* Gradient.swift in Sources */,
 				00EC51C12782333500BD6AB1 /* UIApplication+UserInterfaceStyle.swift in Sources */,
@@ -1196,6 +1231,7 @@
 				005E7D3C27906DF40076DD93 /* MKMapView + extension .swift in Sources */,
 				005E7CFC27906C4A0076DD93 /* AttaractionListViewModel.swift in Sources */,
 				00EC51DA2782333500BD6AB1 /* GradientView.swift in Sources */,
+				00CED6C22800431C00644A34 /* GlobalConstants.swift in Sources */,
 				00EC51A42782333500BD6AB1 /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

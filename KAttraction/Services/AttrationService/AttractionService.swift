@@ -4,10 +4,6 @@ protocol AttractionsServiceAbstract {
 
 final class AttractionsService: AttractionsServiceAbstract {
     func getAttractions(for city: String, completion: @escaping (Result<[AttractionResponse], AppError>) -> Void) {
-        NetworkRequestManager.shared.request(
-            to: .attractionJson,
-            parameters: [:],
-            completion: completion
-        )
+        NetworkRequestManager.shared.request(BasicEndpoints.getAttractions, completion: completion)
     }
 }
