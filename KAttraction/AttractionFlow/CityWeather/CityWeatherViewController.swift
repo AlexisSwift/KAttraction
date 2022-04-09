@@ -48,7 +48,7 @@ final class CityWeatherViewContoller: BaseViewController {
         }
         .disposed(by: disposeBag)
     }
-
+    
     func handle(_ event: Event) {
         switch event {
         case .loading:
@@ -87,54 +87,52 @@ final class CityWeatherViewContoller: BaseViewController {
 extension CityWeatherViewContoller {
     private func body(state: ViewModel.State) -> UIView {
         VStack {
-            ScrollView {
-                VStack {
-//                    mapView
-//                        .height(144)
-                    VStack {
-                        Label(text: state.city.name)
-                            .setFont(.systemFont(ofSize: 32, weight: .heavy))
-                            .setTextColor(.black)
-                        Spacer(height: 8)
-                        ViewWithData(state.$todayDate) { date in
-                            Label(text: "\(Localization.SearchFlow.CityWeather.DaysDiscription.today), \(date)")
-                                .setFont(.systemFont(ofSize: 16, weight: .medium))
-                                .setTextColor(.black)
-                        }
-                    }
-                    .layoutMargins(vInset: 16, hInset: 24)
-                    
-                    ScrollView {
-                        HStack {
-                            ForEach(state.$todayWeather, spacerSize: 8) { weather in
-                                WeatherView(config: weather)
-                            }
-                        }
-                        .layoutMargins(hInset: 18)
-                    }
-                    .hideScrollIndicators()
-                    
-                    VStack {
-                        ViewWithData(state.$tomorrowDate) { date in
-                            Label(text: "\(Localization.SearchFlow.CityWeather.DaysDiscription.tomorrow), \(date)")
-                                .setFont(.systemFont(ofSize: 16, weight: .medium))
-                                .setTextColor(.black)
-                        }
-                    }.layoutMargins(vInset: 16, hInset: 24)
-                    
-                    ScrollView {
-                        HStack {
-                            ForEach(state.$tomorrowWeather, spacerSize: 8) { weather in
-                                WeatherView(config: weather)
-                            }
-                        }
-                        .layoutMargins(hInset: 18)
-                    }
-                    .hideScrollIndicators()
-                    FlexibleSpacer()
+            FlexibleGroupedSpacer(groupId: 1)
+            //mapView
+            //.height(144)
+            VStack {
+                Label(text: state.city.name)
+                    .setFont(.systemFont(ofSize: 32, weight: .heavy))
+                    .setTextColor(.black)
+                Spacer(height: 8)
+                ViewWithData(state.$todayDate) { date in
+                    Label(text: "\(Localization.SearchFlow.CityWeather.DaysDiscription.today), \(date)")
+                        .setFont(.systemFont(ofSize: 16, weight: .medium))
+                        .setTextColor(.black)
                 }
             }
+            .layoutMargins(vInset: 16, hInset: 24)
+            
+            ScrollView {
+                HStack {
+                    ForEach(state.$todayWeather, spacerSize: 8) { weather in
+                        WeatherView(config: weather)
+                    }
+                }
+                .layoutMargins(hInset: 18)
+            }
+            .hideScrollIndicators()
+            
+            VStack {
+                ViewWithData(state.$tomorrowDate) { date in
+                    Label(text: "\(Localization.SearchFlow.CityWeather.DaysDiscription.tomorrow), \(date)")
+                        .setFont(.systemFont(ofSize: 16, weight: .medium))
+                        .setTextColor(.black)
+                }
+            }.layoutMargins(vInset: 16, hInset: 24)
+            
+            ScrollView {
+                HStack {
+                    ForEach(state.$tomorrowWeather, spacerSize: 8) { weather in
+                        WeatherView(config: weather)
+                    }
+                }
+                .layoutMargins(hInset: 18)
+            }
+            .hideScrollIndicators()
+            FlexibleGroupedSpacer(groupId: 1)
         }
+        .linkSpacers()
     }
 }
 

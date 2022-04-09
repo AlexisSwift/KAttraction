@@ -12,7 +12,7 @@ final class BaseNoEthernetViewController: BaseViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .systemGray2
+        view.backgroundColor = .systemGray4
         body().embedIn(self.view)
     }
     

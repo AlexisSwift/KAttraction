@@ -24,20 +24,19 @@ final class SearchViewController: BaseViewController {
     
     private func setupSearchBar() {
         state.filteredCity = state.city
+        
+        searchBar.searchBarStyle = .minimal
+        searchBar.layer.cornerRadius = 12
+        searchBar.placeholder = Localization.SearchFlow.Search.find
+        searchBar.searchField?.textColor = .white
+        searchBar.tintColor = .white
+        searchBar.keyboardAppearance = .dark
         searchBar.delegate = self
         
         view.addSubview(searchBar)
         searchBar.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
         }
-        
-        searchBar.searchBarStyle = .minimal
-        searchBar.layer.cornerRadius = 12
-        
-        searchBar.placeholder = Localization.SearchFlow.Search.find
-        searchBar.searchField?.textColor = .white
-        searchBar.tintColor = .white
-        searchBar.keyboardAppearance = .dark
     }
     
     private func setupTableView() {
