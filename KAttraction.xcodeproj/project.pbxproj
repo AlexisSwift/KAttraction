@@ -526,7 +526,6 @@
 		00CED6BC28003B0100644A34 /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
-				00CED6BD28003B1D00644A34 /* Target.swift */,
 				00CED6BF2800426E00644A34 /* BasicEndpoints.swift */,
 			);
 			path = EndPoint;
@@ -966,6 +965,7 @@
 		00EC51822782333500BD6AB1 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				00CED6BD28003B1D00644A34 /* Target.swift */,
 				00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */,
 			);
 			path = Networking;
