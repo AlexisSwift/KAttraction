@@ -4,13 +4,13 @@ import Network
 class BaseViewController: UIViewController {
     
     let monitor = NWPathMonitor()
-    private let queueForMonitor = DispatchQueue(label: "queueForMonitor")
     
+    private let queueForMonitor = DispatchQueue(label: "queueForMonitor")
     private var loadingView = LoadingView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        monitorConfgi()
+        monitorConfig()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -18,7 +18,7 @@ class BaseViewController: UIViewController {
         monitor.cancel()
     }
     
-    private func monitorConfgi() {
+    private func monitorConfig() {
         monitor.start(queue: queueForMonitor)
         if self is BaseNoEthernetViewController { } else {
             monitor.pathUpdateHandler = { [weak self] path in

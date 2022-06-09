@@ -94,6 +94,7 @@ extension CityWeatherViewContoller {
                 Label(text: state.city.name)
                     .setFont(.systemFont(ofSize: 32, weight: .heavy))
                     .setTextColor(.black)
+                    .multilined
                 Spacer(height: 8)
                 ViewWithData(state.$todayDate) { date in
                     Label(text: "\(Localization.SearchFlow.CityWeather.DaysDiscription.today), \(date)")

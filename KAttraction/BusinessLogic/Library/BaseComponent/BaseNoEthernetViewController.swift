@@ -47,7 +47,10 @@ final class BaseNoEthernetViewController: BaseViewController {
         .linkSpacers()
         .layoutMargins(hInset: 16)
     }
-    
+}
+
+// MARK: - NetworkHelper
+private extension BaseNoEthernetViewController {
     private func startMonitor() {
         monitor.pathUpdateHandler = { [weak self] path in
             guard let self = self else { return }
