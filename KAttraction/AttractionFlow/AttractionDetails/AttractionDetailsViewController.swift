@@ -6,7 +6,7 @@ final class AttractionDetailsViewController: BaseViewController {
     private var viewModel: ViewModel
     private let disposeBag = DisposeBag()
     
-//    private lazy var mapView = MapView()
+    private lazy var mapView = MapView()
     
     var onWeatherScreen: CityHandler?
     
@@ -36,9 +36,9 @@ final class AttractionDetailsViewController: BaseViewController {
                 self.body(state: state).embedIn(self.view)
                 self.title = state.attractionName
                 
-//                state.$detailAboutAttraction.drive { coordinates in
-//                    self.mapView.updateMap(nameAttraction: coordinates.name, latitude: coordinates.latitude, longitude: coordinates.longitude)
-//                }.disposed(by: self.disposeBag)
+                state.$detailAboutAttraction.drive { coordinates in
+                    self.mapView.updateMap(nameAttraction: coordinates.name, latitude: coordinates.latitude, longitude: coordinates.longitude)
+                }.disposed(by: self.disposeBag)
                 
             }.disposed(by: disposeBag)
     }
@@ -88,9 +88,9 @@ extension AttractionDetailsViewController {
                             .setTextColor(.white)
                     }
                     .layoutMargins(inset: 24)
-//                    mapView
-//                        .height(214)
-//                        .cornerRadius(8)
+                    mapView
+                        .height(214)
+                        .cornerRadius(8)
                     Spacer(height: 24)
                 }
             }
