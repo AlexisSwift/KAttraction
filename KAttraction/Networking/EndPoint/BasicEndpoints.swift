@@ -30,10 +30,8 @@ extension BasicEndpoints: Target {
     
     var method: HTTPMethod {
         switch self {
-        case .getWeather:
-            return .get
         default:
-            return .post
+            return .get
         }
     }
     

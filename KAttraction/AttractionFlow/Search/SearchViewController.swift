@@ -82,7 +82,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let city = state.filteredCity[indexPath.row]
-        self.onAttractionScreen?(city)
+        onAttractionScreen?(city)
 
     }
 }
@@ -107,7 +107,7 @@ extension SearchViewController: UISearchBarDelegate {
         
         guard searchText != "" else {
             state.filteredCity = state.city
-            self.tableView.reloadData()
+            tableView.reloadData()
             return
         }
         
@@ -118,6 +118,7 @@ extension SearchViewController: UISearchBarDelegate {
                 state.filteredCity.append(city)
             }
         }
-        self.tableView.reloadData()
+        
+        tableView.reloadData()
     }
 }
