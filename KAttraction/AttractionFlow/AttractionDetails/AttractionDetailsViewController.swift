@@ -7,7 +7,6 @@ final class AttractionDetailsViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     
     private lazy var mapView = MapView()
-    private let pageControl = UIPageControl()
     
     // MARK: - Handlers
     var onWeatherScreen: CityHandler?
@@ -65,10 +64,9 @@ extension AttractionDetailsViewController {
                             }
                         }
                     }
+                    .setDelegate(self)
                     .isPagingEnabled(true)
                     .hideScrollIndicators()
-                    pageControl
-                        .height(20)
                     VStack {
                         Label(text: state.attractionName)
                             .setFont(.systemFont(ofSize: 32, weight: .heavy))
@@ -102,6 +100,13 @@ extension AttractionDetailsViewController {
                 }
             }
         }
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension AttractionDetailsViewController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        viewModel.state.pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 }
 
