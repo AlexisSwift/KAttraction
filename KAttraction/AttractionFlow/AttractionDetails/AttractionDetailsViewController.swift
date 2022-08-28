@@ -7,7 +7,9 @@ final class AttractionDetailsViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     
     private lazy var mapView = MapView()
+    private let pageControl = UIPageControl()
     
+    // MARK: - Handlers
     var onWeatherScreen: CityHandler?
     
     init(viewModel: ViewModel) {
@@ -52,16 +54,21 @@ extension AttractionDetailsViewController {
                 VStack {
                     ScrollView {
                         HStack {
-                            ForEach(state.$detailAboutAttraction.map({ $0.images
-                            })) { image in
+                            ForEach(state.$detailAboutAttraction.map({ $0.images })) { [weak self] image in
                                 UIImageView()
+                                    .userInteractionEnabled(true)
                                     .setImage(withUrl: image)
-                                    .size(.init(width: UIScreen.main.bounds.width, height: 219))
+                                    .size(CGSize(width: UIScreen.main.bounds.width, height: 219))
+                                    .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
+                                        self?.showImageViewer()
+                                    }
                             }
                         }
                     }
                     .isPagingEnabled(true)
                     .hideScrollIndicators()
+                    pageControl
+                        .height(20)
                     VStack {
                         Label(text: state.attractionName)
                             .setFont(.systemFont(ofSize: 32, weight: .heavy))
@@ -94,6 +101,21 @@ extension AttractionDetailsViewController {
                     Spacer(height: 24)
                 }
             }
+        }
+    }
+}
+
+// MARK: - ImageViewerControllerDelegate
+extension AttractionDetailsViewController: ImageViewerControllerDelegate {
+    private func showImageViewer() {
+        let vc = ImageViewerController(imageURLs: viewModel.state.detailAboutAttraction.images, pageIndex: viewModel.state.pageIndex)
+        vc.delegate = self
+        present(vc, animated: true)
+    }
+    
+    func load(_ imageURL: String, into imageView: UIImageView, completion: (() -> Void)?) {
+        imageView.setImage(withUrl: imageURL) { _ in
+            completion?()
         }
     }
 }

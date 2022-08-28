@@ -10,45 +10,14 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        showSearchScreen()
+        showMainScreen()
     }
 }
 
 private extension AppCoordinator {
-    func showSearchScreen() {
-        let controller = SearchViewController()
-        
-        controller.onAttractionScreen = { [weak self] city in
-            self?.showAttractionsScreen(city: city)
-        }
-        
-        router.setRootModule(controller)
+    func showMainScreen() {
+        let coordinator = MainFlowCoordinator(router: router)
+        addDependency(coordinator)
+        coordinator.start()
     }
-    
-    func showCityWeatherScreen(city: City) {
-        let controller = CityWeatherViewContoller(viewModel: CityWeatherViewModel(city: city, weatherService: WeatherService()))
-        
-        router.push(controller)
-    }
-    
-    func showAttractionsScreen(city: City) {
-        let controller = AttaractionListViewController(viewModel: AttaractionListViewModel(city: city, attractionService: AttractionsService()))
-        
-        controller.onDetailAttractionsScreen = { [weak self] in
-            self?.showDetaillAboutAttractionScreen(attractionName: $0, city: city)
-        }
-        
-        router.push(controller)
-    }
-    
-    func showDetaillAboutAttractionScreen(attractionName: String, city: City) {
-        let controller = AttractionDetailsViewController(viewModel: AttractionDetailsViewModel(attractionName: attractionName, city: city, attractionService: AttractionsService()))
-        
-        controller.onWeatherScreen = { [weak self] in
-            self?.showCityWeatherScreen(city: $0)
-        }
-        
-        router.push(controller)
-    }
-    
 }

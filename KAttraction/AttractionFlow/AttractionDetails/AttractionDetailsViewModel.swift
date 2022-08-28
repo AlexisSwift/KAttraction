@@ -54,13 +54,17 @@ extension AttractionDetailsViewModel {
         fileprivate(set) var attractionName: String
         
         @DriverValue fileprivate(set) var city: City
-        @DriverValue fileprivate(set) var detailAboutAttraction: Attraction = .init(images: [""],
-                                                                                    name: "",
-                                                                                    description: "",
-                                                                                    descriptionFull: "",
-                                                                                    cityName: "",
-                                                                                    longitude: 0,
-                                                                                    latitude: 0)
+        @DriverValue fileprivate(set) var detailAboutAttraction: Attraction = Attraction(
+            images: [""],
+            name: "",
+            description: "",
+            descriptionFull: "",
+            cityName: "",
+            longitude: 0,
+            latitude: 0
+        )
+        
+        var pageIndex: Int = 0
         
         init (attractionName: String, city: City) {
             self.attractionName = attractionName

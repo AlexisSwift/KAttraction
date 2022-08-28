@@ -57,6 +57,10 @@
 		005E7D4F27906DF40076DD93 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E7D3627906DF30076DD93 /* BaseView.swift */; };
 		005E7D5027906DF40076DD93 /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E7D3727906DF30076DD93 /* ForEach.swift */; };
 		005F3E48279ED25800AA405C /* CheckWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005F3E47279ED25800AA405C /* CheckWeatherView.swift */; };
+		006003DE28A51B8D0050EDC4 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006003DD28A51B8D0050EDC4 /* MainFlowCoordinator.swift */; };
+		0072159428BBD4AE00AA1A4B /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072159028BBD4AE00AA1A4B /* PageView.swift */; };
+		0072159528BBD4AE00AA1A4B /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072159128BBD4AE00AA1A4B /* ImageViewerController.swift */; };
+		0072159628BBD4AE00AA1A4B /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072159328BBD4AE00AA1A4B /* Animator.swift */; };
 		00CED6BE28003B1D00644A34 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6BD28003B1D00644A34 /* Target.swift */; };
 		00CED6C02800426E00644A34 /* BasicEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6BF2800426E00644A34 /* BasicEndpoints.swift */; };
 		00CED6C22800431C00644A34 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6C12800431C00644A34 /* GlobalConstants.swift */; };
@@ -192,6 +196,10 @@
 		005E7D3627906DF30076DD93 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		005E7D3727906DF30076DD93 /* ForEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
 		005F3E47279ED25800AA405C /* CheckWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckWeatherView.swift; sourceTree = "<group>"; };
+		006003DD28A51B8D0050EDC4 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
+		0072159028BBD4AE00AA1A4B /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		0072159128BBD4AE00AA1A4B /* ImageViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
+		0072159328BBD4AE00AA1A4B /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		00CED6BD28003B1D00644A34 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		00CED6BF2800426E00644A34 /* BasicEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicEndpoints.swift; sourceTree = "<group>"; };
 		00CED6C12800431C00644A34 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -514,6 +522,48 @@
 			path = Table;
 			sourceTree = "<group>";
 		};
+		006003DA28A51B4F0050EDC4 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				006003DC28A51B690050EDC4 /* Main */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		006003DC28A51B690050EDC4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				006003DD28A51B8D0050EDC4 /* MainFlowCoordinator.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		0072158E28BBD4AE00AA1A4B /* ImageViewerController */ = {
+			isa = PBXGroup;
+			children = (
+				0072158F28BBD4AE00AA1A4B /* View */,
+				0072159228BBD4AE00AA1A4B /* Animations */,
+				0072159128BBD4AE00AA1A4B /* ImageViewerController.swift */,
+			);
+			path = ImageViewerController;
+			sourceTree = "<group>";
+		};
+		0072158F28BBD4AE00AA1A4B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0072159028BBD4AE00AA1A4B /* PageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0072159228BBD4AE00AA1A4B /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				0072159328BBD4AE00AA1A4B /* Animator.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		00BBAA5E27BF98A00040CBA6 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,6 +642,7 @@
 		00EC50F22782324C00BD6AB1 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				006003DA28A51B4F0050EDC4 /* Assembly */,
 				00EC51E22782333D00BD6AB1 /* AppCoordinator.swift */,
 				00EC50DE278231EB00BD6AB1 /* AppDelegate.swift */,
 				00CED6C12800431C00644A34 /* GlobalConstants.swift */,
@@ -953,6 +1004,7 @@
 		00EC51802782333500BD6AB1 /* BaseComponent */ = {
 			isa = PBXGroup;
 			children = (
+				0072158E28BBD4AE00AA1A4B /* ImageViewerController */,
 				00D29C2D27FB23BE00EA1A05 /* AlertView */,
 				005E7CE227906C4A0076DD93 /* LoadingView */,
 				00D29C2927FB185200EA1A05 /* BaseNoEthernetViewController.swift */,
@@ -1122,6 +1174,7 @@
 				00EC51AC2782333500BD6AB1 /* RouterAbstract.swift in Sources */,
 				00EC51A12782333500BD6AB1 /* CellViewModelActionable.swift in Sources */,
 				00EC519F2782333500BD6AB1 /* CellViewModelSwiping.swift in Sources */,
+				006003DE28A51B8D0050EDC4 /* MainFlowCoordinator.swift in Sources */,
 				005E7D1727906CA60076DD93 /* AttractionResponse.swift in Sources */,
 				00EC51D32782333500BD6AB1 /* UITextView+Attributes.swift in Sources */,
 				005E7D4927906DF40076DD93 /* BaseTableView.swift in Sources */,
@@ -1167,6 +1220,7 @@
 				005E7D4727906DF40076DD93 /* ScrollViewBuilder.swift in Sources */,
 				005E7D0527906C4A0076DD93 /* DetailAboutAttractionView.swift in Sources */,
 				005E7D3A27906DF40076DD93 /* UIView + extension.swift in Sources */,
+				0072159528BBD4AE00AA1A4B /* ImageViewerController.swift in Sources */,
 				00EC51B82782333500BD6AB1 /* UIImage+Cropped.swift in Sources */,
 				00EC51DE2782333500BD6AB1 /* UILabel+FadeAnimation.swift in Sources */,
 				00EC51DB2782333500BD6AB1 /* ContainerCell.swift in Sources */,
@@ -1199,6 +1253,7 @@
 				005E7D1527906CA60076DD93 /* AttractionService.swift in Sources */,
 				00EC51CA2782333500BD6AB1 /* UIView+Configuration.swift in Sources */,
 				005E7CFF27906C4A0076DD93 /* MapView.swift in Sources */,
+				0072159428BBD4AE00AA1A4B /* PageView.swift in Sources */,
 				005E7D4F27906DF40076DD93 /* BaseView.swift in Sources */,
 				00EC51B42782333500BD6AB1 /* UICollectionView+Scroll.swift in Sources */,
 				00EC51DF2782333500BD6AB1 /* UILabel+ChangeText.swift in Sources */,
@@ -1210,6 +1265,7 @@
 				00EC51AF2782333500BD6AB1 /* TypeAllias.swift in Sources */,
 				00EC51A82782333500BD6AB1 /* DriverValue.swift in Sources */,
 				005E7D4627906DF40076DD93 /* BackgroundView.swift in Sources */,
+				0072159628BBD4AE00AA1A4B /* Animator.swift in Sources */,
 				00EC51C62782333500BD6AB1 /* UIView+Rounded.swift in Sources */,
 				005E7D1227906CA60076DD93 /* City.swift in Sources */,
 				00D29C2A27FB185200EA1A05 /* BaseNoEthernetViewController.swift in Sources */,

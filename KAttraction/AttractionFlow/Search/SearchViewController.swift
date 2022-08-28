@@ -35,7 +35,8 @@ final class SearchViewController: BaseViewController {
         
         view.addSubview(searchBar)
         searchBar.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.left.right.equalToSuperview()
         }
     }
     

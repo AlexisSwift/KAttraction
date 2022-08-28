@@ -4,8 +4,7 @@ protocol WeatherServiceAbstract {
     func getWeather(city: City, completion: @escaping (Result<WeatherResponse, AppError>) -> Void)
 }
 
-class WeatherService: WeatherServiceAbstract {
-    
+final class WeatherService: WeatherServiceAbstract {
     func getWeather(city: City, completion: @escaping (Result<WeatherResponse, AppError>) -> Void) {
         NetworkRequestManager.shared.request(BasicEndpoints.getWeather(latitude: city.latitude, longitude: city.longitude), completion: completion)
     }
