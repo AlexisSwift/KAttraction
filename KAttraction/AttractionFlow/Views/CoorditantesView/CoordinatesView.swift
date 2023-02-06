@@ -14,7 +14,10 @@ final class CoordinatesView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+// MARK: - UI
+private extension CoordinatesView {
     private func setup(config: CoordinatesConfig) {
         backgroundColor = .secondarySystemFill
         border(color: .gray)
@@ -66,6 +69,7 @@ final class CoordinatesView: UIView {
         }
     }
 }
+
 // MARK: - Config
 extension CoordinatesView {
     struct CoordinatesConfig {

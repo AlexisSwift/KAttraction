@@ -3,9 +3,7 @@ import UIKit
 final class AppCoordinator: BaseCoordinator {
     private(set) var router: RouterAbstract
     
-    init(
-        router: RouterAbstract
-    ) {
+    init(router: RouterAbstract) {
         self.router = router
     }
     

@@ -3,8 +3,8 @@ import SnapKit
 
 final class MapView: UIView {
     
-    private let mapView = MKMapView()
-    private let mark = MKPointAnnotation()
+    private lazy var mapView = MKMapView()
+    private lazy var mark = MKPointAnnotation()
     
     init() {
         super.init(frame: .zero)
@@ -14,7 +14,10 @@ final class MapView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+// MARK: - UI
+private extension MapView {
     private func setupMap() {
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
@@ -26,11 +29,13 @@ final class MapView: UIView {
             make.top.right.left.bottom.equalToSuperview()
         }
     }
-    
+}
+
+// MARK: - Pubilc action
+extension MapView {
     func updateMap(nameAttraction: String, latitude: Double, longitude: Double) {
         mapView.setupCenterOnMap(CLLocation(latitude: latitude, longitude: longitude))
         mark.title = nameAttraction
         mark.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-    
 }

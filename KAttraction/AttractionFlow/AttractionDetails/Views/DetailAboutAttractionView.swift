@@ -3,6 +3,8 @@ import RxSwift
 final class AttractionDetailsView: UIView {
     
     private let disposeBag = DisposeBag()
+    
+    // MARK: - UI Components
     private var textLabel = Label()
     private var reedMoreButton = Button()
     
@@ -14,7 +16,10 @@ final class AttractionDetailsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+// MARK: - UI
+private extension AttractionDetailsView {
     private func body(config: Config) -> UIView {
         VStack (alignment: .leading) {
             textLabel
@@ -35,6 +40,7 @@ final class AttractionDetailsView: UIView {
     }
 }
 
+// MARK: - Config
 extension AttractionDetailsView {
     struct Config {
         let description: String

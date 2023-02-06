@@ -1,125 +1,146 @@
-import UIKit
+import RxSwift
 
 final class SearchViewController: BaseViewController {
+    typealias ViewModel = SearchViewModel
+    typealias Event = InputEvent
     
-    private(set) var state = State()
+    private var viewModel: ViewModel
     
+    // MARK: - Handlers
     var onAttractionScreen: CityHandler?
     
-    private let searchBar = UISearchBar()
-    private let tableView = UITableView()
+    // MARK: - UI Components
+    private let searchController = UISearchController()
+    private let refreshControl = UIRefreshControl(color: .darkGray)
+    private let tableContainer = BaseTableContainerView()
+    
+    // MARK: - Initializers
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
+        setupBindings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.handle(.getCity)
     }
     
     private func setupView() {
+        title = "Выбери свой город"
         view.backgroundColor = Palette.backgroundPrimary
         
-        setupSearchBar()
-        setupTableView()
+        self.viewModel.$state
+            .drive { [weak self] state in
+                guard let self = self else { return }
+                
+                self.body(state: state).embedInWithSafeArea(self.view)
+                self.setupSearchBar()
+                self.setupTableView()
+                
+            }.disposed(by: disposeBag)
+    }
+    
+    private func setupBindings() {
+        viewModel.$event.drive { [weak self] event in
+            self?.handle(event)
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    func handle(_ event: Event) {
+        switch event {
+        case .none:
+            break
+        case let .updateTable(source):
+            buildTable(source: source)
+        }
+    }
+}
+
+// MARK: - UI
+private extension SearchViewController {
+    private func body(state: ViewModel.State) -> UIView {
+        VStack {
+            tableContainer
+        }
     }
     
     private func setupSearchBar() {
-        state.filteredCity = state.city
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.searchBar.layer.cornerRadius = 12
+        searchController.searchBar.placeholder = "Поиск"
+        searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchResultsUpdater = self
         
-        searchBar.searchBarStyle = .minimal
-        searchBar.layer.cornerRadius = 12
-        searchBar.placeholder = Localization.SearchFlow.Search.find
-        searchBar.searchField?.textColor = .white
-        searchBar.tintColor = .white
-        searchBar.keyboardAppearance = .dark
-        searchBar.delegate = self
-        
-        view.addSubview(searchBar)
-        searchBar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.left.right.equalToSuperview()
+        if #available(iOS 16.0, *) {
+            navigationItem.preferredSearchBarPlacement = .automatic
         }
+        
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
-    
+}
+
+// MARK: - Table
+private extension SearchViewController {
     private func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableContainer.register(cellModels: [CityCellViewModel.self])
+        tableContainer.tableView.separatorStyle = .singleLine
+        tableContainer.tableView.separatorColor = .gray
+        tableContainer.tableView.separatorInset = .zero
         
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
-        }
-        
-        tableView.backgroundColor = Palette.backgroundPrimary
-        tableView.separatorStyle = .none
-    }
-}
-
-// MARK: - TableView
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return state.filteredCity.count
+        tableContainer.tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.selectionStyle = .none
-        cell.textLabel?.font = .systemFont(ofSize: 32, weight: .heavy)
-        cell.backgroundColor = Palette.backgroundPrimary
-        cell.textLabel?.textColor = .white
+    private func buildTable(source: [City]) {
+        var items: [CellViewModel] = []
         
-        guard indexPath.row < state.filteredCity.count else {
-            return cell
+        source.forEach { city in
+            let cityCellViewModel = CityCellViewModel(source: city, handler: onAttractionScreen)
+            items.append(cityCellViewModel)
         }
         
-        cell.textLabel?.text = state.filteredCity[indexPath.row].name
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.row < state.filteredCity.count  else {
-            return
-        }
-        
-        let city = state.filteredCity[indexPath.row]
-        onAttractionScreen?(city)
-
-    }
-}
-
-// MARK: - Controller's State
-extension SearchViewController {
-    final class State {
-        var city = [
-            City(name: "Калининград", latitude: 54.7065, longitude: 20.511),
-            City(name: "Санкт-Петербург", latitude: 59.9386, longitude: 30.3141),
-            City(name: "Вильнюс", latitude: 54.6892, longitude: 25.2798),
-            City(name: "Минск", latitude: 53.9, longitude: 27.5667),
-            City(name: "Берлин", latitude: 52.5244, longitude: 13.4105)
-        ]
-        var filteredCity: [City] = []
+        tableContainer.tableManager.set(items: items)
     }
 }
 
 // MARK: - SearchView
-extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        guard searchText != "" else {
-            state.filteredCity = state.city
-            tableView.reloadData()
-            return
-        }
-        
-        state.filteredCity = []
-        
-        for city in state.city {
-            if city.name.uppercased().contains(searchText.uppercased()) {
-                state.filteredCity.append(city)
-            }
-        }
-        
-        tableView.reloadData()
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        viewModel.handle(.search(text: searchController.searchBar.text))
+    }
+}
+
+// MARK: - Actions
+@objc
+private extension SearchViewController {
+    private func refresh(_ sender: AnyObject) {
+        viewModel.handle(.getCity)
+        sender.endRefreshing()
+    }
+}
+
+// MARK: - Action, Event
+extension SearchViewController {
+    enum Action {
+        case search(text: String?)
+        case getCity
+    }
+    
+    enum InputEvent {
+        case none
+        case updateTable(source: [City])
     }
 }

@@ -1,9 +1,7 @@
 import UIKit
 import RxSwift
 
-final class BaseNoEthernetViewController: BaseViewController {
-    
-    private let disposeBag = DisposeBag()
+final class DisableNetworkViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +13,10 @@ final class BaseNoEthernetViewController: BaseViewController {
         view.backgroundColor = .systemGray4
         body().embedIn(self.view)
     }
-    
+}
+
+// MARK: - UI
+private extension DisableNetworkViewController {
     private func body() -> UIView {
         VStack {
             FlexibleGroupedSpacer(groupId: 1)
@@ -50,7 +51,7 @@ final class BaseNoEthernetViewController: BaseViewController {
 }
 
 // MARK: - NetworkHelper
-private extension BaseNoEthernetViewController {
+private extension DisableNetworkViewController {
     private func startMonitor() {
         monitor.pathUpdateHandler = { [weak self] path in
             guard let self = self else { return }

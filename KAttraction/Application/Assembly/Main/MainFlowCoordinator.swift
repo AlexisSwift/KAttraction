@@ -17,7 +17,7 @@ final class MainFlowCoordinator: BaseCoordinator {
     override func start() {
         
         // MARK: - Search
-        let controller = SearchViewController()
+        let controller = SearchViewController(viewModel: SearchViewModel())
         
         controller.onAttractionScreen = { [weak self] city in
             self?.showAttractionsScreen(city: city)
@@ -28,8 +28,8 @@ final class MainFlowCoordinator: BaseCoordinator {
 }
 
 // MARK: - Main
-extension MainFlowCoordinator {
-    func showAttractionsScreen(city: City) {
+private extension MainFlowCoordinator {
+    private func showAttractionsScreen(city: City) {
         let controller = AttaractionListViewController(viewModel: AttaractionListViewModel(city: city, attractionService: AttractionsService()))
         
         controller.onDetailAttractionsScreen = { [weak self] in
@@ -39,19 +39,39 @@ extension MainFlowCoordinator {
         router.push(controller, transitionOptions: [TransitionOption.withNavBar(hidden: false)])
     }
     
-    func showCityWeatherScreen(city: City) {
+    private func showCityWeatherScreen(city: City) {
         let controller = CityWeatherViewContoller(viewModel: CityWeatherViewModel(city: city, weatherService: WeatherService()))
         
         router.push(controller)
     }
     
-    func showDetaillAboutAttractionScreen(attractionName: String, city: City) {
-        let controller = AttractionDetailsViewController(viewModel: AttractionDetailsViewModel(attractionName: attractionName, city: city, attractionService: AttractionsService()))
+    private func showDetaillAboutAttractionScreen(attractionName: String, city: City) {
+        let viewModel = AttractionDetailsViewModel(attractionName: attractionName, city: city, attractionService: AttractionsService())
+        let controller = AttractionDetailsViewController(viewModel: viewModel)
         
         controller.onWeatherScreen = { [weak self] in
             self?.showCityWeatherScreen(city: $0)
         }
         
+        controller.showImageViewer = { [weak self] in
+            self?.showImageViewer(images: viewModel.state.detailAboutAttraction.images, pageIndex: viewModel.state.pageIndex)
+        }
+        
         router.push(controller)
+    }
+}
+
+// MARK: - ImageViewerControllerDelegate
+extension MainFlowCoordinator: ImageViewerControllerDelegate {
+    func showImageViewer(images: [String], pageIndex: Int) {
+        let controller = ImageViewerController(imageURLs: images, pageIndex: pageIndex)
+        controller.delegate = self
+        router.present(controller)
+    }
+    
+    func load(_ imageURL: String, into imageView: UIImageView, completion: (() -> Void)?) {
+        imageView.setImage(withUrl: imageURL) { _ in
+            completion?()
+        }
     }
 }

@@ -1,13 +1,23 @@
-import UIKit
 import RxSwift
 
 final class AttaractionCell: BaseTableViewCell {
     
-    var onDetails: StringHandler?
-    
-    private var config: AttractionConfig?
     private let disposeBag: DisposeBag = DisposeBag()
     
+    // MARK: - Handler
+    var onDetails: StringHandler?
+    
+    // MARK: - Config
+    private var config: AttractionConfig?
+    
+    func set(model: AttractionConfig) {
+        config = model
+        setupUI()
+    }
+}
+
+// MARK: - UI
+private extension AttaractionCell {
     private func setupUI() {
         guard let source = config else { return }
         body(config: source).embedIn(contentView)
@@ -47,11 +57,6 @@ final class AttaractionCell: BaseTableViewCell {
         }
         .background(UIColor(red: 0, green: 0, blue: 0, alpha: 0.8))
         .layoutMargins(vInset: 16, hInset: 8)
-    }
-    
-    func set(model: AttractionConfig) {
-        config = model
-        setupUI()
     }
 }
 

@@ -29,9 +29,11 @@ final class AttaractionListViewModel: ViewModel {
             case .success(let response):
                 self?.state.attraction = response
                     .filter { $0.geo.name == self?.state.cityName }
-                    .map({ attractionResponse in AttaractionCell.AttractionConfig(attractionImage: attractionResponse.images,
-                                                                                 attractionName: attractionResponse.name,
-                                                                                 attractionDescription: attractionResponse.description)
+                    .map({ attractionResponse in
+                        AttaractionCell.AttractionConfig(
+                            attractionImage: attractionResponse.images,
+                            attractionName: attractionResponse.name,
+                            attractionDescription: attractionResponse.description)
                     })
                 self?.event = .updateAttaractionList
             case .failure(_):

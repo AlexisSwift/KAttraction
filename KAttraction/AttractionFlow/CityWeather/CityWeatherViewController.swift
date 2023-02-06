@@ -5,9 +5,8 @@ final class CityWeatherViewContoller: BaseViewController {
     typealias Event = InputEvent
     
     private var viewModel: ViewModel
-    private let disposeBag = DisposeBag()
     
-//    private var mapView = MapView()
+    private lazy var mapView = MapView()
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -35,9 +34,9 @@ final class CityWeatherViewContoller: BaseViewController {
                 guard let self = self else { return }
                 self.body(state: state).embedIn(self.view)
                 
-//                state.$city.drive { coordinates in
-//                    self.mapView.updateMap(nameAttraction: coordinates.name, latitude: coordinates.latitude, longitude: coordinates.longitude)
-//                }.disposed(by: self.disposeBag)
+                state.$city.drive { coordinates in
+                    self.mapView.updateMap(nameAttraction: coordinates.name, latitude: coordinates.latitude, longitude: coordinates.longitude)
+                }.disposed(by: self.disposeBag)
                 
             }.disposed(by: disposeBag)
     }
@@ -56,29 +55,6 @@ final class CityWeatherViewContoller: BaseViewController {
         case .setBackground(let weatherStatus):
             endLoading()
             setBackgroundImage(weatherStatus: weatherStatus)
-        }
-    }
-    
-    private func setBackgroundImage(weatherStatus: WeatherType) {
-        let backgroundImage: UIImage?
-        
-        switch weatherStatus {
-        case .clear, .tornado, .thunderstorm :
-            backgroundImage = Asset.WeatherBackground.clear
-        case .clouds, .mist:
-            backgroundImage = Asset.WeatherBackground.cloudy
-        case .rain, .drizzle:
-            backgroundImage = Asset.WeatherBackground.rain
-        case .snow:
-            backgroundImage = Asset.WeatherBackground.snow
-        }
-        
-        let backgroundImageView = UIImageView(image: backgroundImage)
-        
-        view.insertSubview(backgroundImageView, at: 0)
-        
-        backgroundImageView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
@@ -134,6 +110,30 @@ extension CityWeatherViewContoller {
             FlexibleGroupedSpacer(groupId: 1)
         }
         .linkSpacers()
+    }
+}
+
+// MARK: - Action
+extension CityWeatherViewContoller {
+    private func setBackgroundImage(weatherStatus: WeatherType) {
+        let backgroundImage: UIImage?
+        
+        switch weatherStatus {
+        case .clear, .tornado, .thunderstorm :
+            backgroundImage = Asset.WeatherBackground.clear
+        case .clouds, .mist:
+            backgroundImage = Asset.WeatherBackground.cloudy
+        case .rain, .drizzle:
+            backgroundImage = Asset.WeatherBackground.rain
+        case .snow:
+            backgroundImage = Asset.WeatherBackground.snow
+        }
+        
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        view.insertSubview(backgroundImageView, at: 0)
+        backgroundImageView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }
 

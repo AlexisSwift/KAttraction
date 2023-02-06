@@ -1,6 +1,7 @@
 import UIKit
 
 final class WeatherView: UIView {
+    
     init(config: WeatherConfig) {
         super.init(frame: .zero)
         body(config: config).embedIn(self)
@@ -9,7 +10,10 @@ final class WeatherView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+// MARK: - UI
+private extension WeatherView {
     private func body(config: WeatherConfig) -> UIView {
         VStack {
             UIImageView(image: config.weatherStatus.weatherIcon)
@@ -27,8 +31,8 @@ final class WeatherView: UIView {
         .size(.init(width: 80, height: 120))
         .background(Palette.backgroundViewColorPrimary)
     }
-    
 }
+
 // MARK: - Config
 extension WeatherView {
     struct WeatherConfig {

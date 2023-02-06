@@ -1,6 +1,5 @@
 import RxSwift
 import SnapKit
-import UIKit
 
 final class CheckWeatherView: UIView {
     
@@ -14,7 +13,9 @@ final class CheckWeatherView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+}
+
+private extension CheckWeatherView {
     private func setup(config: WeatherConfig) {
         backgroundColor = .secondarySystemFill
         border(color: .gray)
@@ -41,7 +42,7 @@ final class CheckWeatherView: UIView {
             make.left.right.equalToSuperview().inset(6)
             make.bottom.equalToSuperview().inset(24)
         }
-                
+        
         let closeButton = UIButton()
         closeButton.setImage(UIImage(systemName: "xmark.circle.fill",
                                      withConfiguration: UIImage.SymbolConfiguration(pointSize: 18,
@@ -57,6 +58,7 @@ final class CheckWeatherView: UIView {
         }
     }
 }
+
 // MARK: - Config
 extension CheckWeatherView {
     struct WeatherConfig {

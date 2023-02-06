@@ -5,10 +5,12 @@ final class AttaractionListViewController: BaseViewController {
     typealias Event = InputEvent
     
     private var viewModel: ViewModel
-    private let disposeBag = DisposeBag()
-    private let tableContainer = BaseTableContainerView()
     
+    // MARK: - Handler
     var onDetailAttractionsScreen: StringHandler?
+    
+    // MARK: - UI Components
+    private let tableContainer = BaseTableContainerView()
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel

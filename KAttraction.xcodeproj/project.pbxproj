@@ -64,7 +64,7 @@
 		00CED6BE28003B1D00644A34 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6BD28003B1D00644A34 /* Target.swift */; };
 		00CED6C02800426E00644A34 /* BasicEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6BF2800426E00644A34 /* BasicEndpoints.swift */; };
 		00CED6C22800431C00644A34 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6C12800431C00644A34 /* GlobalConstants.swift */; };
-		00D29C2A27FB185200EA1A05 /* BaseNoEthernetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D29C2927FB185200EA1A05 /* BaseNoEthernetViewController.swift */; };
+		00D29C2A27FB185200EA1A05 /* DisableNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D29C2927FB185200EA1A05 /* DisableNetworkViewController.swift */; };
 		00D29C2C27FB1F0800EA1A05 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D29C2B27FB1F0800EA1A05 /* AlertViewController.swift */; };
 		00EA6D9B27FB1711004F90FB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EA6D9A27FB1711004F90FB /* BaseViewController.swift */; };
 		00EC50DF278231EB00BD6AB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC50DE278231EB00BD6AB1 /* AppDelegate.swift */; };
@@ -142,6 +142,10 @@
 		00EC51E02782333500BD6AB1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC51812782333500BD6AB1 /* ViewModel.swift */; };
 		00EC51E12782333500BD6AB1 /* NetworkRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */; };
 		00EC51E32782333D00BD6AB1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC51E22782333D00BD6AB1 /* AppCoordinator.swift */; };
+		00FAA7402991455C00A3713B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA73F2991455C00A3713B /* SearchViewModel.swift */; };
+		00FAA7432991457300A3713B /* BaseSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA7422991457300A3713B /* BaseSearchBar.swift */; };
+		00FAA7472991479300A3713B /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA7462991479300A3713B /* CityCell.swift */; };
+		00FAA7492991479900A3713B /* CityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA7482991479900A3713B /* CityCellViewModel.swift */; };
 		58917305A204E4E2B022D022 /* Pods_KAttraction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0A14D1A2AD2C4FC859AFF5C /* Pods_KAttraction.framework */; };
 /* End PBXBuildFile section */
 
@@ -203,7 +207,7 @@
 		00CED6BD28003B1D00644A34 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		00CED6BF2800426E00644A34 /* BasicEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicEndpoints.swift; sourceTree = "<group>"; };
 		00CED6C12800431C00644A34 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
-		00D29C2927FB185200EA1A05 /* BaseNoEthernetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNoEthernetViewController.swift; sourceTree = "<group>"; };
+		00D29C2927FB185200EA1A05 /* DisableNetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisableNetworkViewController.swift; sourceTree = "<group>"; };
 		00D29C2B27FB1F0800EA1A05 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		00EA6D9A27FB1711004F90FB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		00EC50DB278231EB00BD6AB1 /* KAttraction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KAttraction.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +287,10 @@
 		00EC51812782333500BD6AB1 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestManager.swift; sourceTree = "<group>"; };
 		00EC51E22782333D00BD6AB1 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		00FAA73F2991455C00A3713B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		00FAA7422991457300A3713B /* BaseSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchBar.swift; sourceTree = "<group>"; };
+		00FAA7462991479300A3713B /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		00FAA7482991479900A3713B /* CityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCellViewModel.swift; sourceTree = "<group>"; };
 		338EA5437BB2EE460924DE74 /* Pods-KAttraction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAttraction.release.xcconfig"; path = "Target Support Files/Pods-KAttraction/Pods-KAttraction.release.xcconfig"; sourceTree = "<group>"; };
 		3A35F9905712E36709B8C5A7 /* Pods-KWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KWeather.release.xcconfig"; path = "Target Support Files/Pods-KWeather/Pods-KWeather.release.xcconfig"; sourceTree = "<group>"; };
 		40BB8BF3775173B3C5453572 /* Pods-KAttraction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAttraction.debug.xcconfig"; path = "Target Support Files/Pods-KAttraction/Pods-KAttraction.debug.xcconfig"; sourceTree = "<group>"; };
@@ -326,6 +334,7 @@
 		0045C67B27AEC7DF00C61CAE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				00FAA7442991459300A3713B /* Base */,
 				005E7CEC27906C4A0076DD93 /* MapView */,
 				005E7CE027906C4A0076DD93 /* CoorditantesView */,
 			);
@@ -370,7 +379,9 @@
 		005E7CEA27906C4A0076DD93 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				00FAA7452991477E00A3713B /* Cell */,
 				005E7CEB27906C4A0076DD93 /* SearchViewController.swift */,
+				00FAA73F2991455C00A3713B /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1007,7 +1018,7 @@
 				0072158E28BBD4AE00AA1A4B /* ImageViewerController */,
 				00D29C2D27FB23BE00EA1A05 /* AlertView */,
 				005E7CE227906C4A0076DD93 /* LoadingView */,
-				00D29C2927FB185200EA1A05 /* BaseNoEthernetViewController.swift */,
+				00D29C2927FB185200EA1A05 /* DisableNetworkViewController.swift */,
 				00EA6D9A27FB1711004F90FB /* BaseViewController.swift */,
 				00EC51812782333500BD6AB1 /* ViewModel.swift */,
 			);
@@ -1021,6 +1032,23 @@
 				00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		00FAA7442991459300A3713B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				00FAA7422991457300A3713B /* BaseSearchBar.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		00FAA7452991477E00A3713B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				00FAA7462991479300A3713B /* CityCell.swift */,
+				00FAA7482991479900A3713B /* CityCellViewModel.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		348BC76912FFBBB7C673448A /* Frameworks */ = {
@@ -1163,6 +1191,7 @@
 				00EC51A72782333500BD6AB1 /* TableManager.swift in Sources */,
 				00EC51BC2782333500BD6AB1 /* UIScreen.swift in Sources */,
 				00EC51D62782333500BD6AB1 /* UIStackView+Helpers.swift in Sources */,
+				00FAA7492991479900A3713B /* CityCellViewModel.swift in Sources */,
 				005E7CFA27906C4A0076DD93 /* AttaractionCellViewModel.swift in Sources */,
 				00EC51C52782333500BD6AB1 /* UIView+FindSubview.swift in Sources */,
 				00EC51BD2782333500BD6AB1 /* UIWindow+SafeAreaInsets.swift in Sources */,
@@ -1225,6 +1254,7 @@
 				00EC51DE2782333500BD6AB1 /* UILabel+FadeAnimation.swift in Sources */,
 				00EC51DB2782333500BD6AB1 /* ContainerCell.swift in Sources */,
 				00103AAE278240D2002B5588 /* Localization.swift in Sources */,
+				00FAA7432991457300A3713B /* BaseSearchBar.swift in Sources */,
 				005E7D4027906DF40076DD93 /* BaseCollectionView.swift in Sources */,
 				00EC51A02782333500BD6AB1 /* CellViewModelHeightable.swift in Sources */,
 				00EC51CB2782333500BD6AB1 /* UIView+CommonExtensions.swift in Sources */,
@@ -1256,6 +1286,7 @@
 				0072159428BBD4AE00AA1A4B /* PageView.swift in Sources */,
 				005E7D4F27906DF40076DD93 /* BaseView.swift in Sources */,
 				00EC51B42782333500BD6AB1 /* UICollectionView+Scroll.swift in Sources */,
+				00FAA7402991455C00A3713B /* SearchViewModel.swift in Sources */,
 				00EC51DF2782333500BD6AB1 /* UILabel+ChangeText.swift in Sources */,
 				00EC51D52782333500BD6AB1 /* UIViewController+Modality.swift in Sources */,
 				005E7D1427906CA60076DD93 /* WeatherType.swift in Sources */,
@@ -1268,7 +1299,7 @@
 				0072159628BBD4AE00AA1A4B /* Animator.swift in Sources */,
 				00EC51C62782333500BD6AB1 /* UIView+Rounded.swift in Sources */,
 				005E7D1227906CA60076DD93 /* City.swift in Sources */,
-				00D29C2A27FB185200EA1A05 /* BaseNoEthernetViewController.swift in Sources */,
+				00D29C2A27FB185200EA1A05 /* DisableNetworkViewController.swift in Sources */,
 				00EC51CE2782333500BD6AB1 /* UIView+IBInspectable.swift in Sources */,
 				00EC519E2782333500BD6AB1 /* UITableView+DequeueCellViewModel.swift in Sources */,
 				00EC51AD2782333500BD6AB1 /* BaseCoordinator.swift in Sources */,
@@ -1276,6 +1307,7 @@
 				00EC50F9278232EC00BD6AB1 /* Palette.swift in Sources */,
 				00EC51B62782333500BD6AB1 /* ReloadableCollectionView.swift in Sources */,
 				005E7CFE27906C4A0076DD93 /* SearchViewController.swift in Sources */,
+				00FAA7472991479300A3713B /* CityCell.swift in Sources */,
 				005E7D4427906DF40076DD93 /* ViewWithData.swift in Sources */,
 				00EC51D12782333500BD6AB1 /* UISearchBar+Components.swift in Sources */,
 				005E7D1127906CA60076DD93 /* WeatherService.swift in Sources */,

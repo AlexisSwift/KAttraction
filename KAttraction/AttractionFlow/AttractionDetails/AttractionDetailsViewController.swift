@@ -4,12 +4,13 @@ final class AttractionDetailsViewController: BaseViewController {
     typealias ViewModel = AttractionDetailsViewModel
     
     private var viewModel: ViewModel
-    private let disposeBag = DisposeBag()
-    
-    private lazy var mapView = MapView()
     
     // MARK: - Handlers
     var onWeatherScreen: CityHandler?
+    var showImageViewer: VoidHandler?
+    
+    // MARK: - UI Components
+    private lazy var mapView = MapView()
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -48,56 +49,54 @@ final class AttractionDetailsViewController: BaseViewController {
 // MARK: - UI
 extension AttractionDetailsViewController {
     private func body(state: ViewModel.State) -> UIView {
-        VStack {
-            ScrollView {
-                VStack {
-                    ScrollView {
-                        HStack {
-                            ForEach(state.$detailAboutAttraction.map({ $0.images })) { [weak self] image in
-                                UIImageView()
-                                    .userInteractionEnabled(true)
-                                    .setImage(withUrl: image)
-                                    .size(CGSize(width: UIScreen.main.bounds.width, height: 219))
-                                    .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
-                                        self?.showImageViewer()
-                                    }
-                            }
-                        }
-                    }
-                    .setDelegate(self)
-                    .isPagingEnabled(true)
-                    .hideScrollIndicators()
-                    VStack {
-                        Label(text: state.attractionName)
-                            .setFont(.systemFont(ofSize: 32, weight: .heavy))
-                            .setTextColor(.white)
-                            .multilined
-                        Spacer(height: 14)
-                        ViewWithData (state.$detailAboutAttraction.map({ attraction in
-                            AttractionDetailsView.Config(description: attraction.description, descriptionFull: attraction.descriptionFull)
-                        })) { description in
-                            AttractionDetailsView(config: description)
-                        }
-                        Spacer(height: 24)
-                        ViewWithData (state.$city.map({ city in
-                            CheckWeatherView.WeatherConfig(city: city)
-                        })) { city in
-                            CheckWeatherView(config: city)
-                                .onTap(store: self.disposeBag) { [weak self] in
-                                    self?.onWeatherScreen?(state.city)
+        ScrollView {
+            VStack {
+                ScrollView {
+                    HStack {
+                        ForEach(state.$detailAboutAttraction.map({ $0.images })) { [weak self] image in
+                            UIImageView()
+                                .userInteractionEnabled(true)
+                                .setImage(withUrl: image)
+                                .size(CGSize(width: UIScreen.main.bounds.width, height: 219))
+                                .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
+                                    self?.showImageViewer?()
                                 }
                         }
-                        Spacer(height: 32)
-                        Label(text: Localization.AttractionFlow.AboutAttraction.onMap)
-                            .setFont(.systemFont(ofSize: 24, weight: .heavy))
-                            .setTextColor(.white)
                     }
-                    .layoutMargins(inset: 24)
-                    mapView
-                        .height(214)
-                        .cornerRadius(8)
-                    Spacer(height: 24)
                 }
+                .setDelegate(self)
+                .isPagingEnabled(true)
+                .hideScrollIndicators()
+                VStack {
+                    Label(text: state.attractionName)
+                        .setFont(.systemFont(ofSize: 32, weight: .heavy))
+                        .setTextColor(.white)
+                        .multilined
+                    Spacer(height: 14)
+                    ViewWithData (state.$detailAboutAttraction.map({ attraction in
+                        AttractionDetailsView.Config(description: attraction.description, descriptionFull: attraction.descriptionFull)
+                    })) { description in
+                        AttractionDetailsView(config: description)
+                    }
+                    Spacer(height: 24)
+                    ViewWithData (state.$city.map({ city in
+                        CheckWeatherView.WeatherConfig(city: city)
+                    })) { city in
+                        CheckWeatherView(config: city)
+                            .onTap(store: self.disposeBag) { [weak self] in
+                                self?.onWeatherScreen?(state.city)
+                            }
+                    }
+                    Spacer(height: 32)
+                    Label(text: Localization.AttractionFlow.AboutAttraction.onMap)
+                        .setFont(.systemFont(ofSize: 24, weight: .heavy))
+                        .setTextColor(.white)
+                }
+                .layoutMargins(inset: 24)
+                mapView
+                    .height(214)
+                    .cornerRadius(8)
+                Spacer(height: 24)
             }
         }
     }
@@ -107,21 +106,6 @@ extension AttractionDetailsViewController {
 extension AttractionDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         viewModel.state.pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-    }
-}
-
-// MARK: - ImageViewerControllerDelegate
-extension AttractionDetailsViewController: ImageViewerControllerDelegate {
-    private func showImageViewer() {
-        let vc = ImageViewerController(imageURLs: viewModel.state.detailAboutAttraction.images, pageIndex: viewModel.state.pageIndex)
-        vc.delegate = self
-        present(vc, animated: true)
-    }
-    
-    func load(_ imageURL: String, into imageView: UIImageView, completion: (() -> Void)?) {
-        imageView.setImage(withUrl: imageURL) { _ in
-            completion?()
-        }
     }
 }
 
