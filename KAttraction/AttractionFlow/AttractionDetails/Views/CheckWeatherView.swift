@@ -15,6 +15,7 @@ final class CheckWeatherView: UIView {
     }
 }
 
+// MARK: - UI
 private extension CheckWeatherView {
     private func setup(config: WeatherConfig) {
         backgroundColor = .secondarySystemFill

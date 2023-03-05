@@ -24,8 +24,6 @@ final class AttaractionListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = Localization.AttractionFlow.Attraction.attractions
-        setupTableView()
         setupView()
         setupBindings()
         
@@ -33,12 +31,13 @@ final class AttaractionListViewController: BaseViewController {
     }
     
     private func setupView() {
-        self.view.background(Palette.backgroundPrimary)
+        title = Localization.AttractionFlow.Attraction.attractions
+        view.background(Palette.backgroundPrimary)
         
-        self.viewModel.$state
+        viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
-                
+                self.setupTableView()
                 self.body(state: state).embedIn(self.view)
             }.disposed(by: disposeBag)
     }

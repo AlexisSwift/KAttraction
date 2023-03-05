@@ -2,6 +2,7 @@ import RxSwift
 
 final class AttractionDetailsViewController: BaseViewController {
     typealias ViewModel = AttractionDetailsViewModel
+    typealias Event = InputEvent
     
     private var viewModel: ViewModel
     
@@ -109,6 +110,7 @@ extension AttractionDetailsViewController: UIScrollViewDelegate {
     }
 }
 
+// MARK: - Action, Event
 extension AttractionDetailsViewController {
     enum Action {
         case load

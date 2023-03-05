@@ -36,9 +36,7 @@ final class AttractionDetailsViewModel: ViewModel {
                                                               latitude: attractionResponse.geo.lan)
                     })
                 
-                guard let filtredData = filtredData else {
-                    return
-                }
+                guard let filtredData = filtredData else { return }
                 
                 self.state.detailAboutAttraction = filtredData
             case .failure(_):

@@ -5,8 +5,8 @@ final class AttractionDetailsView: UIView {
     private let disposeBag = DisposeBag()
     
     // MARK: - UI Components
-    private var textLabel = Label()
-    private var reedMoreButton = Button()
+    private lazy var textLabel = Label()
+    private lazy var reedMoreButton = Button()
     
     init(config: Config) {
         super.init(frame: .zero)

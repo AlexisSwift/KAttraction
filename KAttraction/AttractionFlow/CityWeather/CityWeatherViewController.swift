@@ -20,16 +20,16 @@ final class CityWeatherViewContoller: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = Localization.SearchFlow.CityWeather.weatherInCity
         setupView()
         setupBindings()
         viewModel.handle(.load)
     }
     
     private func setupView() {
-        self.view.background(Palette.backgroundPrimary)
+        title = Localization.SearchFlow.CityWeather.weatherInCity
+        view.background(Palette.backgroundPrimary)
         
-        self.viewModel.$state
+        viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
                 self.body(state: state).embedIn(self.view)
@@ -137,6 +137,7 @@ extension CityWeatherViewContoller {
     }
 }
 
+// MARK: - Action, Event
 extension CityWeatherViewContoller {
     enum Action {
         case load

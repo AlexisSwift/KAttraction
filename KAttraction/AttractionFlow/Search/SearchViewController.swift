@@ -41,7 +41,7 @@ final class SearchViewController: BaseViewController {
         view.backgroundColor = Palette.backgroundPrimary
         setupSearchBar()
         
-        self.viewModel.$state
+        viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
                 
