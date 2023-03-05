@@ -37,16 +37,16 @@ final class SearchViewController: BaseViewController {
     }
     
     private func setupView() {
-        title = "Выбери свой город"
+        title = Localization.SearchFlow.Search.chooseYourCity
         view.backgroundColor = Palette.backgroundPrimary
+        setupSearchBar()
         
         self.viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
                 
-                self.body(state: state).embedInWithSafeArea(self.view)
-                self.setupSearchBar()
                 self.setupTableView()
+                self.body(state: state).embedInWithSafeArea(self.view)
                 
             }.disposed(by: disposeBag)
     }
@@ -79,7 +79,6 @@ private extension SearchViewController {
     private func setupSearchBar() {
         searchController.searchBar.searchBarStyle = .minimal
         searchController.searchBar.layer.cornerRadius = 12
-        searchController.searchBar.placeholder = "Поиск"
         searchController.searchBar.keyboardAppearance = .dark
         searchController.searchResultsUpdater = self
         

@@ -4,6 +4,7 @@ enum Localization {
         
         enum Search {
             static let find = "Поиск"
+            static let chooseYourCity = "Выбери свой город"
         }
         
         enum CityWeather {
