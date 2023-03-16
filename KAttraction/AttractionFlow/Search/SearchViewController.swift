@@ -10,9 +10,16 @@ final class SearchViewController: BaseViewController {
     var onAttractionScreen: CityHandler?
     
     // MARK: - UI Components
-    private let searchController = UISearchController()
     private let refreshControl = UIRefreshControl(color: .darkGray)
     private let tableContainer = BaseTableContainerView()
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.searchBar.layer.cornerRadius = 12
+        searchController.searchBar.keyboardAppearance = .dark
+        searchController.searchResultsUpdater = self
+        return searchController
+    }()
     
     // MARK: - Initializers
     init(viewModel: ViewModel) {
@@ -77,11 +84,6 @@ private extension SearchViewController {
     }
     
     private func setupSearchBar() {
-        searchController.searchBar.searchBarStyle = .minimal
-        searchController.searchBar.layer.cornerRadius = 12
-        searchController.searchBar.keyboardAppearance = .dark
-        searchController.searchResultsUpdater = self
-        
         if #available(iOS 16.0, *) {
             navigationItem.preferredSearchBarPlacement = .automatic
         }

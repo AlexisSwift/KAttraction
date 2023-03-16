@@ -127,8 +127,7 @@ public final class ImageViewerController: UIViewController {
          Поскольку загрузка изображения в PageView происходит асинхронно, скорость ее завершения нестабильна.
          Поэтому, вызывая этот процесс в обоих местах, гарантируется, что он будет обновлен, когда оба завершатся.
          */
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            guard let self = self else { return }
+        UIView.animate(withDuration: 0.5) {
             self.backgroundImageView.image = self.pageViews[self.pageIndex].imageView.image
         }
     }
