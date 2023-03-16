@@ -32,6 +32,7 @@ enum Localization {
     enum AttractionFlow {
         
         enum Attraction {
+            static let checkWeatherTap = "Нажми, чтобы узнать погоду"
             static let attractions = "Достопримечательности"
             static let attractionsName = "Тут должно быть название"
         }

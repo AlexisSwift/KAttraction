@@ -30,7 +30,7 @@ final class AttractionDetailsViewController: BaseViewController {
     }
     
     private func setupView() {
-        self.view.background(Palette.backgroundPrimary)
+        view.background(Palette.backgroundPrimary)
         
         self.viewModel.$state
             .drive { [weak self] state in
@@ -39,8 +39,8 @@ final class AttractionDetailsViewController: BaseViewController {
                 self.body(state: state).embedIn(self.view)
                 self.title = state.attractionName
                 
-                state.$detailAboutAttraction.drive { coordinates in
-                    self.mapView.updateMap(nameAttraction: coordinates.name, latitude: coordinates.latitude, longitude: coordinates.longitude)
+                state.$detailAboutAttraction.drive { [weak self] coordinates in
+                    self?.mapView.updateMap(nameAttraction: coordinates.name, latitude: coordinates.latitude, longitude: coordinates.longitude)
                 }.disposed(by: self.disposeBag)
                 
             }.disposed(by: disposeBag)
@@ -82,9 +82,9 @@ extension AttractionDetailsViewController {
                     Spacer(height: 24)
                     ViewWithData (state.$city.map({ city in
                         CheckWeatherView.WeatherConfig(city: city)
-                    })) { city in
+                    })) { [weak self] city in
                         CheckWeatherView(config: city)
-                            .onTap(store: self.disposeBag) { [weak self] in
+                            .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
                                 self?.onWeatherScreen?(state.city)
                             }
                     }
@@ -99,6 +99,15 @@ extension AttractionDetailsViewController {
                     .cornerRadius(8)
                 Spacer(height: 24)
             }
+        }
+    }
+}
+
+// MARK: - ImageViewerControllerDelegate
+extension AttractionDetailsViewController: ImageViewerControllerDelegate {
+    func load(_ imageURL: String, into imageView: UIImageView, completion: (() -> Void)?) {
+        imageView.setImage(withUrl: imageURL) { _ in
+            completion?()
         }
     }
 }

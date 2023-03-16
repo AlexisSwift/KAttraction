@@ -53,25 +53,21 @@ private extension MainFlowCoordinator {
             self?.showCityWeatherScreen(city: $0)
         }
         
-        controller.showImageViewer = { [weak self] in
-            self?.showImageViewer(images: viewModel.state.detailAboutAttraction.images, pageIndex: viewModel.state.pageIndex)
+        controller.showImageViewer = { [weak self, weak controller] in
+            self?.showImageViewer(
+                images: viewModel.state.detailAboutAttraction.images,
+                pageIndex: viewModel.state.pageIndex,
+                delegate: controller
+            )
         }
         
         router.push(controller)
     }
 }
 
-// MARK: - ImageViewerControllerDelegate
-extension MainFlowCoordinator: ImageViewerControllerDelegate {
-    func showImageViewer(images: [String], pageIndex: Int) {
-        let controller = ImageViewerController(imageURLs: images, pageIndex: pageIndex)
-        controller.delegate = self
+extension MainFlowCoordinator {
+    func showImageViewer(images: [String], pageIndex: Int, delegate: ImageViewerControllerDelegate?) {
+        let controller = ImageViewerController(imageURLs: images, pageIndex: pageIndex, delegate: delegate)
         router.present(controller)
-    }
-    
-    func load(_ imageURL: String, into imageView: UIImageView, completion: (() -> Void)?) {
-        imageView.setImage(withUrl: imageURL) { _ in
-            completion?()
-        }
     }
 }

@@ -33,7 +33,7 @@ private extension CheckWeatherView {
         }
         
         let checkWeatherLabel = UILabel()
-        checkWeatherLabel.text = "Нажми, чтобы узнать погоду"
+        checkWeatherLabel.text = Localization.AttractionFlow.Attraction.checkWeatherTap
         checkWeatherLabel.textAlignment = .center
         checkWeatherLabel.textColor = .white
         checkWeatherLabel.numberOfLines = 0
@@ -51,8 +51,8 @@ private extension CheckWeatherView {
                                                                                     scale: .large)))
         closeButton.tintColor = .white
         addSubview(closeButton)
-        closeButton.touchUpInside(store: disposeBag) {
-            self.removeSubviews()
+        closeButton.touchUpInside(store: disposeBag) { [weak self] in
+            self?.removeSubviews()
         }
         closeButton.snp.makeConstraints { make in
             make.top.right.equalToSuperview().inset(12)

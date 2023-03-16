@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import RxSwift
 
 public protocol ImageViewerControllerDelegate: ImageLoader {
     func dismiss(_ imageViewerController: ImageViewerController, lastPageIndex: Int)
@@ -10,7 +11,12 @@ public extension ImageViewerControllerDelegate {
 }
 
 public final class ImageViewerController: UIViewController {
-
+    
+    private let disposeBag = DisposeBag()
+    
+    weak var delegate: ImageViewerControllerDelegate?
+    
+    // MARK: - UI Components
     lazy var scrollView: UIScrollView = { [unowned self] in
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -37,56 +43,41 @@ public final class ImageViewerController: UIViewController {
         return pageControl
     }()
     
-    private lazy var dismissButton: UIButton = { [unowned self] in
-        let button = UIButton()
-        let configuration = UIImage.SymbolConfiguration(pointSize: 20, weight: .semibold, scale: .large)
-        let image = UIImage(systemName: "multiply")!
-            .withConfiguration(configuration)
-        button.tintColor = .darkGray
-        button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
+    private lazy var dismissButton: UIButton = {
+        let button = Button()
+            .tintColor(.darkGray)
+            .setImage(UIImage(systemName: "multiply")?
+                .withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .semibold, scale: .large)))
+            .onTap(store: disposeBag) { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        
         return button
     }()
-
+    
     private var pageIndex: Int
     private let imageURLs: [String]
     private var pageViews: [PageView] = []
-    public weak var delegate: ImageViewerControllerDelegate?
-
-    public init(imageURLs: [String], pageIndex: Int = 0) {
+    
+    public init(imageURLs: [String], pageIndex: Int = 0, delegate: ImageViewerControllerDelegate?) {
         self.pageIndex = pageIndex
         self.imageURLs = imageURLs
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .fullScreen
         transitioningDelegate = self
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(backgroundImageView)
-        view.addSubview(scrollView)
-        guard let imageLoader = delegate else {
-            fatalError("must confirm ImageViewerControllerDelegate")
-        }
-        imageURLs.forEach { [weak self] url in
-            let pageView = PageView(imageURL: url, imageLoader: imageLoader)
-            pageView.pageViewDelegate = self
-            self?.scrollView.addSubview(pageView)
-            self?.pageViews.append(pageView)
-        }
         
-        view.addSubview(dismissButton)
-        dismissButton.snp.makeConstraints { make in
-            make.top.trailing.equalTo(view.safeAreaLayoutGuide).inset(24)
-        }
-        
-        view.addSubview(pageControl)
+        setupView()
     }
-
+    
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         // setup layout
@@ -121,6 +112,28 @@ public final class ImageViewerController: UIViewController {
         delegate?.dismiss(self, lastPageIndex: pageIndex)
     }
     
+    private func setupView() {
+        guard let imageLoader = delegate else {
+            fatalError("must confirm ImageViewerControllerDelegate")
+        }
+        
+        view.addSubview(backgroundImageView)
+        view.addSubview(scrollView)
+        view.addSubview(pageControl)
+        view.addSubview(dismissButton)
+        
+        imageURLs.forEach { [weak self] url in
+            let pageView = PageView(imageURL: url, imageLoader: imageLoader)
+            pageView.pageViewDelegate = self
+            self?.scrollView.addSubview(pageView)
+            self?.pageViews.append(pageView)
+        }
+        
+        dismissButton.snp.makeConstraints { make in
+            make.top.trailing.equalTo(view.safeAreaLayoutGuide).inset(24)
+        }
+    }
+    
     private func updateDynamicBackgroundImage() {
         /*
          Необходимо обновить backgroundImage в тот момент, когда завершены [Loading images in PageView] и [viewDidLayoutSubviews].
@@ -131,12 +144,9 @@ public final class ImageViewerController: UIViewController {
             self.backgroundImageView.image = self.pageViews[self.pageIndex].imageView.image
         }
     }
-    
-    @objc func dismissAction() {
-        dismiss(animated: true)
-    }
 }
 
+// MARK: - UIScrollViewDelegate
 extension ImageViewerController: UIScrollViewDelegate {
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
@@ -155,12 +165,12 @@ extension ImageViewerController: PageViewDelegate {
     }
 }
 
-// MARK: CustomTransition
+// MARK: - CustomTransition
 extension ImageViewerController: UIViewControllerTransitioningDelegate {
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return Animator(context: .present)
     }
-
+    
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return Animator(context: .dismiss)
     }

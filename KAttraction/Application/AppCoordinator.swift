@@ -13,7 +13,7 @@ final class AppCoordinator: BaseCoordinator {
 }
 
 private extension AppCoordinator {
-    func showMainScreen() {
+    private func showMainScreen() {
         let coordinator = MainFlowCoordinator(router: router)
         addDependency(coordinator)
         coordinator.start()
