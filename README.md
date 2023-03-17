@@ -4,7 +4,7 @@ KAttraction – это агрегатор достопримечательнос
 
 <img src="https://github.com/VestaCute/KAttraction/blob/main/Screen1.png" height=400><img src="https://github.com/VestaCute/KAttraction/blob/main/Screen2.png" height=400><img src="https://github.com/VestaCute/KAttraction/blob/main/Screen3.png" height=400><img src="https://github.com/VestaCute/KAttraction/blob/main/Screen4.png" height=400>
 
-Сторонние библиотеки, которые я использую: SnapKit, RxCocoa, RxSwift, RxRelay, Alamofire, Kingfisher
+Сторонние библиотеки, которые я использую: SnapKit, RxCocoa, RxSwift, RxRelay, RSwift, SwiftLint, Alamofire, Kingfisher
 
 ## 💕 How to Install 💕
 
