@@ -22,6 +22,7 @@ final class CityWeatherViewContoller: BaseViewController {
         
         setupView()
         setupBindings()
+        
         viewModel.handle(.load)
     }
     

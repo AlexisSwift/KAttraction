@@ -32,7 +32,7 @@ final class AttractionDetailsViewController: BaseViewController {
     private func setupView() {
         view.background(Color.backgroundPrimary())
         
-        self.viewModel.$state
+        viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
                 
@@ -58,7 +58,7 @@ extension AttractionDetailsViewController {
                             UIImageView()
                                 .userInteractionEnabled(true)
                                 .setImage(withUrl: image)
-                                .size(CGSize(width: UIScreen.main.bounds.width, height: 219))
+                                .size(CGSize(width: UIScreen.main.bounds.width, height: UIScreen.height / 4))
                                 .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
                                     self?.showImageViewer?()
                                 }
@@ -95,7 +95,7 @@ extension AttractionDetailsViewController {
                 }
                 .layoutMargins(inset: 24)
                 mapView
-                    .height(214)
+                    .height(UIScreen.height / 3)
                     .cornerRadius(8)
                 Spacer(height: 24)
             }
@@ -115,7 +115,7 @@ extension AttractionDetailsViewController: ImageViewerControllerDelegate {
 // MARK: - UIScrollViewDelegate
 extension AttractionDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        viewModel.state.pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        viewModel.handle(.scrollImage(Int(scrollView.contentOffset.x / scrollView.frame.size.width)))
     }
 }
 
@@ -123,6 +123,7 @@ extension AttractionDetailsViewController: UIScrollViewDelegate {
 extension AttractionDetailsViewController {
     enum Action {
         case load
+        case scrollImage(_ index: Int)
     }
     
     enum InputEvent {

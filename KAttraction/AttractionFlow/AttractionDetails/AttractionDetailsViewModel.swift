@@ -1,8 +1,8 @@
 final class AttractionDetailsViewModel: ViewModel {
     
     typealias ControllerState = State
-    typealias OutputEvent = AttaractionListViewController.InputEvent
-    typealias InputAction = AttaractionListViewController.Action
+    typealias OutputEvent = AttractionDetailsViewController.InputEvent
+    typealias InputAction = AttractionDetailsViewController.Action
     
     @DriverValue private(set) var state: ControllerState
     @DriverValue private(set) var event: OutputEvent = .loading
@@ -18,6 +18,8 @@ final class AttractionDetailsViewModel: ViewModel {
         switch action {
         case .load:
             loadAttractions()
+        case let .scrollImage(index):
+            state.pageIndex = index
         }
     }
     
@@ -58,13 +60,13 @@ extension AttractionDetailsViewModel {
             description: "",
             descriptionFull: "",
             cityName: "",
-            longitude: 0,
-            latitude: 0
+            longitude: .zero,
+            latitude: .zero
         )
         
-        var pageIndex: Int = 0
+        fileprivate(set) var pageIndex: Int = .zero
         
-        init (attractionName: String, city: City) {
+        init(attractionName: String, city: City) {
             self.attractionName = attractionName
             self.city = city
         }
