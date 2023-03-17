@@ -7,22 +7,17 @@ final class AttaractionCell: BaseTableViewCell {
     // MARK: - Handler
     var onDetails: StringHandler?
     
-    // MARK: - Config
-    private var config: AttractionConfig?
-    
     func set(model: AttractionConfig) {
-        config = model
-        setupUI()
+        setupUI(model: model)
     }
 }
 
 // MARK: - UI
 private extension AttaractionCell {
-    private func setupUI() {
-        guard let source = config else { return }
-        body(config: source).embedIn(contentView)
+    private func setupUI(model: AttractionConfig) {
+        body(config: model).embedIn(contentView)
         
-        descriptionView(config: source)
+        descriptionView(config: model)
             .userInteractionEnabled(false)
             .embedInWithInsets(contentView, left: 0, top: 100, right: 0, bottom: 0)
             .setShadow(radius: 10, color: .black, offsetX: 0, offsetY: -6)

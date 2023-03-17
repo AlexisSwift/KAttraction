@@ -36,10 +36,8 @@ private extension SearchViewModel {
         
         state.filteredCity = []
         
-        for city in state.city {
-            if city.name.uppercased().contains(state.query.uppercased()) {
-                state.filteredCity.append(city)
-            }
+        for city in state.city where city.name.uppercased().contains(state.query.uppercased()) {
+            state.filteredCity.append(city)
         }
         
         event = .updateTable(source: state.filteredCity)

@@ -370,8 +370,8 @@
 		005E7CE527906C4A0076DD93 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				005E7CE627906C4A0076DD93 /* AttaractionCellViewModel.swift */,
 				005E7CE727906C4A0076DD93 /* AttaractionCell.swift */,
+				005E7CE627906C4A0076DD93 /* AttaractionCellViewModel.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -397,9 +397,9 @@
 		005E7CEE27906C4A0076DD93 /* CityWeather */ = {
 			isa = PBXGroup;
 			children = (
+				005E7CF127906C4A0076DD93 /* Views */,
 				005E7CF027906C4A0076DD93 /* CityWeatherViewController.swift */,
 				005E7CEF27906C4A0076DD93 /* CityWeatherViewModel.swift */,
-				005E7CF127906C4A0076DD93 /* Views */,
 			);
 			path = CityWeather;
 			sourceTree = "<group>";
@@ -1078,6 +1078,7 @@
 			buildConfigurationList = 00EC50EF278231EC00BD6AB1 /* Build configuration list for PBXNativeTarget "KAttraction" */;
 			buildPhases = (
 				514AD2E7E2FBEDEFFC716142 /* [CP] Check Pods Manifest.lock */,
+				00E8453629C4884F00A604A3 /* SwiftLint */,
 				00EC50D7278231EB00BD6AB1 /* Sources */,
 				00EC50D8278231EB00BD6AB1 /* Frameworks */,
 				00EC50D9278231EB00BD6AB1 /* Resources */,
@@ -1139,6 +1140,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00E8453629C4884F00A604A3 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n# For Apple Silicon mac\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
 		514AD2E7E2FBEDEFFC716142 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

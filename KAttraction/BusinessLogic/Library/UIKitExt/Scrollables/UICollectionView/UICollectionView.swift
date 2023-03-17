@@ -14,10 +14,8 @@ public extension UICollectionView {
         guard numberOfSections > 0 else {
             return false
         }
-        for item in 0 ... (numberOfSections - 1) {
-            if numberOfItems(inSection: item) > 0 {
-                return true
-            }
+        for item in 0 ... (numberOfSections - 1) where numberOfItems(inSection: item) > 0 {
+            return true
         }
         return false
     }

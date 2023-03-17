@@ -2,7 +2,7 @@ import Alamofire
 
 final class NetworkRequestManager {
     static var shared = NetworkRequestManager()
-
+    
     func request<T: Decodable>(
         _ target: Target,
         completion: @escaping (Result<T, AppError>) -> Void
@@ -18,18 +18,18 @@ final class NetworkRequestManager {
         afRequest.responseJSON { responseJSON in
             print("\nRequest for \"\(responseJSON.request?.debugDescription ?? "")\":\n", afRequest.cURLDescription())
             switch responseJSON.result {
-                case .success:
+            case .success:
                 if let debugData = responseJSON.value {
                     print("\nResponse for \"\(responseJSON.request?.debugDescription ?? "")\":\n", debugData)
                 }
-                    if let data = responseJSON.data,
-                       let decodedData = try? JSONDecoder().decode(T.self, from: data) {
-                        completion(.success(decodedData))
-                    } else {
-                        completion(.failure(.dataError))
-                    }
-                case .failure:
-                    completion(.failure(.networkError))
+                if let data = responseJSON.data,
+                   let decodedData = try? JSONDecoder().decode(T.self, from: data) {
+                    completion(.success(decodedData))
+                } else {
+                    completion(.failure(.dataError))
+                }
+            case .failure:
+                completion(.failure(.networkError))
             }
         }
     }
@@ -53,4 +53,3 @@ enum AppError: Error {
     case networkError
     case dataError
 }
-

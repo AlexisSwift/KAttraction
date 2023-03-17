@@ -27,13 +27,13 @@ final class AttractionDetailsViewModel: ViewModel {
             switch result {
             case .success(let response):
                 let filtredData = response.first(where: { $0.name == self.state.attractionName })
-                    .map ({ attractionResponse in Attraction (images: attractionResponse.images,
-                                                              name: attractionResponse.name,
-                                                              description: attractionResponse.description,
-                                                              descriptionFull: attractionResponse.descfull,
-                                                              cityName: attractionResponse.geo.name,
-                                                              longitude: attractionResponse.geo.lon,
-                                                              latitude: attractionResponse.geo.lan)
+                    .map({ attractionResponse in Attraction(images: attractionResponse.images,
+                                                             name: attractionResponse.name,
+                                                             description: attractionResponse.description,
+                                                             descriptionFull: attractionResponse.descfull,
+                                                             cityName: attractionResponse.geo.name,
+                                                             longitude: attractionResponse.geo.lon,
+                                                             latitude: attractionResponse.geo.lan)
                     })
                 
                 guard let filtredData = filtredData else { return }

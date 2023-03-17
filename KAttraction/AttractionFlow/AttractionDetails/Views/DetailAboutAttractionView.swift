@@ -21,7 +21,7 @@ final class AttractionDetailsView: UIView {
 // MARK: - UI
 private extension AttractionDetailsView {
     private func body(config: Config) -> UIView {
-        VStack (alignment: .leading) {
+        VStack(alignment: .leading) {
             textLabel
                 .setText(config.description)
                 .setFont(.systemFont(ofSize: 16, weight: .regular))
@@ -33,8 +33,7 @@ private extension AttractionDetailsView {
                 .setTitle(Localization.AttractionFlow.AboutAttraction.reedMore)
                 .touchUpInside(store: disposeBag) { [weak self] in
                     self?.reedMoreButton.isHidden = true
-                    self?.textLabel
-                        .setText(config.descriptionFull)
+                    self?.textLabel.setText(config.descriptionFull)
                 }
         }
     }

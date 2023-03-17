@@ -1,0 +1,49 @@
+disabled_rules: # rule identifiers to exclude from running
+  - comment_spacing
+  - empty_enum_arguments
+  - cyclomatic_complexity
+  - identifier_name
+  - force_cast
+  - force_try
+  - nesting
+  - trailing_whitespace
+  - function_body_length
+opt_in_rules: # some rules are only opt-in
+  - cyclomatic_complexity
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - Resources/RSwift/R.generated.swift
+  
+warning_threshold: 300
+
+line_length: 150
+
+function_parameter_count:
+warning: 10
+error: 15
+
+file_length:
+warning: 400
+
+type_body_length:
+warning: 400
+error: 450
+
+identifier_name:
+  excluded:
+    - !str i
+    - !str r
+    - !str g
+    - !str b
+    - !str a
+    - !str id
+    - !str ID
+    - !str Id
+    - !str on
+    - !str me
+    - !str ds
+    - !str tv
+    - !str ip
+    - !str x
+    - !str y
+    - !srt no

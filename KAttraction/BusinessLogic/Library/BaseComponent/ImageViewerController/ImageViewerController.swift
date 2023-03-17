@@ -167,7 +167,11 @@ extension ImageViewerController: PageViewDelegate {
 
 // MARK: - CustomTransition
 extension ImageViewerController: UIViewControllerTransitioningDelegate {
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    public func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
         return Animator(context: .present)
     }
     

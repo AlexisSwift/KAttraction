@@ -7,21 +7,16 @@ final class CityCell: BaseTableViewCell {
     // MARK: - Handler
     var attractionHandler: CityHandler?
     
-    // MARK: - Config
-    private var config: City?
-    
     func set(model: City, handler: CityHandler?) {
-        config = model
         attractionHandler = handler
-        setupUI()
+        setupUI(model: model)
     }
 }
 
 // MARK: - UI
 private extension CityCell {
-    private func setupUI() {
-        guard let source = config else { return }
-        body(config: source).embedIn(contentView)
+    private func setupUI(model: City) {
+        body(config: model).embedIn(contentView)
     }
     
     private func body(config: City) -> UIView {

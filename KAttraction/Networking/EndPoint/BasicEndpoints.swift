@@ -35,11 +35,11 @@ extension BasicEndpoints: Target {
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         return nil
     }
     
-    var parameters: [String : Any]? {
+    var parameters: [String: Any]? {
         switch self {
         case let .getWeather(latitude, longitude):
             let params: [String: Any] = [

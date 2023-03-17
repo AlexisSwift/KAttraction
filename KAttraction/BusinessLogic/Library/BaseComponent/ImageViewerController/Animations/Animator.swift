@@ -22,7 +22,7 @@ final class Animator: NSObject, UIViewControllerAnimatedTransitioning {
         guard let fromView = transitionContext.view(forKey: .from),
             let toView = transitionContext.view(forKey: .to) else { return }
         
-        transitionContext.containerView.insertSubview(toView, belowSubview: fromView) // fromViewは最初から追加されている
+        transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
         
         UIView.animate(
             withDuration: transitionDuration(using: transitionContext),

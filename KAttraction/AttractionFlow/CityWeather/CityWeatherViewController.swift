@@ -119,7 +119,7 @@ extension CityWeatherViewContoller {
         let backgroundImage: UIImage?
         
         switch weatherStatus {
-        case .clear, .tornado, .thunderstorm :
+        case .clear, .tornado, .thunderstorm:
             backgroundImage = Asset.WeatherBackground.clear
         case .clouds, .mist:
             backgroundImage = Asset.WeatherBackground.cloudy

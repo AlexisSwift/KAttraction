@@ -31,7 +31,6 @@ final class LoadingView: UIView {
         label.text = "Загрузка..."
         label.textColor = .black
         
-        
         label.snp.makeConstraints { make in
             make.bottom.equalTo(activityIndicator.snp.top).inset(-8)
             make.centerX.equalToSuperview()

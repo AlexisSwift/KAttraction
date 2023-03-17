@@ -14,10 +14,8 @@ public extension UITableView {
         guard numberOfSections > 0 else {
             return false
         }
-        for item in 0 ... (numberOfSections - 1) {
-            if numberOfRows(inSection: item) > 0 {
-                return true
-            }
+        for item in 0 ... (numberOfSections - 1) where numberOfRows(inSection: item) > 0 {
+            return true
         }
         return false
     }

@@ -74,13 +74,13 @@ extension AttractionDetailsViewController {
                         .setTextColor(.white)
                         .multilined
                     Spacer(height: 14)
-                    ViewWithData (state.$detailAboutAttraction.map({ attraction in
+                    ViewWithData(state.$detailAboutAttraction.map({ attraction in
                         AttractionDetailsView.Config(description: attraction.description, descriptionFull: attraction.descriptionFull)
                     })) { description in
                         AttractionDetailsView(config: description)
                     }
                     Spacer(height: 24)
-                    ViewWithData (state.$city.map({ city in
+                    ViewWithData(state.$city.map({ city in
                         CheckWeatherView.WeatherConfig(city: city)
                     })) { [weak self] city in
                         CheckWeatherView(config: city)
