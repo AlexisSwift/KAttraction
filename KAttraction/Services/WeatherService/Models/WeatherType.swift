@@ -13,41 +13,41 @@ enum WeatherType: String {
     var weatherIcon: UIImage? {
         switch self {
         case .clear:
-            return Asset.WeatherIcon.clear
+            return Image.clear()
         case .clouds:
-            return Asset.WeatherIcon.clouds
+            return Image.clouds()
         case .thunderstorm:
-            return Asset.WeatherIcon.thunderstorm
+            return Image.thunderstorm()
         case .drizzle:
-            return Asset.WeatherIcon.drizzle
+            return Image.drizzle()
         case .rain:
-            return Asset.WeatherIcon.rain
+            return Image.rain()
         case .snow:
-            return Asset.WeatherIcon.snow
+            return Image.snow()
         case .mist:
-            return Asset.WeatherIcon.mist
+            return Image.mist()
         case .tornado:
-            return Asset.WeatherIcon.tornado
+            return Image.mist()
         }
     }
     var description: String {
         switch self {
         case .clear:
-            return Localization.SearchFlow.CityWeather.WeatherDiscription.clear
+            return L10n.weatherClear()
         case .clouds:
-            return Localization.SearchFlow.CityWeather.WeatherDiscription.clouds
+            return L10n.weatherClouds()
         case .thunderstorm:
-            return Localization.SearchFlow.CityWeather.WeatherDiscription.thunderstorm
+            return L10n.weatherThunderstorm()
         case .drizzle:
-            return Localization.SearchFlow.CityWeather.WeatherDiscription.drizzle
+            return L10n.weatherDrizzle()
         case .rain:
-            return Localization.SearchFlow.CityWeather.WeatherDiscription.rain
+            return L10n.weatherRain()
         case .snow:
-            return Localization.SearchFlow.CityWeather.WeatherDiscription.snow
+            return L10n.weatherSnow()
         case .mist:
-            return Localization.SearchFlow.CityWeather.WeatherDiscription.mist
+            return L10n.weatherMist()
         case .tornado:
-            return Localization.SearchFlow.CityWeather.WeatherDiscription.tornado
+            return L10n.weatherTornado()
         }
     }
     

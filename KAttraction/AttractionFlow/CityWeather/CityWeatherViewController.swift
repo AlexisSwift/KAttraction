@@ -26,17 +26,13 @@ final class CityWeatherViewContoller: BaseViewController {
     }
     
     private func setupView() {
-        title = Localization.SearchFlow.CityWeather.weatherInCity
-        view.background(Palette.backgroundPrimary)
+        title = L10n.weatherInCity()
+        view.background(Color.backgroundPrimary())
         
         viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
                 self.body(state: state).embedIn(self.view)
-                
-                state.$city.drive { coordinates in
-                    self.mapView.updateMap(nameAttraction: coordinates.name, latitude: coordinates.latitude, longitude: coordinates.longitude)
-                }.disposed(by: self.disposeBag)
                 
             }.disposed(by: disposeBag)
     }
@@ -64,8 +60,6 @@ extension CityWeatherViewContoller {
     private func body(state: ViewModel.State) -> UIView {
         VStack {
             FlexibleGroupedSpacer(groupId: 1)
-            //mapView
-            //.height(144)
             VStack {
                 Label(text: state.city.name)
                     .setFont(.systemFont(ofSize: 32, weight: .heavy))
@@ -73,7 +67,7 @@ extension CityWeatherViewContoller {
                     .multilined
                 Spacer(height: 8)
                 ViewWithData(state.$todayDate) { date in
-                    Label(text: "\(Localization.SearchFlow.CityWeather.DaysDiscription.today), \(date)")
+                    Label(text: "\(L10n.today()), \(date)")
                         .setFont(.systemFont(ofSize: 16, weight: .medium))
                         .setTextColor(.black)
                 }
@@ -92,7 +86,7 @@ extension CityWeatherViewContoller {
             
             VStack {
                 ViewWithData(state.$tomorrowDate) { date in
-                    Label(text: "\(Localization.SearchFlow.CityWeather.DaysDiscription.tomorrow), \(date)")
+                    Label(text: "\(L10n.tomorrow()), \(date)")
                         .setFont(.systemFont(ofSize: 16, weight: .medium))
                         .setTextColor(.black)
                 }
@@ -120,13 +114,13 @@ extension CityWeatherViewContoller {
         
         switch weatherStatus {
         case .clear, .tornado, .thunderstorm:
-            backgroundImage = Asset.WeatherBackground.clear
+            backgroundImage = Image.clearBackground()
         case .clouds, .mist:
-            backgroundImage = Asset.WeatherBackground.cloudy
+            backgroundImage = Image.cloudyBackground()
         case .rain, .drizzle:
-            backgroundImage = Asset.WeatherBackground.rain
+            backgroundImage = Image.rainBackground()
         case .snow:
-            backgroundImage = Asset.WeatherBackground.snow
+            backgroundImage = Image.snowBackground()
         }
         
         let backgroundImageView = UIImageView(image: backgroundImage)

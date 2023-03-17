@@ -30,7 +30,7 @@ private extension AttractionDetailsView {
             reedMoreButton
                 .setTitleColor(.link)
                 .setFont(.systemFont(ofSize: 16))
-                .setTitle(Localization.AttractionFlow.AboutAttraction.reedMore)
+                .setTitle(L10n.reedMore())
                 .touchUpInside(store: disposeBag) { [weak self] in
                     self?.reedMoreButton.isHidden = true
                     self?.textLabel.setText(config.descriptionFull)

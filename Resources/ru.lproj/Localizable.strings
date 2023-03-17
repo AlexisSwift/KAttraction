@@ -1,0 +1,43 @@
+//
+// Search
+//
+"chooseYourCity" = "Выбери свой город";
+
+//
+// Weather
+//
+"weather" = "Weather";
+"weatherInCity" = "Погода в городе";
+
+//
+// Weather description
+//
+"weather.clear" = "Ясно";
+"weather.clouds" = "Облачно";
+"weather.thunderstorm" = "Гроза";
+"weather.drizzle" = "Моросящий дождь";
+"weather.rain" = "Дождь";
+"weather.snow" = "Снег";
+"weather.mist" = "Туман";
+"weather.tornado" = "Торнадо";
+
+//
+// Day description
+//
+"today" = "Сегодня";
+"tomorrow" = "Завтра";
+
+//
+// Attraction
+//
+"attractions" = "Достопримечательности";
+"checkWeatherTap" = "Нажми, чтобы узнать погоду";
+"attractionsName" = "Тут должно быть название";
+
+//
+// Attraction detail
+//
+"reedMore" = "Читать далее";
+"onMap" = "На карте";
+"latitude" = "Долгота";
+"longitude" = "Широта";

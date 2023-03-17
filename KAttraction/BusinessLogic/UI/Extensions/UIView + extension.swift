@@ -173,7 +173,7 @@ public extension UIView {
     }
 
     @discardableResult @objc
-    func background(_ color: UIColor) -> Self {
+    func background(_ color: UIColor?) -> Self {
         backgroundColor = color
         return self
     }

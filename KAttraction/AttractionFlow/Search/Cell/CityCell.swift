@@ -28,7 +28,7 @@ private extension CityCell {
             FlexibleGroupedSpacer(groupId: 1)
         }
         .linkSpacers()
-        .background(Palette.backgroundPrimary)
+        .background(Color.backgroundPrimary())
         .layoutMargins(hInset: 24)
         .onTap(store: disposeBag) { [weak self] in
             self?.attractionHandler?(config)

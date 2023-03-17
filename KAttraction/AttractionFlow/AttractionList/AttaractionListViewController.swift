@@ -31,8 +31,8 @@ final class AttaractionListViewController: BaseViewController {
     }
     
     private func setupView() {
-        title = Localization.AttractionFlow.Attraction.attractions
-        view.background(Palette.backgroundPrimary)
+        title = L10n.attractions()
+        view.background(Color.backgroundPrimary())
         
         viewModel.$state
             .drive { [weak self] state in

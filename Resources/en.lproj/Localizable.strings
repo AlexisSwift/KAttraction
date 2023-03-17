@@ -1,0 +1,43 @@
+//
+// Search
+//
+"chooseYourCity" = "Choose your city";
+
+//
+// Weather
+//
+"weather" = "Weather";
+"weatherInCity" = "Weather in city";
+
+//
+// Weather description
+//
+"weather.clear" = "Clear";
+"weather.clouds" = "Clouds";
+"weather.thunderstorm" = "Thunderstorm";
+"weather.drizzle" = "Drizzle";
+"weather.rain" = "Rain";
+"weather.snow" = "Snow";
+"weather.mist" = "Mist";
+"weather.tornado" = "Tornado";
+
+//
+// Day description
+//
+"today" = "Today";
+"tomorrow" = "Tomorrow";
+
+//
+// Attraction
+//
+"attractions" = "Attractions";
+"checkWeatherTap" = "Click to check the weather";
+"attractionsName" = "Attraction name";
+
+//
+// Attraction detail
+//
+"reedMore" = "Reed more";
+"onMap" = "On map";
+"latitude" = "Latitude";
+"longitude" = "longitude";

@@ -33,7 +33,7 @@ private extension CheckWeatherView {
         }
         
         let checkWeatherLabel = UILabel()
-        checkWeatherLabel.text = Localization.AttractionFlow.Attraction.checkWeatherTap
+        checkWeatherLabel.text = L10n.checkWeatherTap()
         checkWeatherLabel.textAlignment = .center
         checkWeatherLabel.textColor = .white
         checkWeatherLabel.numberOfLines = 0

@@ -62,7 +62,7 @@ open class BaseStackView: UIStackView {
         backgroundView.embedIn(self)
     }
 
-    override public func background(_ color: UIColor) -> Self {
+    override public func background(_ color: UIColor?) -> Self {
         backgroundView.background(color)
         return self
     }
