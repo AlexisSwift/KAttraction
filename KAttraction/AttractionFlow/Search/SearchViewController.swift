@@ -45,8 +45,8 @@ final class SearchViewController: BaseViewController {
     }
     
     private func setupView() {
-        title = Localization.SearchFlow.Search.chooseYourCity
-        view.backgroundColor = Palette.backgroundPrimary
+        title = L10n.chooseYourCity()
+        view.backgroundColor = Color.backgroundPrimary()
         setupSearchBar()
         
         viewModel.$state

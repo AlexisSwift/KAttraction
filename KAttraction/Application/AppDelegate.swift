@@ -26,7 +26,7 @@ private extension AppDelegate {
         UINavigationBar.appearance().backgroundColor = .black
         UINavigationBar.appearance().barStyle = .black
         UINavigationBar.appearance().tintColor(.gray)
-        UINavigationBar.appearance().barTintColor = Palette.backgroundPrimary
+        UINavigationBar.appearance().barTintColor = Color.backgroundPrimary()
         UINavigationBar.appearance().titleTextAttributes = [
             .foregroundColor: UIColor.white,
             .font: UIFont.systemFont(ofSize: 17, weight: .semibold)

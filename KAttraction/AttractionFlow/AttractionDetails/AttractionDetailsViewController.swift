@@ -30,7 +30,7 @@ final class AttractionDetailsViewController: BaseViewController {
     }
     
     private func setupView() {
-        view.background(Palette.backgroundPrimary)
+        view.background(Color.backgroundPrimary())
         
         self.viewModel.$state
             .drive { [weak self] state in
@@ -89,7 +89,7 @@ extension AttractionDetailsViewController {
                             }
                     }
                     Spacer(height: 32)
-                    Label(text: Localization.AttractionFlow.AboutAttraction.onMap)
+                    Label(text: L10n.onMap())
                         .setFont(.systemFont(ofSize: 24, weight: .heavy))
                         .setTextColor(.white)
                 }

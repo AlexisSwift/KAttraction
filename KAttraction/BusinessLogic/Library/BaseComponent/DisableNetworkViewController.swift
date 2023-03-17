@@ -5,13 +5,14 @@ final class DisableNetworkViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupView()
         startMonitor()
     }
     
     private func setupView() {
         view.backgroundColor = .systemGray4
-        body().embedIn(self.view)
+        body().embedIn(view)
     }
 }
 
@@ -20,7 +21,7 @@ private extension DisableNetworkViewController {
     private func body() -> UIView {
         VStack {
             FlexibleGroupedSpacer(groupId: 1)
-            UIImageView(image: Asset.GlobalIcon.SystemStatus.noEthernet)
+            UIImageView(image: Image.noEthernet())
                 .contentMode(.scaleAspectFit)
             Spacer(height: 16)
             Label(text: "Нет подключения\nк интернету")

@@ -12,11 +12,21 @@ let R = _R(bundle: Bundle(for: BundleFinder.self))
 
 struct _R {
   let bundle: Foundation.Bundle
+  var string: string { .init(bundle: bundle, preferredLanguages: nil, locale: nil) }
   var color: color { .init(bundle: bundle) }
   var image: image { .init(bundle: bundle) }
   var file: file { .init(bundle: bundle) }
   var storyboard: storyboard { .init(bundle: bundle) }
 
+  func string(bundle: Foundation.Bundle) -> string {
+    .init(bundle: bundle, preferredLanguages: nil, locale: nil)
+  }
+  func string(locale: Foundation.Locale) -> string {
+    .init(bundle: bundle, preferredLanguages: nil, locale: locale)
+  }
+  func string(preferredLanguages: [String], locale: Locale? = nil) -> string {
+    .init(bundle: bundle, preferredLanguages: preferredLanguages, locale: locale)
+  }
   func color(bundle: Foundation.Bundle) -> color {
     .init(bundle: bundle)
   }
@@ -37,12 +47,179 @@ struct _R {
     let developmentRegion = "en"
   }
 
-  /// This `_R.color` struct is generated, and contains static references to 1 colors.
+  /// This `_R.string` struct is generated, and contains static references to 1 localization tables.
+  struct string {
+    let bundle: Foundation.Bundle
+    let preferredLanguages: [String]?
+    let locale: Locale?
+    var localizable: localizable { .init(source: .init(bundle: bundle, tableName: "Localizable", preferredLanguages: preferredLanguages, locale: locale)) }
+
+    func localizable(preferredLanguages: [String]) -> localizable {
+      .init(source: .init(bundle: bundle, tableName: "Localizable", preferredLanguages: preferredLanguages, locale: locale))
+    }
+
+
+    /// This `_R.string.localizable` struct is generated, and contains static references to 20 localization keys.
+    struct localizable {
+      let source: RswiftResources.StringResource.Source
+
+      /// en translation: Attractions
+      ///
+      /// Key: attractions
+      ///
+      /// Locales: en, ru
+      var attractions: RswiftResources.StringResource { .init(key: "attractions", tableName: "Localizable", source: source, developmentValue: "Attractions", comment: nil) }
+
+      /// en translation: Attraction name
+      ///
+      /// Key: attractionsName
+      ///
+      /// Locales: en, ru
+      var attractionsName: RswiftResources.StringResource { .init(key: "attractionsName", tableName: "Localizable", source: source, developmentValue: "Attraction name", comment: nil) }
+
+      /// en translation: Click to check the weather
+      ///
+      /// Key: checkWeatherTap
+      ///
+      /// Locales: en, ru
+      var checkWeatherTap: RswiftResources.StringResource { .init(key: "checkWeatherTap", tableName: "Localizable", source: source, developmentValue: "Click to check the weather", comment: nil) }
+
+      /// en translation: Choose your city
+      ///
+      /// Key: chooseYourCity
+      ///
+      /// Locales: en, ru
+      var chooseYourCity: RswiftResources.StringResource { .init(key: "chooseYourCity", tableName: "Localizable", source: source, developmentValue: "Choose your city", comment: nil) }
+
+      /// en translation: Latitude
+      ///
+      /// Key: latitude
+      ///
+      /// Locales: en, ru
+      var latitude: RswiftResources.StringResource { .init(key: "latitude", tableName: "Localizable", source: source, developmentValue: "Latitude", comment: nil) }
+
+      /// en translation: longitude
+      ///
+      /// Key: longitude
+      ///
+      /// Locales: en, ru
+      var longitude: RswiftResources.StringResource { .init(key: "longitude", tableName: "Localizable", source: source, developmentValue: "longitude", comment: nil) }
+
+      /// en translation: On map
+      ///
+      /// Key: onMap
+      ///
+      /// Locales: en, ru
+      var onMap: RswiftResources.StringResource { .init(key: "onMap", tableName: "Localizable", source: source, developmentValue: "On map", comment: nil) }
+
+      /// en translation: Reed more
+      ///
+      /// Key: reedMore
+      ///
+      /// Locales: en, ru
+      var reedMore: RswiftResources.StringResource { .init(key: "reedMore", tableName: "Localizable", source: source, developmentValue: "Reed more", comment: nil) }
+
+      /// en translation: Today
+      ///
+      /// Key: today
+      ///
+      /// Locales: en, ru
+      var today: RswiftResources.StringResource { .init(key: "today", tableName: "Localizable", source: source, developmentValue: "Today", comment: nil) }
+
+      /// en translation: Tomorrow
+      ///
+      /// Key: tomorrow
+      ///
+      /// Locales: en, ru
+      var tomorrow: RswiftResources.StringResource { .init(key: "tomorrow", tableName: "Localizable", source: source, developmentValue: "Tomorrow", comment: nil) }
+
+      /// en translation: Weather
+      ///
+      /// Key: weather
+      ///
+      /// Locales: en, ru
+      var weather: RswiftResources.StringResource { .init(key: "weather", tableName: "Localizable", source: source, developmentValue: "Weather", comment: nil) }
+
+      /// en translation: Clear
+      ///
+      /// Key: weather.clear
+      ///
+      /// Locales: en, ru
+      var weatherClear: RswiftResources.StringResource { .init(key: "weather.clear", tableName: "Localizable", source: source, developmentValue: "Clear", comment: nil) }
+
+      /// en translation: Clouds
+      ///
+      /// Key: weather.clouds
+      ///
+      /// Locales: en, ru
+      var weatherClouds: RswiftResources.StringResource { .init(key: "weather.clouds", tableName: "Localizable", source: source, developmentValue: "Clouds", comment: nil) }
+
+      /// en translation: Drizzle
+      ///
+      /// Key: weather.drizzle
+      ///
+      /// Locales: en, ru
+      var weatherDrizzle: RswiftResources.StringResource { .init(key: "weather.drizzle", tableName: "Localizable", source: source, developmentValue: "Drizzle", comment: nil) }
+
+      /// en translation: Mist
+      ///
+      /// Key: weather.mist
+      ///
+      /// Locales: en, ru
+      var weatherMist: RswiftResources.StringResource { .init(key: "weather.mist", tableName: "Localizable", source: source, developmentValue: "Mist", comment: nil) }
+
+      /// en translation: Rain
+      ///
+      /// Key: weather.rain
+      ///
+      /// Locales: en, ru
+      var weatherRain: RswiftResources.StringResource { .init(key: "weather.rain", tableName: "Localizable", source: source, developmentValue: "Rain", comment: nil) }
+
+      /// en translation: Snow
+      ///
+      /// Key: weather.snow
+      ///
+      /// Locales: en, ru
+      var weatherSnow: RswiftResources.StringResource { .init(key: "weather.snow", tableName: "Localizable", source: source, developmentValue: "Snow", comment: nil) }
+
+      /// en translation: Thunderstorm
+      ///
+      /// Key: weather.thunderstorm
+      ///
+      /// Locales: en, ru
+      var weatherThunderstorm: RswiftResources.StringResource { .init(key: "weather.thunderstorm", tableName: "Localizable", source: source, developmentValue: "Thunderstorm", comment: nil) }
+
+      /// en translation: Tornado
+      ///
+      /// Key: weather.tornado
+      ///
+      /// Locales: en, ru
+      var weatherTornado: RswiftResources.StringResource { .init(key: "weather.tornado", tableName: "Localizable", source: source, developmentValue: "Tornado", comment: nil) }
+
+      /// en translation: Weather in city
+      ///
+      /// Key: weatherInCity
+      ///
+      /// Locales: en, ru
+      var weatherInCity: RswiftResources.StringResource { .init(key: "weatherInCity", tableName: "Localizable", source: source, developmentValue: "Weather in city", comment: nil) }
+    }
+  }
+
+  /// This `_R.color` struct is generated, and contains static references to 4 colors.
   struct color {
     let bundle: Foundation.Bundle
 
     /// Color `AccentColor`.
     var accentColor: RswiftResources.ColorResource { .init(name: "AccentColor", path: [], bundle: bundle) }
+
+    /// Color `backgroundPrimary`.
+    var backgroundPrimary: RswiftResources.ColorResource { .init(name: "backgroundPrimary", path: [], bundle: bundle) }
+
+    /// Color `backgroundViewColorPrimary`.
+    var backgroundViewColorPrimary: RswiftResources.ColorResource { .init(name: "backgroundViewColorPrimary", path: [], bundle: bundle) }
+
+    /// Color `weatherViewBackground`.
+    var weatherViewBackground: RswiftResources.ColorResource { .init(name: "weatherViewBackground", path: [], bundle: bundle) }
   }
 
   /// This `_R.image` struct is generated, and contains static references to 14 images.
