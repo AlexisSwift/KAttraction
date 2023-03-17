@@ -32,7 +32,7 @@ final class AttractionDetailsViewController: BaseViewController {
     private func setupView() {
         view.background(Color.backgroundPrimary())
         
-        self.viewModel.$state
+        viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
                 
@@ -52,37 +52,19 @@ extension AttractionDetailsViewController {
     private func body(state: ViewModel.State) -> UIView {
         ScrollView {
             VStack {
-                ScrollView {
-                    HStack {
-                        ForEach(state.$detailAboutAttraction.map({ $0.images })) { [weak self] image in
-                            UIImageView()
-                                .userInteractionEnabled(true)
-                                .setImage(withUrl: image)
-                                .size(CGSize(width: UIScreen.main.bounds.width, height: 219))
-                                .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
-                                    self?.showImageViewer?()
-                                }
-                        }
-                    }
-                }
-                .setDelegate(self)
-                .isPagingEnabled(true)
-                .hideScrollIndicators()
+                scrollImagesView(state)
                 VStack {
                     Label(text: state.attractionName)
                         .setFont(.systemFont(ofSize: 32, weight: .heavy))
                         .setTextColor(.white)
                         .multilined
                     Spacer(height: 14)
-                    ViewWithData(state.$detailAboutAttraction.map({ attraction in
-                        AttractionDetailsView.Config(description: attraction.description, descriptionFull: attraction.descriptionFull)
-                    })) { description in
-                        AttractionDetailsView(config: description)
-                    }
+                    ViewWithData(state.$detailAboutAttraction
+                        .map({ AttractionDetailsView.Config(description: $0.description, descriptionFull: $0.descriptionFull )})) { description in
+                            AttractionDetailsView(config: description)
+                        }
                     Spacer(height: 24)
-                    ViewWithData(state.$city.map({ city in
-                        CheckWeatherView.WeatherConfig(city: city)
-                    })) { [weak self] city in
+                    ViewWithData(state.$city.map({ CheckWeatherView.WeatherConfig(city: $0) })) { [weak self] city in
                         CheckWeatherView(config: city)
                             .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
                                 self?.onWeatherScreen?(state.city)
@@ -95,11 +77,30 @@ extension AttractionDetailsViewController {
                 }
                 .layoutMargins(inset: 24)
                 mapView
-                    .height(214)
+                    .height(UIScreen.height / 3)
                     .cornerRadius(8)
                 Spacer(height: 24)
             }
         }
+    }
+    
+    private func scrollImagesView(_ state: ViewModel.State) -> UIView {
+        ScrollView {
+            HStack {
+                ForEach(state.$detailAboutAttraction.map({ $0.images })) { [weak self] image in
+                    UIImageView()
+                        .userInteractionEnabled(true)
+                        .setImage(withUrl: image)
+                        .size(CGSize(width: UIScreen.main.bounds.width, height: UIScreen.height / 4))
+                        .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
+                            self?.showImageViewer?()
+                        }
+                }
+            }
+        }
+        .setDelegate(self)
+        .isPagingEnabled(true)
+        .hideScrollIndicators()
     }
 }
 
@@ -115,7 +116,7 @@ extension AttractionDetailsViewController: ImageViewerControllerDelegate {
 // MARK: - UIScrollViewDelegate
 extension AttractionDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        viewModel.state.pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        viewModel.handle(.scrollImage(Int(scrollView.contentOffset.x / scrollView.frame.size.width)))
     }
 }
 
@@ -123,6 +124,7 @@ extension AttractionDetailsViewController: UIScrollViewDelegate {
 extension AttractionDetailsViewController {
     enum Action {
         case load
+        case scrollImage(_ index: Int)
     }
     
     enum InputEvent {

@@ -1,5 +1,5 @@
 import RxSwift
-    
+
 final class AttaractionListViewController: BaseViewController {
     typealias ViewModel = AttaractionListViewModel
     typealias Event = InputEvent
