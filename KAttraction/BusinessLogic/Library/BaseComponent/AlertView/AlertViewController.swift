@@ -22,8 +22,8 @@ final class AlertViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.view.alpha = 1
+        UIView.animate(withDuration: 0.5) {
+            self.view.alpha = 1
         }
     }
 }
@@ -76,8 +76,8 @@ private extension AlertViewController {
 // MARK: - Actions
 private extension AlertViewController {
     private func action() {
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.view.alpha = 0
+        UIView.animate(withDuration: 0.5) {
+            self.view.alpha = 0
         } completion: { [weak self] _ in
             self?.dismiss(animated: false, completion: nil)
             self?.completion?()

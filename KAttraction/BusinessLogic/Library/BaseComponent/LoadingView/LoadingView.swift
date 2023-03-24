@@ -38,8 +38,7 @@ final class LoadingView: UIView {
     }
     
     func hideLoading() {
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            guard let self = self else { return }
+        UIView.animate(withDuration: 0.5) {
             self.removeFromSuperview()
         }
     }

@@ -1,23 +1,33 @@
 import UIKit
-import RxSwift
+import Network
 
 final class DisableNetworkViewController: BaseViewController {
+    
+    private let monitor: NWPathMonitor
+    
+    init(monitor: NWPathMonitor) {
+        self.monitor = monitor
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-        startMonitor()
-    }
-    
-    private func setupView() {
-        view.backgroundColor = .systemGray4
-        body().embedIn(view)
     }
 }
 
 // MARK: - UI
 private extension DisableNetworkViewController {
+    private func setupView() {
+        view.backgroundColor = .systemGray4
+        body().embedInWithSafeArea(view)
+    }
+    
     private func body() -> UIView {
         VStack {
             FlexibleGroupedSpacer(groupId: 1)
@@ -37,9 +47,9 @@ private extension DisableNetworkViewController {
                 .setTextColor(.black)
             Spacer(height: 16)
             Button(title: "Попробовать ещё раз")
-                .onTap(store: disposeBag) {
-                    guard self.monitor.currentPath.status == .satisfied else {
-                        self.showAlert(message: "Соединение не установлено!")
+                .onTap(store: disposeBag) { [weak self] in
+                    guard let self = self, self.monitor.currentPath.status == .satisfied else {
+                        self?.showAlert(message: "Соединение не установлено!")
                         return
                     }
                     self.dismiss(animated: true, completion: nil)
@@ -48,20 +58,5 @@ private extension DisableNetworkViewController {
         }
         .linkSpacers()
         .layoutMargins(hInset: 16)
-    }
-}
-
-// MARK: - NetworkHelper
-private extension DisableNetworkViewController {
-    private func startMonitor() {
-        monitor.pathUpdateHandler = { [weak self] path in
-            guard let self = self else { return }
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                if path.status == .satisfied {
-                    self.dismiss(animated: true, completion: nil)
-                }
-            }
-        }
     }
 }
