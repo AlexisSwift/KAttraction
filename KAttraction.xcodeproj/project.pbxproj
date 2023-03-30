@@ -70,6 +70,7 @@
 		00CED6C22800431C00644A34 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CED6C12800431C00644A34 /* GlobalConstants.swift */; };
 		00D29C2A27FB185200EA1A05 /* DisableNetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D29C2927FB185200EA1A05 /* DisableNetworkViewController.swift */; };
 		00D29C2C27FB1F0800EA1A05 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D29C2B27FB1F0800EA1A05 /* AlertViewController.swift */; };
+		00D35ECF29D5E432009B57FB /* NetworkStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D35ECE29D5E432009B57FB /* NetworkStatusService.swift */; };
 		00EA6D9B27FB1711004F90FB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EA6D9A27FB1711004F90FB /* BaseViewController.swift */; };
 		00EC50DF278231EB00BD6AB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC50DE278231EB00BD6AB1 /* AppDelegate.swift */; };
 		00EC519D2782333500BD6AB1 /* PreparableForReuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC511D2782333400BD6AB1 /* PreparableForReuse.swift */; };
@@ -214,6 +215,7 @@
 		00CED6C12800431C00644A34 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		00D29C2927FB185200EA1A05 /* DisableNetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisableNetworkViewController.swift; sourceTree = "<group>"; };
 		00D29C2B27FB1F0800EA1A05 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		00D35ECE29D5E432009B57FB /* NetworkStatusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatusService.swift; sourceTree = "<group>"; };
 		00EA6D9A27FB1711004F90FB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		00EC50DB278231EB00BD6AB1 /* KAttraction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KAttraction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00EC50DE278231EB00BD6AB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -643,9 +645,18 @@
 		00D35EC629D5DF74009B57FB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				00D35ECD29D5E3FA009B57FB /* Service */,
 				00D29C2927FB185200EA1A05 /* DisableNetworkViewController.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		00D35ECD29D5E3FA009B57FB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				00D35ECE29D5E432009B57FB /* NetworkStatusService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		00EC50D2278231EB00BD6AB1 = {
@@ -1309,6 +1320,7 @@
 				00EC51A02782333500BD6AB1 /* CellViewModelHeightable.swift in Sources */,
 				00EC51CB2782333500BD6AB1 /* UIView+CommonExtensions.swift in Sources */,
 				00EC51B02782333500BD6AB1 /* RxSwift + Extension.swift in Sources */,
+				00D35ECF29D5E432009B57FB /* NetworkStatusService.swift in Sources */,
 				005E7D0327906C4A0076DD93 /* AttractionDetailsViewController.swift in Sources */,
 				00EC51D42782333500BD6AB1 /* UIViewController+Name.swift in Sources */,
 				005E7D1627906CA60076DD93 /* Attraction.swift in Sources */,
