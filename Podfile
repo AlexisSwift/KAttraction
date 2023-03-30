@@ -1,5 +1,4 @@
 platform :ios, '14.0'
-require 'fileutils'
 
 use_frameworks!
 inhibit_all_warnings!

@@ -616,7 +616,6 @@
 		00CED6C32800523500644A34 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
-				00EC51822782333500BD6AB1 /* Networking */,
 				00EC511B2782333400BD6AB1 /* Library */,
 				005E7D1A27906DF30076DD93 /* UI */,
 			);
@@ -627,6 +626,8 @@
 			isa = PBXGroup;
 			children = (
 				00CED6BC28003B0100644A34 /* EndPoint */,
+				00CED6BD28003B1D00644A34 /* Target.swift */,
+				00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -637,6 +638,14 @@
 				00D29C2B27FB1F0800EA1A05 /* AlertViewController.swift */,
 			);
 			path = AlertView;
+			sourceTree = "<group>";
+		};
+		00D35EC629D5DF74009B57FB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				00D29C2927FB185200EA1A05 /* DisableNetworkViewController.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		00EC50D2278231EB00BD6AB1 = {
@@ -1024,23 +1033,14 @@
 		00EC51802782333500BD6AB1 /* BaseComponent */ = {
 			isa = PBXGroup;
 			children = (
+				00D35EC629D5DF74009B57FB /* Network */,
 				0072158E28BBD4AE00AA1A4B /* ImageViewerController */,
 				00D29C2D27FB23BE00EA1A05 /* AlertView */,
 				005E7CE227906C4A0076DD93 /* LoadingView */,
-				00D29C2927FB185200EA1A05 /* DisableNetworkViewController.swift */,
 				00EA6D9A27FB1711004F90FB /* BaseViewController.swift */,
 				00EC51812782333500BD6AB1 /* ViewModel.swift */,
 			);
 			path = BaseComponent;
-			sourceTree = "<group>";
-		};
-		00EC51822782333500BD6AB1 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				00CED6BD28003B1D00644A34 /* Target.swift */,
-				00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */,
-			);
-			path = Networking;
 			sourceTree = "<group>";
 		};
 		00FAA7442991459300A3713B /* Base */ = {
