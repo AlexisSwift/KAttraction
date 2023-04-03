@@ -52,6 +52,8 @@ final class CityWeatherViewContoller: BaseViewController {
         case .setBackground(let weatherStatus):
             endLoading()
             setBackgroundImage(weatherStatus: weatherStatus)
+        case let .error(message):
+            showAlert(message: message.localizedDescription)
         }
     }
 }
@@ -141,5 +143,6 @@ extension CityWeatherViewContoller {
     enum InputEvent {
         case loading
         case setBackground(weatherStatus: WeatherType)
+        case error(error: Error)
     }
 }

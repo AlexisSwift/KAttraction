@@ -26,7 +26,7 @@ final class AttaractionListViewModel: ViewModel {
     private func loadAttractions() {
         attractionService.getAttractions(for: state.cityName, completion: { [weak self] result in
             switch result {
-            case .success(let response):
+            case let .success(response):
                 self?.state.attraction = response
                     .filter { $0.geo.name == self?.state.cityName }
                     .map({ attractionResponse in
@@ -36,8 +36,8 @@ final class AttaractionListViewModel: ViewModel {
                             attractionDescription: attractionResponse.description)
                     })
                 self?.event = .updateAttaractionList
-            case .failure(_):
-                break
+            case let .failure(error):
+                self?.event = .error(error: error)
             }
         })
     }

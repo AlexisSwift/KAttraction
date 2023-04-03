@@ -5,7 +5,7 @@ final class AttractionDetailsViewModel: ViewModel {
     typealias InputAction = AttractionDetailsViewController.Action
     
     @DriverValue private(set) var state: ControllerState
-    @DriverValue private(set) var event: OutputEvent = .loading
+    @DriverValue private(set) var event: OutputEvent = .none
     
     private let attractionService: AttractionsServiceAbstract
     
@@ -24,10 +24,10 @@ final class AttractionDetailsViewModel: ViewModel {
     }
     
     private func loadAttractions() {
-        attractionService.getAttractions(for: state.attractionName, completion: { [weak self] result in
+        attractionService.getAttractions(for: state.attractionName) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let response):
+            case let .success(response):
                 let filtredData = response.first(where: { $0.name == self.state.attractionName })
                     .map({ attractionResponse in Attraction(images: attractionResponse.images,
                                                              name: attractionResponse.name,
@@ -41,10 +41,10 @@ final class AttractionDetailsViewModel: ViewModel {
                 guard let filtredData = filtredData else { return }
                 
                 self.state.detailAboutAttraction = filtredData
-            case .failure(_):
-                break
+            case let .failure(error):
+                self.event = .error(error: error)
             }
-        })
+        }
     }
 }
 
@@ -55,11 +55,11 @@ extension AttractionDetailsViewModel {
         
         @DriverValue fileprivate(set) var city: City
         @DriverValue fileprivate(set) var detailAboutAttraction: Attraction = Attraction(
-            images: [""],
-            name: "",
-            description: "",
-            descriptionFull: "",
-            cityName: "",
+            images: [String()],
+            name: String(),
+            description: String(),
+            descriptionFull: String(),
+            cityName: String(),
             longitude: .zero,
             latitude: .zero
         )

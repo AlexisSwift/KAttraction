@@ -24,10 +24,10 @@ final class CityWeatherViewModel: ViewModel {
     }
     
     private func loadWeather() {
-        weatherService.getWeather(city: state.city, completion: { [weak self] result in
+        weatherService.getWeather(city: state.city) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case .success(let response):
+            case let .success(response):
                 var dataToday: [WeatherView.WeatherConfig] = []
                 var dataTomorrow: [WeatherView.WeatherConfig] = []
                 
@@ -59,10 +59,10 @@ final class CityWeatherViewModel: ViewModel {
                 self.state.todayWeather = dataToday
                 self.state.tomorrowWeather = dataTomorrow
                 self.event = .setBackground(weatherStatus: self.state.todayWeather.first?.weatherStatus ?? .clear)
-            case .failure(_):
-                break
+            case let .failure(error):
+                self.event = .error(error: error)
             }
-        })
+        }
     }
 }
 

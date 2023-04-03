@@ -35,7 +35,10 @@ private extension LoadingView {
             make.centerX.equalToSuperview()
         }
     }
-    
+}
+
+// MARK: - Public Actions
+extension LoadingView {
     func hideLoading() {
         UIView.animate(withDuration: 0.5) {
             self.removeFromSuperview()

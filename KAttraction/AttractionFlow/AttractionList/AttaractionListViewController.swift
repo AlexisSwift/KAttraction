@@ -56,6 +56,8 @@ final class AttaractionListViewController: BaseViewController {
         case .updateAttaractionList:
             endLoading()
             buildTable(source: viewModel.state.attraction)
+        case let .error(message):
+            showAlert(message: message.localizedDescription)
         }
     }
 }
@@ -99,5 +101,6 @@ extension AttaractionListViewController {
     enum InputEvent {
         case loading
         case updateAttaractionList
+        case error(error: Error)
     }
 }

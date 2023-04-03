@@ -45,8 +45,8 @@ extension BasicEndpoints: Target {
             let params: [String: Any] = [
                 "lat": latitude,
                 "lon": longitude,
-                "exclude": WeatherService.GlobalWeatherConstant.exclude,
-                "appid": WeatherService.GlobalWeatherConstant.api
+                "exclude": GlobalConstants.WeatherAPI.exclude,
+                "appid": GlobalConstants.WeatherAPI.api
             ]
             return params
         default:

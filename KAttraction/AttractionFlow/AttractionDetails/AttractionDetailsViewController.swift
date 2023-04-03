@@ -26,6 +26,8 @@ final class AttractionDetailsViewController: BaseViewController {
         super.viewDidLoad()
         
         setupView()
+        setupBindings()
+        
         viewModel.handle(.load)
     }
     
@@ -44,6 +46,22 @@ final class AttractionDetailsViewController: BaseViewController {
                 }.disposed(by: self.disposeBag)
                 
             }.disposed(by: disposeBag)
+    }
+    
+    private func setupBindings() {
+        viewModel.$event.drive { [weak self] event in
+            self?.handle(event)
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    func handle(_ event: Event) {
+        switch event {
+        case .none:
+            break
+        case let .error(message):
+            showAlert(message: message.localizedDescription)
+        }
     }
 }
 
@@ -128,7 +146,7 @@ extension AttractionDetailsViewController {
     }
     
     enum InputEvent {
-        case loading
-        case error
+        case none
+        case error(error: Error)
     }
 }

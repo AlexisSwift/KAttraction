@@ -1,4 +1,9 @@
 //
+// System
+//
+"system.unknownError" = "Неизвестная ошибка";
+
+//
 // Search
 //
 "chooseYourCity" = "Выбери свой город";
