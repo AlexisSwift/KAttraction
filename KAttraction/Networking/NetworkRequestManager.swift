@@ -16,12 +16,8 @@ final class NetworkRequestManager {
         )
         
         afRequest.responseJSON { responseJSON in
-            print("\nRequest for \"\(responseJSON.request?.debugDescription ?? "")\":\n", afRequest.cURLDescription())
             switch responseJSON.result {
             case .success:
-                if let debugData = responseJSON.value {
-                    print("\nResponse for \"\(responseJSON.request?.debugDescription ?? "")\":\n", debugData)
-                }
                 if let data = responseJSON.data,
                    let decodedData = try? JSONDecoder().decode(T.self, from: data) {
                     completion(.success(decodedData))
