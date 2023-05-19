@@ -1,9 +1,8 @@
 import Alamofire
 
 final class NetworkRequestManager {
-    static var shared = NetworkRequestManager()
     
-    func request<T: Decodable>(
+    class func request<T: Decodable>(
         _ target: Target,
         completion: @escaping (Result<T, AppError>) -> Void
     ) {
