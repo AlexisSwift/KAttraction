@@ -1,5 +1,5 @@
 class ViewModel {
     deinit {
-        print("deinit \(String(describing: self))")
+        LoggerService.debug("deinit \(String(describing: self))")
     }
 }
