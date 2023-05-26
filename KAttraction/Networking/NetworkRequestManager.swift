@@ -17,6 +17,13 @@ final class NetworkRequestManager {
         afRequest.responseJSON { responseJSON in
             switch responseJSON.result {
             case .success:
+                
+                // MARK: - Network debugData info
+                
+                if let debugData = responseJSON.value {
+                    LoggerService.network("\nResponse for \"\(responseJSON.request?.debugDescription ?? "")\":\n\(debugData)")
+                }
+                
                 if let data = responseJSON.data,
                    let decodedData = try? JSONDecoder().decode(T.self, from: data) {
                     completion(.success(decodedData))

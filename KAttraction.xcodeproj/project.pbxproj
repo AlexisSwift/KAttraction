@@ -143,6 +143,7 @@
 		00EC51E02782333500BD6AB1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC51812782333500BD6AB1 /* ViewModel.swift */; };
 		00EC51E12782333500BD6AB1 /* NetworkRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */; };
 		00EC51E32782333D00BD6AB1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC51E22782333D00BD6AB1 /* AppCoordinator.swift */; };
+		00F82E8E2A20982900513183 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F82E8D2A20982900513183 /* LoggerService.swift */; };
 		00FAA7402991455C00A3713B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA73F2991455C00A3713B /* SearchViewModel.swift */; };
 		00FAA7432991457300A3713B /* BaseSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA7422991457300A3713B /* BaseSearchBar.swift */; };
 		00FAA7472991479300A3713B /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA7462991479300A3713B /* CityCell.swift */; };
@@ -290,6 +291,7 @@
 		00EC51812782333500BD6AB1 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestManager.swift; sourceTree = "<group>"; };
 		00EC51E22782333D00BD6AB1 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		00F82E8D2A20982900513183 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
 		00FAA73F2991455C00A3713B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		00FAA7422991457300A3713B /* BaseSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchBar.swift; sourceTree = "<group>"; };
 		00FAA7462991479300A3713B /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 		00103A9427823FDF002B5588 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				00F82E8C2A20982200513183 /* Logger */,
 				005E7D0627906CA50076DD93 /* WeatherService */,
 				005E7D0C27906CA50076DD93 /* AttrationService */,
 			);
@@ -1054,6 +1057,14 @@
 			path = BaseComponent;
 			sourceTree = "<group>";
 		};
+		00F82E8C2A20982200513183 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				00F82E8D2A20982900513183 /* LoggerService.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		00FAA7442991459300A3713B /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1278,6 +1289,7 @@
 				00EC51D22782333500BD6AB1 /* UINavigationController+Navigation.swift in Sources */,
 				005E7CFD27906C4A0076DD93 /* AttaractionListViewController.swift in Sources */,
 				00EC51A22782333500BD6AB1 /* CellViewModel.swift in Sources */,
+				00F82E8E2A20982900513183 /* LoggerService.swift in Sources */,
 				00EC519D2782333500BD6AB1 /* PreparableForReuse.swift in Sources */,
 				00CED6BE28003B1D00644A34 /* Target.swift in Sources */,
 				00D29C2C27FB1F0800EA1A05 /* AlertViewController.swift in Sources */,
