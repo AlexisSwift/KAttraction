@@ -107,7 +107,14 @@ private extension SearchViewController {
     }
     
     private func buildTable(source: [City]) {
-        tableContainer.tableManager.set(items: source.map { CityCellViewModel(source: $0, handler: onAttractionScreen) })
+        var cellItems: [CellViewModel] = []
+        
+        source.forEach { city in
+            let cellModel = CityCellViewModel(source: city, handler: onAttractionScreen)
+            cellItems.append(cellModel)
+        }
+        
+        tableContainer.tableManager.set(items: cellItems)
     }
 }
 
