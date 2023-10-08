@@ -65,9 +65,10 @@ final class PageView: UIScrollView {
 extension PageView {
     
     /*
-     ПАМЯТКА: layoutSubviews ImageView должен быть подготовлен после завершения загрузки изображения и layoutSubviews.
+     MARK: layoutSubviews ImageView должен быть подготовлен после завершения загрузки изображения и layoutSubviews.
      Иногда загрузка изображения завершается первой, иногда layoutSubviews завершается первым, поэтому я вызываю это в двух местах.
      */
+    
     private func layoutImageViewIfNeeded() {
         guard imageView.frame == .zero else { return }
         if let imageSize = imageView.image?.size {

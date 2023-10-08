@@ -5,11 +5,16 @@ final class AttaractionCellViewModel: CellViewModelFaceless, CellViewModelHeight
     typealias CellType = AttaractionCell
     
     var height: CGFloat = UITableView.automaticDimension
-    var source: AttaractionCell.AttractionConfig
-    var onDetailAttractionsScreen: StringHandler?
     
-    init(source: AttaractionCell.AttractionConfig) {
+    // MARK: - Handler
+    private let onDetailAttractionsScreen: StringHandler?
+    
+    // MARK: - model
+    private let source: AttaractionCell.AttractionConfig
+    
+    init(source: AttaractionCell.AttractionConfig, handler: StringHandler?) {
         self.source = source
+        self.onDetailAttractionsScreen = handler
     }
     
     func configure(cell: AttaractionCell) {

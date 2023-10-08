@@ -6,9 +6,11 @@ final class CityCellViewModel: CellViewModelFaceless, CellViewModelHeightable {
     
     var height: CGFloat = UITableView.automaticDimension
     
-    var source: City
+    // MARK: - Handler
+    private let attractionHandler: CityHandler?
     
-    var attractionHandler: CityHandler?
+    // MARK: - model
+    private let source: City
     
     init(source: City, handler: CityHandler?) {
         self.source = source

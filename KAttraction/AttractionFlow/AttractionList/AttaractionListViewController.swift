@@ -81,10 +81,7 @@ private extension AttaractionListViewController {
         var items: [CellViewModel] = []
         source.forEach { attaraction in
             items.append(SpacerCellViewModel(height: 16))
-            let attractionCellViewModel = AttaractionCellViewModel(source: attaraction)
-            attractionCellViewModel.onDetailAttractionsScreen = { [weak self] in
-                self?.onDetailAttractionsScreen?($0)
-            }
+            let attractionCellViewModel = AttaractionCellViewModel(source: attaraction, handler: onDetailAttractionsScreen)
             items.append(attractionCellViewModel)
         }
         items.append(SpacerCellViewModel(height: 16))

@@ -1,11 +1,10 @@
-import Foundation
 import RxSwift
 import RxCocoa
 
 @propertyWrapper
 public final class DriverValue<Value> {
 
-    private let behaviorRelay: BehaviorRelay<Value>!
+    private let behaviorRelay: BehaviorRelay<Value>
 
     public var wrappedValue: Value {
         didSet {

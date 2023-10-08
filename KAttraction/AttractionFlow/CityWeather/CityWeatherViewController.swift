@@ -33,8 +33,8 @@ final class CityWeatherViewContoller: BaseViewController {
         viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
-                self.body(state: state).embedIn(self.view)
                 
+                self.body(state: state).embedIn(self.view)
             }.disposed(by: disposeBag)
     }
     
@@ -49,7 +49,7 @@ final class CityWeatherViewContoller: BaseViewController {
         switch event {
         case .loading:
             startLoading()
-        case .setBackground(let weatherStatus):
+        case let .setBackground(weatherStatus):
             endLoading()
             setBackgroundImage(weatherStatus: weatherStatus)
         case let .error(message):

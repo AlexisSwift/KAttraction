@@ -14,14 +14,16 @@ final class NetworkRequestManager {
             headers: NetworkRequestManager.headers(targetHeaders: target.headers)
         )
         
-        afRequest.responseJSON { responseJSON in
+        afRequest.response { responseJSON in
+            if let debugRequestString = responseJSON.request?.debugDescription {
+                LoggerService.network("\nResponse for \"\(debugRequestString)")
+            }
+            
             switch responseJSON.result {
             case .success:
                 
-                // MARK: - Network debugData info
-                
-                if let debugData = responseJSON.value {
-                    LoggerService.network("\nResponse for \"\(responseJSON.request?.debugDescription ?? "")\":\n\(debugData)")
+                if let debugData = responseJSON.value, let debugRequestString = debugData?.prettyPrintedJSONString {
+                    LoggerService.network("\nResponse for \"\(debugRequestString)")
                 }
                 
                 if let data = responseJSON.data,

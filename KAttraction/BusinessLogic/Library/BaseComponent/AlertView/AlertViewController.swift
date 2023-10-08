@@ -78,9 +78,9 @@ private extension AlertViewController {
     private func action() {
         UIView.animate(withDuration: 0.5) {
             self.view.alpha = 0
-        } completion: { [weak self] _ in
-            self?.dismiss(animated: false, completion: nil)
-            self?.completion?()
+        } completion: { _ in
+            self.dismiss(animated: false, completion: nil)
+            self.completion?()
         }
     }
 }

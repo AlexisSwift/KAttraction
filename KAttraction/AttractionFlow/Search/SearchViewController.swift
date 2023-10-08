@@ -48,12 +48,12 @@ final class SearchViewController: BaseViewController {
         title = L10n.chooseYourCity()
         view.backgroundColor = Color.backgroundPrimary()
         setupSearchBar()
+        setupTableView()
         
         viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
                 
-                self.setupTableView()
                 self.body(state: state).embedInWithSafeArea(self.view)
                 
             }.disposed(by: disposeBag)
@@ -107,14 +107,7 @@ private extension SearchViewController {
     }
     
     private func buildTable(source: [City]) {
-        var items: [CellViewModel] = []
-        
-        source.forEach { city in
-            let cityCellViewModel = CityCellViewModel(source: city, handler: onAttractionScreen)
-            items.append(cityCellViewModel)
-        }
-        
-        tableContainer.tableManager.set(items: items)
+        tableContainer.tableManager.set(items: source.map { CityCellViewModel(source: $0, handler: onAttractionScreen) })
     }
 }
 

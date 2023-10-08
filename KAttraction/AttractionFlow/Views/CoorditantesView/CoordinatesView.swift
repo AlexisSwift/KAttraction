@@ -55,10 +55,10 @@ private extension CoordinatesView {
         }
                 
         let closeButton = UIButton()
-        closeButton.setImage(UIImage(systemName: "xmark.circle.fill",
-                                     withConfiguration: UIImage.SymbolConfiguration(pointSize: 18,
-                                                                                    weight: .bold,
-                                                                                    scale: .large)))
+        closeButton.setImage(UIImage(
+            systemName: "xmark.circle.fill",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .bold, scale: .large))
+        )
         closeButton.tintColor = .white
         addSubview(closeButton)
         closeButton.touchUpInside(store: disposeBag) {

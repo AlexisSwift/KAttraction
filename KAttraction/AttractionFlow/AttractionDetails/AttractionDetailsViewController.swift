@@ -84,7 +84,7 @@ extension AttractionDetailsViewController {
                     Spacer(height: 24)
                     ViewWithData(state.$city.map({ CheckWeatherView.WeatherConfig(city: $0) })) { [weak self] city in
                         CheckWeatherView(config: city)
-                            .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
+                            .onTap(store: self?.disposeBag ?? DisposeBag()) {
                                 self?.onWeatherScreen?(state.city)
                             }
                     }
@@ -109,8 +109,8 @@ extension AttractionDetailsViewController {
                     UIImageView()
                         .userInteractionEnabled(true)
                         .setImage(withUrl: image)
-                        .size(CGSize(width: UIScreen.main.bounds.width, height: UIScreen.height / 4))
-                        .onTap(store: self?.disposeBag ?? DisposeBag()) { [weak self] in
+                        .size(CGSize(width: UIScreen.width, height: UIScreen.height / 4))
+                        .onTap(store: self?.disposeBag ?? DisposeBag()) {
                             self?.showImageViewer?()
                         }
                 }

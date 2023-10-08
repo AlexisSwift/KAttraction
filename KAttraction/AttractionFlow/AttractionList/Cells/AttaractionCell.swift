@@ -19,8 +19,8 @@ private extension AttaractionCell {
         
         descriptionView(config: model)
             .userInteractionEnabled(false)
-            .embedInWithInsets(contentView, left: 0, top: 100, right: 0, bottom: 0)
-            .setShadow(radius: 10, color: .black, offsetX: 0, offsetY: -6)
+            .embedInWithInsets(contentView, left: .zero, top: 100, right: .zero, bottom: .zero)
+            .setShadow(radius: 10, color: .black, offsetX: .zero, offsetY: -6)
         
         cornerRadius(16)
     }

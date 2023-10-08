@@ -144,8 +144,8 @@
 		00EC51E12782333500BD6AB1 /* NetworkRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */; };
 		00EC51E32782333D00BD6AB1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC51E22782333D00BD6AB1 /* AppCoordinator.swift */; };
 		00F82E8E2A20982900513183 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F82E8D2A20982900513183 /* LoggerService.swift */; };
+		00F8CBC62AD2D52600C48C01 /* Data + PrettyJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8CBC52AD2D52600C48C01 /* Data + PrettyJson.swift */; };
 		00FAA7402991455C00A3713B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA73F2991455C00A3713B /* SearchViewModel.swift */; };
-		00FAA7432991457300A3713B /* BaseSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA7422991457300A3713B /* BaseSearchBar.swift */; };
 		00FAA7472991479300A3713B /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA7462991479300A3713B /* CityCell.swift */; };
 		00FAA7492991479900A3713B /* CityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FAA7482991479900A3713B /* CityCellViewModel.swift */; };
 		58917305A204E4E2B022D022 /* Pods_KAttraction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0A14D1A2AD2C4FC859AFF5C /* Pods_KAttraction.framework */; };
@@ -292,8 +292,8 @@
 		00EC51832782333500BD6AB1 /* NetworkRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestManager.swift; sourceTree = "<group>"; };
 		00EC51E22782333D00BD6AB1 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		00F82E8D2A20982900513183 /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
+		00F8CBC52AD2D52600C48C01 /* Data + PrettyJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + PrettyJson.swift"; sourceTree = "<group>"; };
 		00FAA73F2991455C00A3713B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
-		00FAA7422991457300A3713B /* BaseSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSearchBar.swift; sourceTree = "<group>"; };
 		00FAA7462991479300A3713B /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
 		00FAA7482991479900A3713B /* CityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCellViewModel.swift; sourceTree = "<group>"; };
 		338EA5437BB2EE460924DE74 /* Pods-KAttraction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KAttraction.release.xcconfig"; path = "Target Support Files/Pods-KAttraction/Pods-KAttraction.release.xcconfig"; sourceTree = "<group>"; };
@@ -360,7 +360,6 @@
 		0045C67B27AEC7DF00C61CAE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				00FAA7442991459300A3713B /* Base */,
 				005E7CEC27906C4A0076DD93 /* MapView */,
 				005E7CE027906C4A0076DD93 /* CoorditantesView */,
 			);
@@ -793,6 +792,7 @@
 		00EC51362782333400BD6AB1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				00F8CBC42AD2D51500C48C01 /* Data */,
 				00EC51372782333400BD6AB1 /* RxSwift + Extension.swift */,
 			);
 			path = Extensions;
@@ -1065,12 +1065,12 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
-		00FAA7442991459300A3713B /* Base */ = {
+		00F8CBC42AD2D51500C48C01 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				00FAA7422991457300A3713B /* BaseSearchBar.swift */,
+				00F8CBC52AD2D52600C48C01 /* Data + PrettyJson.swift */,
 			);
-			path = Base;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		00FAA7452991477E00A3713B /* Cell */ = {
@@ -1283,6 +1283,7 @@
 				00EC51BE2782333500BD6AB1 /* UIWindow+TopmostViewController.swift in Sources */,
 				005E7D4227906DF40076DD93 /* BaseTableViewCell.swift in Sources */,
 				005E7D4B27906DF40076DD93 /* Divider.swift in Sources */,
+				00F8CBC62AD2D52600C48C01 /* Data + PrettyJson.swift in Sources */,
 				00EC51B52782333500BD6AB1 /* UICollectionView.swift in Sources */,
 				005E7D0027906C4A0076DD93 /* CityWeatherViewModel.swift in Sources */,
 				00EC51B72782333500BD6AB1 /* UITableView.swift in Sources */,
@@ -1327,7 +1328,6 @@
 				00EC51B82782333500BD6AB1 /* UIImage+Cropped.swift in Sources */,
 				00EC51DE2782333500BD6AB1 /* UILabel+FadeAnimation.swift in Sources */,
 				00EC51DB2782333500BD6AB1 /* ContainerCell.swift in Sources */,
-				00FAA7432991457300A3713B /* BaseSearchBar.swift in Sources */,
 				005E7D4027906DF40076DD93 /* BaseCollectionView.swift in Sources */,
 				00EC51A02782333500BD6AB1 /* CellViewModelHeightable.swift in Sources */,
 				00EC51CB2782333500BD6AB1 /* UIView+CommonExtensions.swift in Sources */,

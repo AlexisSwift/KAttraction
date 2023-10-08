@@ -23,7 +23,7 @@ public extension UITableView {
     func selectAll(animated: Bool) {
         (0..<numberOfSections).compactMap { (section) -> [IndexPath]? in
             return (0..<numberOfRows(inSection: section)).compactMap({ (item) -> IndexPath? in
-                print(IndexPath(item: item, section: section))
+                LoggerService.debug(IndexPath(item: item, section: section))
                 return IndexPath(item: item, section: section)
             })
         }.flatMap { $0 }.forEach { (indexPath) in
