@@ -69,6 +69,8 @@ extension CityWeatherViewContoller {
                     .setTextColor(.black)
                     .multilined
                 Spacer(height: 8)
+                
+                // MARK: - Weather Today
                 ViewWithData(state.$todayDate) { date in
                     Label(text: "\(L10n.today()), \(date)")
                         .setFont(.systemFont(ofSize: 16, weight: .medium))
@@ -87,6 +89,7 @@ extension CityWeatherViewContoller {
             }
             .hideScrollIndicators()
             
+            // MARK: - Weather Tomorrow
             VStack {
                 ViewWithData(state.$tomorrowDate) { date in
                     Label(text: "\(L10n.tomorrow()), \(date)")

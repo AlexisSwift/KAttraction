@@ -39,17 +39,18 @@ private extension AttaractionCell {
     
     private func descriptionView(config: AttractionConfig) -> UIView {
         VStack {
-            FlexibleSpacer()
+            FlexibleGroupedSpacer(groupId: 1)
             Label(text: config.attractionName)
                 .setFont(.systemFont(ofSize: 18, weight: .bold))
                 .setTextColor(.white)
             Spacer(height: 8)
-            
             Label(text: config.attractionDescription)
                 .multilined
                 .setFont(.systemFont(ofSize: 16, weight: .medium))
                 .setTextColor(.white)
+            FlexibleGroupedSpacer(groupId: 2)
         }
+        .linkSpacers()
         .background(UIColor(red: 0, green: 0, blue: 0, alpha: 0.8))
         .layoutMargins(vInset: 16, hInset: 8)
     }

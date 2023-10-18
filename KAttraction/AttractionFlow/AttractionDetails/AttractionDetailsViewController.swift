@@ -78,11 +78,11 @@ extension AttractionDetailsViewController {
                         .multilined
                     Spacer(height: 14)
                     ViewWithData(state.$detailAboutAttraction
-                        .map({ AttractionDetailsView.Config(description: $0.description, descriptionFull: $0.descriptionFull )})) { description in
+                        .map { AttractionDetailsView.Config(description: $0.description, descriptionFull: $0.descriptionFull )}) { description in
                             AttractionDetailsView(config: description)
                         }
                     Spacer(height: 24)
-                    ViewWithData(state.$city.map({ CheckWeatherView.WeatherConfig(city: $0) })) { [weak self] city in
+                    ViewWithData(state.$city.map { CheckWeatherView.WeatherConfig(city: $0) }) { [weak self] city in
                         CheckWeatherView(config: city)
                             .onTap(store: self?.disposeBag ?? DisposeBag()) {
                                 self?.onWeatherScreen?(state.city)
@@ -105,7 +105,7 @@ extension AttractionDetailsViewController {
     private func scrollImagesView(_ state: ViewModel.State) -> UIView {
         ScrollView {
             HStack {
-                ForEach(state.$detailAboutAttraction.map({ $0.images })) { [weak self] image in
+                ForEach(state.$detailAboutAttraction.map { $0.images }) { [weak self] image in
                     UIImageView()
                         .userInteractionEnabled(true)
                         .setImage(withUrl: image)

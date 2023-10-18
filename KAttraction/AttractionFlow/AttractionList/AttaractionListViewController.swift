@@ -33,11 +33,11 @@ final class AttaractionListViewController: BaseViewController {
     private func setupView() {
         title = L10n.attractions()
         view.background(Color.backgroundPrimary())
+        setupTableView()
         
         viewModel.$state
             .drive { [weak self] state in
                 guard let self = self else { return }
-                self.setupTableView()
                 self.body(state: state).embedIn(self.view)
             }.disposed(by: disposeBag)
     }

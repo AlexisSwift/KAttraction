@@ -28,18 +28,18 @@ final class AttractionDetailsViewModel: ViewModel {
             guard let self = self else { return }
             switch result {
             case let .success(response):
-                let filtredData = response.first(where: { $0.name == self.state.attractionName })
-                    .map({ attractionResponse in Attraction(images: attractionResponse.images,
-                                                             name: attractionResponse.name,
-                                                             description: attractionResponse.description,
-                                                             descriptionFull: attractionResponse.descfull,
-                                                             cityName: attractionResponse.geo.name,
-                                                             longitude: attractionResponse.geo.lon,
-                                                             latitude: attractionResponse.geo.lan)
-                    })
+                let filtredData = response
+                    .first(where: { $0.name == self.state.attractionName })
+                    .map { attractionResponse in Attraction(images: attractionResponse.images,
+                                                            name: attractionResponse.name,
+                                                            description: attractionResponse.description,
+                                                            descriptionFull: attractionResponse.descfull,
+                                                            cityName: attractionResponse.geo.name,
+                                                            longitude: attractionResponse.geo.lon,
+                                                            latitude: attractionResponse.geo.lan)
+                    }
                 
                 guard let filtredData = filtredData else { return }
-                
                 self.state.detailAboutAttraction = filtredData
             case let .failure(error):
                 self.event = .error(error: error)

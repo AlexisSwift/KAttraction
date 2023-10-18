@@ -55,7 +55,6 @@ final class SearchViewController: BaseViewController {
                 guard let self = self else { return }
                 
                 self.body(state: state).embedInWithSafeArea(self.view)
-                
             }.disposed(by: disposeBag)
     }
     
