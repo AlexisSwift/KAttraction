@@ -12,7 +12,7 @@ KAttraction – это агрегатор достопримечательнос
 2. In terminal, go to folder of this project
 3. Write in the terminal – pod install
 
-### License
+## License
 
 ```md
 Copyright <2020 - ∞ > <Alexandra Kondratjeva>
