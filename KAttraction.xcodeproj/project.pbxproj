@@ -337,24 +337,24 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		0028644F29C4909A00997D1A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				0028645029C4909A00997D1A /* RSwift */,
-				0028646629C4988000997D1A /* Palette.xcassets */,
-				0028645329C4909A00997D1A /* Assets.xcassets */,
-				0028645429C4909A00997D1A /* LaunchScreen.storyboard */,
-				0028646329C492CB00997D1A /* Localizable.strings */,
-			);
-			path = Resources;
-			sourceTree = SOURCE_ROOT;
-		};
 		0028645029C4909A00997D1A /* RSwift */ = {
 			isa = PBXGroup;
 			children = (
 				0028645D29C4912200997D1A /* R.generated.swift */,
 			);
 			path = RSwift;
+			sourceTree = "<group>";
+		};
+		004148E12F08AC650034BD3A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0028646329C492CB00997D1A /* Localizable.strings */,
+				0028645429C4909A00997D1A /* LaunchScreen.storyboard */,
+				0028645329C4909A00997D1A /* Assets.xcassets */,
+				0028646629C4988000997D1A /* Palette.xcassets */,
+				0028645029C4909A00997D1A /* RSwift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		0045C67B27AEC7DF00C61CAE /* Views */ = {
@@ -665,6 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				00EC50DD278231EB00BD6AB1 /* KAttraction */,
+				004148E12F08AC650034BD3A /* Resources */,
 				00EC50DC278231EB00BD6AB1 /* Products */,
 				AEE91C29FE92BE6D4E40721F /* Pods */,
 				348BC76912FFBBB7C673448A /* Frameworks */,
@@ -687,7 +688,6 @@
 				000A169427823A1600EDB65E /* AttractionFlow */,
 				00103A9427823FDF002B5588 /* Services */,
 				00CED6C42800528000644A34 /* Networking */,
-				0028644F29C4909A00997D1A /* Resources */,
 				00BBAA5E27BF98A00040CBA6 /* Configuration */,
 			);
 			path = KAttraction;
@@ -1111,7 +1111,6 @@
 				514AD2E7E2FBEDEFFC716142 /* [CP] Check Pods Manifest.lock */,
 				00EC50D8278231EB00BD6AB1 /* Frameworks */,
 				00EC50D9278231EB00BD6AB1 /* Resources */,
-				00E8453629C4884F00A604A3 /* SwiftLint */,
 				0028645C29C490F100997D1A /* RSwift */,
 				00EC50D7278231EB00BD6AB1 /* Sources */,
 				ED0CB0D553BBFD5AB2309EB1 /* [CP] Embed Pods Frameworks */,
@@ -1193,25 +1192,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/Resources/RSwift/R.generated.swift\"\n";
 		};
-		00E8453629C4884F00A604A3 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n# For Apple Silicon mac\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
-		};
 		514AD2E7E2FBEDEFFC716142 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1242,9 +1222,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KAttraction/Pods-KAttraction-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KAttraction/Pods-KAttraction-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
