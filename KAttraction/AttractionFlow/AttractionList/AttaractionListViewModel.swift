@@ -1,11 +1,6 @@
 final class AttaractionListViewModel: ViewModel {
-
-    typealias ControllerState = State
-    typealias OutputEvent = AttaractionListViewController.InputEvent
-    typealias InputAction = AttaractionListViewController.Action
-
-    @DriverValue private(set) var state: ControllerState
-    @DriverValue private(set) var event: OutputEvent = .loading
+    @DriverValue private(set) var state: State
+    @DriverValue private(set) var event: Event = .loading
     
     private let attractionService: AttractionsServiceAbstract
 
@@ -16,7 +11,7 @@ final class AttaractionListViewModel: ViewModel {
         super.init()
     }
 
-    func handle(_ action: InputAction) {
+    func handle(_ action: Action) {
         switch action {
         case .load:
             loadAttractions()
@@ -24,18 +19,11 @@ final class AttaractionListViewModel: ViewModel {
     }
 
     private func loadAttractions() {
-        attractionService.getAttractions(for: state.cityName, completion: { [weak self] result in
+        attractionService.getAttractions(in: state.city, completion: { [weak self] result in
             switch result {
             case let .success(response):
-                self?.state.attraction = response
-                    .filter { $0.geo.name == self?.state.cityName }
-                    .map { attractionResponse in
-                        AttaractionCell.AttractionConfig(
-                            attractionImage: attractionResponse.images,
-                            attractionName: attractionResponse.name,
-                            attractionDescription: attractionResponse.description)
-                    }
-                self?.event = .updateAttaractionList
+                self?.state.attractions = response.map(AttractionListItem.init)
+                self?.event = response.isEmpty ? .empty : .content
             case let .failure(error):
                 self?.event = .error(error: error)
             }
@@ -47,13 +35,33 @@ final class AttaractionListViewModel: ViewModel {
 extension AttaractionListViewModel {
     final class State {
         fileprivate let city: City
-        fileprivate let cityName: String
-        
-        @DriverValue fileprivate(set) var attraction: [AttaractionCell.AttractionConfig] = []
+        @DriverValue fileprivate(set) var attractions: [AttractionListItem] = []
         
         init (city: City) {
             self.city = city
-            self.cityName = city.name
         }
+    }
+
+    struct AttractionListItem {
+        let images: [String]
+        let name: String
+        let description: String
+
+        init(_ response: AttractionResponse) {
+            images = response.images
+            name = response.name
+            description = response.description
+        }
+    }
+
+    enum Action {
+        case load
+    }
+
+    enum Event {
+        case loading
+        case content
+        case empty
+        case error(error: Error)
     }
 }

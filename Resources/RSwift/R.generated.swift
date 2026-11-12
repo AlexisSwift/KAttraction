@@ -59,9 +59,72 @@ struct _R {
     }
 
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 21 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 30 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
+
+      /// en translation: No attractions are available for this city.
+      ///
+      /// Key: No attractions are available for this city.
+      ///
+      /// Locales: en, ru
+      var noAttractionsAreAvailableForThisCity: RswiftResources.StringResource { .init(key: "No attractions are available for this city.", tableName: "Localizable", source: source, developmentValue: "No attractions are available for this city.", comment: nil) }
+
+      /// en translation: No forecast is available for this city.
+      ///
+      /// Key: No forecast is available for this city.
+      ///
+      /// Locales: en, ru
+      var noForecastIsAvailableForThisCity: RswiftResources.StringResource { .init(key: "No forecast is available for this city.", tableName: "Localizable", source: source, developmentValue: "No forecast is available for this city.", comment: nil) }
+
+      /// en translation: Resource %@ was not found.
+      ///
+      /// Key: Resource %@ was not found.
+      ///
+      /// Locales: en, ru
+      var resourceWasNotFound: RswiftResources.StringResource1<String> { .init(key: "Resource %@ was not found.", tableName: "Localizable", source: source, developmentValue: "Resource %@ was not found.", comment: nil) }
+
+      /// en translation: The requested attraction was not found.
+      ///
+      /// Key: The requested attraction was not found.
+      ///
+      /// Locales: en, ru
+      var theRequestedAttractionWasNotFound: RswiftResources.StringResource { .init(key: "The requested attraction was not found.", tableName: "Localizable", source: source, developmentValue: "The requested attraction was not found.", comment: nil) }
+
+      /// en translation: The server returned error %d.
+      ///
+      /// Key: The server returned error %d.
+      ///
+      /// Locales: en, ru
+      var theServerReturnedErrorD: RswiftResources.StringResource1<Int> { .init(key: "The server returned error %d.", tableName: "Localizable", source: source, developmentValue: "The server returned error %d.", comment: nil) }
+
+      /// en translation: The server returned unsupported data.
+      ///
+      /// Key: The server returned unsupported data.
+      ///
+      /// Locales: en, ru
+      var theServerReturnedUnsupportedData: RswiftResources.StringResource { .init(key: "The server returned unsupported data.", tableName: "Localizable", source: source, developmentValue: "The server returned unsupported data.", comment: nil) }
+
+      /// en translation: Unable to connect to the server. Please try again.
+      ///
+      /// Key: Unable to connect to the server. Please try again.
+      ///
+      /// Locales: en, ru
+      var unableToConnectToTheServerPleaseTryAgain: RswiftResources.StringResource { .init(key: "Unable to connect to the server. Please try again.", tableName: "Localizable", source: source, developmentValue: "Unable to connect to the server. Please try again.", comment: nil) }
+
+      /// en translation: Unknown
+      ///
+      /// Key: Unknown
+      ///
+      /// Locales: en, ru
+      var unknown: RswiftResources.StringResource { .init(key: "Unknown", tableName: "Localizable", source: source, developmentValue: "Unknown", comment: nil) }
+
+      /// en translation: Weather service is not configured.
+      ///
+      /// Key: Weather service is not configured.
+      ///
+      /// Locales: en, ru
+      var weatherServiceIsNotConfigured: RswiftResources.StringResource { .init(key: "Weather service is not configured.", tableName: "Localizable", source: source, developmentValue: "Weather service is not configured.", comment: nil) }
 
       /// en translation: Attractions
       ///

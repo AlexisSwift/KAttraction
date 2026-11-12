@@ -46,3 +46,13 @@
 "onMap" = "On map";
 "latitude" = "Latitude";
 "longitude" = "longitude";
+
+"Weather service is not configured." = "Weather service is not configured.";
+"Resource %@ was not found." = "Resource %@ was not found.";
+"Unable to connect to the server. Please try again." = "Unable to connect to the server. Please try again.";
+"The server returned error %d." = "The server returned error %d.";
+"The server returned unsupported data." = "The server returned unsupported data.";
+"No forecast is available for this city." = "No forecast is available for this city.";
+"The requested attraction was not found." = "The requested attraction was not found.";
+"No attractions are available for this city." = "No attractions are available for this city.";
+"Unknown" = "Unknown";

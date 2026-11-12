@@ -1,13 +1,22 @@
 import Foundation
 
-struct GlobalConstants {
-    
-    /// Server host string
-    static var baseUrl = "https://api.openweathermap.org"
-    
-    // MARK: - Weather API
-    struct WeatherAPI {
-        static let api = "2db3c57ff9b75e40ba734e02ba73aa25"
-        static let exclude = "current,minutely,daily,alerts"
+enum AppConfiguration {
+    static let weatherBaseURL = URL(string: "https://api.openweathermap.org")!
+    static let weatherAPIKeyInfoKey = "OPENWEATHER_API_KEY"
+
+    static var weatherAPIKey: String? {
+        guard let value = Bundle.main.object(forInfoDictionaryKey: weatherAPIKeyInfoKey) as? String else {
+            return nil
+        }
+
+        let key = value.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !key.isEmpty, !key.hasPrefix("$(") else {
+            return nil
+        }
+        return key
+    }
+
+    static var languageCode: String {
+        Locale.current.languageCode ?? "en"
     }
 }

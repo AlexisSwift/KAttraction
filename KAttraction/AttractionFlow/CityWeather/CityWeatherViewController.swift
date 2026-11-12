@@ -2,7 +2,7 @@ import RxSwift
 
 final class CityWeatherViewContoller: BaseViewController {
     typealias ViewModel = CityWeatherViewModel
-    typealias Event = InputEvent
+    typealias Event = CityWeatherViewModel.Event
     
     private var viewModel: ViewModel
     
@@ -27,8 +27,8 @@ final class CityWeatherViewContoller: BaseViewController {
     }
     
     private func setupView() {
-        title = L10n.weatherInCity()
-        view.background(Color.backgroundPrimary())
+        title = R.string.localizable.weatherInCity()
+        view.background(R.color.backgroundPrimary())
         
         viewModel.$state
             .drive { [weak self] state in
@@ -49,15 +49,17 @@ final class CityWeatherViewContoller: BaseViewController {
         switch event {
         case .loading:
             startLoading()
-        case let .setBackground(weatherStatus):
+        case let .content(weatherStatus):
             endLoading()
             setBackgroundImage(weatherStatus: weatherStatus)
+        case .empty:
+            endLoading()
+            showAlert(message: AppError.emptyResponse.localizedDescription)
         case let .error(message):
             showAlert(message: message.localizedDescription)
         }
     }
 }
-
 // MARK: - UI
 extension CityWeatherViewContoller {
     private func body(state: ViewModel.State) -> UIView {
@@ -72,7 +74,7 @@ extension CityWeatherViewContoller {
                 
                 // MARK: - Weather Today
                 ViewWithData(state.$todayDate) { date in
-                    Label(text: "\(L10n.today()), \(date)")
+                    Label(text: "\(R.string.localizable.today()), \(date)")
                         .setFont(.systemFont(ofSize: 16, weight: .medium))
                         .setTextColor(.black)
                 }
@@ -82,7 +84,7 @@ extension CityWeatherViewContoller {
             ScrollView {
                 HStack {
                     ForEach(state.$todayWeather, spacerSize: 8) { weather in
-                        WeatherView(config: weather)
+                        WeatherView(config: .init(weatherStatus: weather.weatherStatus, time: weather.time))
                     }
                 }
                 .layoutMargins(hInset: 18)
@@ -92,7 +94,7 @@ extension CityWeatherViewContoller {
             // MARK: - Weather Tomorrow
             VStack {
                 ViewWithData(state.$tomorrowDate) { date in
-                    Label(text: "\(L10n.tomorrow()), \(date)")
+                    Label(text: "\(R.string.localizable.tomorrow()), \(date)")
                         .setFont(.systemFont(ofSize: 16, weight: .medium))
                         .setTextColor(.black)
                 }
@@ -101,7 +103,7 @@ extension CityWeatherViewContoller {
             ScrollView {
                 HStack {
                     ForEach(state.$tomorrowWeather, spacerSize: 8) { weather in
-                        WeatherView(config: weather)
+                        WeatherView(config: .init(weatherStatus: weather.weatherStatus, time: weather.time))
                     }
                 }
                 .layoutMargins(hInset: 18)
@@ -120,13 +122,13 @@ extension CityWeatherViewContoller {
         
         switch weatherStatus {
         case .clear, .tornado, .thunderstorm:
-            backgroundImage = Image.clearBackground()
-        case .clouds, .mist:
-            backgroundImage = Image.cloudyBackground()
+            backgroundImage = R.image.clearBackground()
+        case .clouds, .mist, .unknown:
+            backgroundImage = R.image.cloudyBackground()
         case .rain, .drizzle:
-            backgroundImage = Image.rainBackground()
+            backgroundImage = R.image.rainBackground()
         case .snow:
-            backgroundImage = Image.snowBackground()
+            backgroundImage = R.image.snowBackground()
         }
         
         let backgroundImageView = UIImageView(image: backgroundImage)
@@ -134,18 +136,5 @@ extension CityWeatherViewContoller {
         backgroundImageView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
-    }
-}
-
-// MARK: - Action, Event
-extension CityWeatherViewContoller {
-    enum Action {
-        case load
-    }
-    
-    enum InputEvent {
-        case loading
-        case setBackground(weatherStatus: WeatherType)
-        case error(error: Error)
     }
 }

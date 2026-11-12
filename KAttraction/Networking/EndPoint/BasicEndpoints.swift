@@ -1,56 +1,34 @@
 import Alamofire
 
 enum BasicEndpoints {
-    case getWeather(latitude: Double, longitude: Double)
-    case getAttractions
+    case weatherTimeline(latitude: Double, longitude: Double, apiKey: String)
 }
 
 extension BasicEndpoints: Target {
-    var baseURL: URL {
+    var url: URL {
         switch self {
-        case .getAttractions:
-            return URL(string: Bundle.main.url(forResource: "Attractions", withExtension: "json")?.absoluteString ?? "")!
-        default:
-            return URL(string: GlobalConstants.baseUrl)!
+        case .weatherTimeline:
+            return AppConfiguration.weatherBaseURL
+                .appendingPathComponent("data/4.0/onecall/timeline/1h")
         }
     }
-    
-    var path: String {
+
+    var method: HTTPMethod { .get }
+
+    var headers: HTTPHeaders? {
+        [.accept("application/json")]
+    }
+
+    var parameters: Parameters? {
         switch self {
-        case .getWeather:
-            return "/data/2.5/onecall?"
-        case .getAttractions:
-            return ""
-        }
-    }
-    
-    var keyPath: String? {
-        return nil
-    }
-    
-    var method: HTTPMethod {
-        switch self {
-        default:
-            return .get
-        }
-    }
-    
-    var headers: [String: String]? {
-        return nil
-    }
-    
-    var parameters: [String: Any]? {
-        switch self {
-        case let .getWeather(latitude, longitude):
-            let params: [String: Any] = [
+        case let .weatherTimeline(latitude, longitude, apiKey):
+            return [
                 "lat": latitude,
                 "lon": longitude,
-                "exclude": GlobalConstants.WeatherAPI.exclude,
-                "appid": GlobalConstants.WeatherAPI.api
+                "appid": apiKey,
+                "units": "metric",
+                "lang": AppConfiguration.languageCode
             ]
-            return params
-        default:
-            return nil
         }
     }
 }

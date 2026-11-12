@@ -135,6 +135,7 @@ public final class ImageViewerController: UIViewController {
     }
     
     private func updateDynamicBackgroundImage() {
+        guard pageViews.indices.contains(pageIndex) else { return }
         /*
          Необходимо обновить backgroundImage в тот момент, когда завершены [Loading images in PageView] и [viewDidLayoutSubviews].
          Поскольку загрузка изображения в PageView происходит асинхронно, скорость ее завершения нестабильна.

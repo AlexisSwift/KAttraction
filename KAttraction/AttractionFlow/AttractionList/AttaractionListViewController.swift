@@ -2,7 +2,7 @@ import RxSwift
 
 final class AttaractionListViewController: BaseViewController {
     typealias ViewModel = AttaractionListViewModel
-    typealias Event = InputEvent
+    typealias Event = AttaractionListViewModel.Event
     
     private var viewModel: ViewModel
     
@@ -31,8 +31,8 @@ final class AttaractionListViewController: BaseViewController {
     }
     
     private func setupView() {
-        title = L10n.attractions()
-        view.background(Color.backgroundPrimary())
+        title = R.string.localizable.attractions()
+        view.background(R.color.backgroundPrimary())
         setupTableView()
         
         viewModel.$state
@@ -53,15 +53,18 @@ final class AttaractionListViewController: BaseViewController {
         switch event {
         case .loading:
             startLoading()
-        case .updateAttaractionList:
+        case .content:
             endLoading()
-            buildTable(source: viewModel.state.attraction)
+            buildTable(source: viewModel.state.attractions)
+        case .empty:
+            endLoading()
+            buildTable(source: [])
+            showAlert(message: NSLocalizedString("No attractions are available for this city.", comment: "Empty attraction list"))
         case let .error(message):
             showAlert(message: message.localizedDescription)
         }
     }
 }
-
 // MARK: - UI
 extension AttaractionListViewController {
     private func body(state: ViewModel.State) -> UIView {
@@ -77,27 +80,19 @@ private extension AttaractionListViewController {
         tableContainer.register(cellModels: [AttaractionCellViewModel.self])
     }
     
-    func buildTable(source: [AttaractionCell.AttractionConfig]) {
+    func buildTable(source: [AttaractionListViewModel.AttractionListItem]) {
         var items: [CellViewModel] = []
-        source.forEach { attaraction in
+        source.forEach { attraction in
             items.append(SpacerCellViewModel(height: 16))
-            let attractionCellViewModel = AttaractionCellViewModel(source: attaraction, handler: onDetailAttractionsScreen)
+            let config = AttaractionCell.AttractionConfig(
+                attractionImage: attraction.images,
+                attractionName: attraction.name,
+                attractionDescription: attraction.description
+            )
+            let attractionCellViewModel = AttaractionCellViewModel(source: config, handler: onDetailAttractionsScreen)
             items.append(attractionCellViewModel)
         }
         items.append(SpacerCellViewModel(height: 16))
         tableContainer.tableManager.set(items: items)
-    }
-}
-
-// MARK: - Action, Event
-extension AttaractionListViewController {
-    enum Action {
-        case load
-    }
-    
-    enum InputEvent {
-        case loading
-        case updateAttaractionList
-        case error(error: Error)
     }
 }

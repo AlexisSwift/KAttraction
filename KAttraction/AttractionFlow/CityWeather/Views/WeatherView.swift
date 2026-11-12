@@ -29,7 +29,7 @@ private extension WeatherView {
         }
         .cornerRadius(8)
         .size(.init(width: 80, height: 120))
-        .background(Color.backgroundViewColorPrimary())
+        .background(R.color.backgroundViewColorPrimary())
     }
 }
 

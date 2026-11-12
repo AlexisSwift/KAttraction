@@ -1,37 +1,42 @@
-import RxSwift
+import SnapKit
 
 final class CityCell: BaseTableViewCell {
-    
-    private let disposeBag: DisposeBag = DisposeBag()
-    
-    // MARK: - Handler
     var attractionHandler: CityHandler?
-    
-    func set(model: City, handler: CityHandler?) {
-        attractionHandler = handler
-        setupUI(model: model)
-    }
-}
 
-// MARK: - UI
-private extension CityCell {
-    private func setupUI(model: City) {
-        body(config: model).embedIn(contentView)
+    private let titleLabel = UILabel()
+    private var city: City?
+
+    override func setup() {
+        super.setup()
+        contentView.backgroundColor = R.color.backgroundPrimary()
+        titleLabel.textColor = .white
+        titleLabel.font = .systemFont(ofSize: 32, weight: .heavy)
+        titleLabel.numberOfLines = 0
+
+        contentView.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.top.bottom.equalToSuperview().inset(12)
+        }
+
+        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapCell)))
     }
-    
-    private func body(config: City) -> UIView {
-        VStack(spacing: 12) {
-            FlexibleGroupedSpacer(groupId: 1)
-            Label(text: config.name)
-                .setTextColor(.white)
-                .setFont(.systemFont(ofSize: 32, weight: .heavy))
-            FlexibleGroupedSpacer(groupId: 1)
-        }
-        .linkSpacers()
-        .background(Color.backgroundPrimary())
-        .layoutMargins(hInset: 24)
-        .onTap(store: disposeBag) { [weak self] in
-            self?.attractionHandler?(config)
-        }
+
+    func set(model: City, handler: CityHandler?) {
+        city = model
+        attractionHandler = handler
+        titleLabel.text = model.name
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        city = nil
+        attractionHandler = nil
+        titleLabel.text = nil
+    }
+
+    @objc private func didTapCell() {
+        guard let city = city else { return }
+        attractionHandler?(city)
     }
 }

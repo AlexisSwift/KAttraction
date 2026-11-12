@@ -1,20 +1,9 @@
 import UIKit
 
 extension UINavigationController {
-    
-    open override func viewWillLayoutSubviews() {
-        navigationBar.topItem?.backButtonDisplayMode = .minimal
-        tapToCloseKeyboard()
-    }
-    
-    private func tapToCloseKeyboard() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
+    /// Call from a specific screen when a tap-to-dismiss-keyboard interaction is needed.
+    /// The former global lifecycle override installed duplicate recognizers on every layout pass.
+    func dismissKeyboard() {
         view.endEditing(true)
     }
-    
 }
