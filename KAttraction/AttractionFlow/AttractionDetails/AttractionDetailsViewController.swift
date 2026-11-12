@@ -76,7 +76,9 @@ final class AttractionDetailsViewController: BaseViewController {
 // MARK: - UI
 extension AttractionDetailsViewController {
     private func body(state: ViewModel.State) -> UIView {
-        ScrollView {
+        let disposeBag = self.disposeBag
+
+        return ScrollView {
             VStack {
                 scrollImagesView(state)
                 VStack {
@@ -93,7 +95,7 @@ extension AttractionDetailsViewController {
                     Spacer(height: 24)
                     ViewWithData(state.$city.map { CheckWeatherView.WeatherConfig(city: $0) }) { [weak self] city in
                         CheckWeatherView(config: city)
-                            .onTap(store: self?.disposeBag ?? DisposeBag()) {
+                            .onTap(store: disposeBag) { [weak self] in
                                 self?.onWeatherScreen?(state.city)
                             }
                     }
@@ -112,14 +114,16 @@ extension AttractionDetailsViewController {
     }
     
     private func scrollImagesView(_ state: ViewModel.State) -> UIView {
-        ScrollView {
+        let disposeBag = self.disposeBag
+
+        return ScrollView {
             HStack {
                 ForEach(state.$detailAboutAttraction.map { $0?.images ?? [] }) { [weak self] image in
                     UIImageView()
                         .userInteractionEnabled(true)
                         .setImage(withUrl: image)
                         .size(CGSize(width: UIScreen.width, height: UIScreen.height / 4))
-                        .onTap(store: self?.disposeBag ?? DisposeBag()) {
+                        .onTap(store: disposeBag) { [weak self] in
                             self?.showImageViewer?()
                         }
                 }
