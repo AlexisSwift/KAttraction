@@ -31,7 +31,7 @@ private extension DisableNetworkViewController {
     private func body() -> UIView {
         VStack {
             FlexibleGroupedSpacer(groupId: 1)
-            UIImageView(image: Image.noEthernet())
+            UIImageView(image: R.image.noEthernet())
                 .contentMode(.scaleAspectFit)
             Spacer(height: 16)
             Label(text: "Нет подключения\nк интернету")

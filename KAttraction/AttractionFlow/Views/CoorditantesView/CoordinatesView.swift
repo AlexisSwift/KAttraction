@@ -34,7 +34,7 @@ private extension CoordinatesView {
         }
         
         let latitudeLabel = UILabel()
-        latitudeLabel.text = "\(L10n.latitude()) \(config.latitude)"
+        latitudeLabel.text = "\(R.string.localizable.latitude()) \(config.latitude)"
         latitudeLabel.font = .systemFont(ofSize: 18, weight: .regular)
         latitudeLabel.textColor = .white
         addSubview(latitudeLabel)
@@ -44,7 +44,7 @@ private extension CoordinatesView {
         }
         
         let longitudeLabel = UILabel()
-        longitudeLabel.text = "\(L10n.longitude()) \(config.longitude)"
+        longitudeLabel.text = "\(R.string.localizable.longitude()) \(config.longitude)"
         longitudeLabel.font = .systemFont(ofSize: 18, weight: .regular)
         longitudeLabel.textColor = .white
         addSubview(longitudeLabel)

@@ -46,3 +46,13 @@
 "onMap" = "На карте";
 "latitude" = "Долгота";
 "longitude" = "Широта";
+
+"Weather service is not configured." = "Сервис погоды не настроен.";
+"Resource %@ was not found." = "Ресурс %@ не найден.";
+"Unable to connect to the server. Please try again." = "Не удалось подключиться к серверу. Попробуйте ещё раз.";
+"The server returned error %d." = "Сервер вернул ошибку %d.";
+"The server returned unsupported data." = "Сервер вернул неподдерживаемые данные.";
+"No forecast is available for this city." = "Для этого города нет прогноза.";
+"The requested attraction was not found." = "Достопримечательность не найдена.";
+"No attractions are available for this city." = "Для этого города нет достопримечательностей.";
+"Unknown" = "Неизвестно";

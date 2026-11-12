@@ -1,0 +1,16 @@
+strings:
+  inputs: Resources/ru.lproj/Localizable.strings
+  outputs:
+    - templateName: structured-swift5
+      params:
+        enumName: Localization
+      output: Resources/Localizable.swift
+xcassets:
+  inputs:
+  - Resources/Palette.xcassets
+  - Resources/Palette.swift
+  outputs:
+    - templateName: swift5
+      params:
+        forceProvidesNamespaces: true
+      output: Resources/Assets.swift

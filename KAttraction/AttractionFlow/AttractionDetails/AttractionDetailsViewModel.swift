@@ -1,11 +1,6 @@
 final class AttractionDetailsViewModel: ViewModel {
-    
-    typealias ControllerState = State
-    typealias OutputEvent = AttractionDetailsViewController.InputEvent
-    typealias InputAction = AttractionDetailsViewController.Action
-    
-    @DriverValue private(set) var state: ControllerState
-    @DriverValue private(set) var event: OutputEvent = .none
+    @DriverValue private(set) var state: State
+    @DriverValue private(set) var event: Event = .idle
     
     private let attractionService: AttractionsServiceAbstract
     
@@ -14,7 +9,7 @@ final class AttractionDetailsViewModel: ViewModel {
         self.attractionService = attractionService
     }
     
-    func handle(_ action: InputAction) {
+    func handle(_ action: Action) {
         switch action {
         case .load:
             loadAttractions()
@@ -24,23 +19,13 @@ final class AttractionDetailsViewModel: ViewModel {
     }
     
     private func loadAttractions() {
-        attractionService.getAttractions(for: state.attractionName) { [weak self] result in
+        event = .loading
+        attractionService.getAttraction(named: state.attractionName, in: state.city) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case let .success(response):
-                let filtredData = response
-                    .first(where: { $0.name == self.state.attractionName })
-                    .map { attractionResponse in Attraction(images: attractionResponse.images,
-                                                            name: attractionResponse.name,
-                                                            description: attractionResponse.description,
-                                                            descriptionFull: attractionResponse.descfull,
-                                                            cityName: attractionResponse.geo.name,
-                                                            longitude: attractionResponse.geo.lon,
-                                                            latitude: attractionResponse.geo.lan)
-                    }
-                
-                guard let filtredData = filtredData else { return }
-                self.state.detailAboutAttraction = filtredData
+            case let .success(attraction):
+                self.state.detailAboutAttraction = attraction
+                self.event = .content
             case let .failure(error):
                 self.event = .error(error: error)
             }
@@ -51,18 +36,10 @@ final class AttractionDetailsViewModel: ViewModel {
 // MARK: - Controller's State
 extension AttractionDetailsViewModel {
     final class State {
-        fileprivate(set) var attractionName: String
+        let attractionName: String
         
         @DriverValue fileprivate(set) var city: City
-        @DriverValue fileprivate(set) var detailAboutAttraction: Attraction = Attraction(
-            images: [String()],
-            name: String(),
-            description: String(),
-            descriptionFull: String(),
-            cityName: String(),
-            longitude: .zero,
-            latitude: .zero
-        )
+        @DriverValue fileprivate(set) var detailAboutAttraction: Attraction?
         
         fileprivate(set) var pageIndex: Int = .zero
         
@@ -70,5 +47,17 @@ extension AttractionDetailsViewModel {
             self.attractionName = attractionName
             self.city = city
         }
+    }
+
+    enum Action {
+        case load
+        case scrollImage(Int)
+    }
+
+    enum Event {
+        case idle
+        case loading
+        case content
+        case error(error: Error)
     }
 }

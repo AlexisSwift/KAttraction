@@ -9,45 +9,54 @@ enum WeatherType: String {
     case snow = "Snow"
     case mist = "Mist"
     case tornado = "Tornado"
+    case unknown
+
+    init(apiValue: String?) {
+        self = apiValue.flatMap(WeatherType.init(rawValue:)) ?? .unknown
+    }
     
     var weatherIcon: UIImage? {
         switch self {
         case .clear:
-            return Image.clear()
+            return R.image.clear()
         case .clouds:
-            return Image.clouds()
+            return R.image.clouds()
         case .thunderstorm:
-            return Image.thunderstorm()
+            return R.image.thunderstorm()
         case .drizzle:
-            return Image.drizzle()
+            return R.image.drizzle()
         case .rain:
-            return Image.rain()
+            return R.image.rain()
         case .snow:
-            return Image.snow()
+            return R.image.snow()
         case .mist:
-            return Image.mist()
+            return R.image.mist()
         case .tornado:
-            return Image.mist()
+            return R.image.mist()
+        case .unknown:
+            return R.image.clouds()
         }
     }
     var description: String {
         switch self {
         case .clear:
-            return L10n.weatherClear()
+            return R.string.localizable.weatherClear()
         case .clouds:
-            return L10n.weatherClouds()
+            return R.string.localizable.weatherClouds()
         case .thunderstorm:
-            return L10n.weatherThunderstorm()
+            return R.string.localizable.weatherThunderstorm()
         case .drizzle:
-            return L10n.weatherDrizzle()
+            return R.string.localizable.weatherDrizzle()
         case .rain:
-            return L10n.weatherRain()
+            return R.string.localizable.weatherRain()
         case .snow:
-            return L10n.weatherSnow()
+            return R.string.localizable.weatherSnow()
         case .mist:
-            return L10n.weatherMist()
+            return R.string.localizable.weatherMist()
         case .tornado:
-            return L10n.weatherTornado()
+            return R.string.localizable.weatherTornado()
+        case .unknown:
+            return NSLocalizedString("Unknown", comment: "Unknown weather condition")
         }
     }
     

@@ -1,25 +1,21 @@
 import RxSwift
 
 final class CityCell: BaseTableViewCell {
-    
-    private let disposeBag: DisposeBag = DisposeBag()
-    
-    // MARK: - Handler
+    private let disposeBag = DisposeBag()
     var attractionHandler: CityHandler?
-    
+
     func set(model: City, handler: CityHandler?) {
         attractionHandler = handler
         setupUI(model: model)
     }
 }
 
-// MARK: - UI
 private extension CityCell {
-    private func setupUI(model: City) {
+    func setupUI(model: City) {
         body(config: model).embedIn(contentView)
     }
-    
-    private func body(config: City) -> UIView {
+
+    func body(config: City) -> UIView {
         VStack(spacing: 12) {
             FlexibleGroupedSpacer(groupId: 1)
             Label(text: config.name)
@@ -28,7 +24,7 @@ private extension CityCell {
             FlexibleGroupedSpacer(groupId: 1)
         }
         .linkSpacers()
-        .background(Color.backgroundPrimary())
+        .background(R.color.backgroundPrimary())
         .layoutMargins(hInset: 24)
         .onTap(store: disposeBag) { [weak self] in
             self?.attractionHandler?(config)

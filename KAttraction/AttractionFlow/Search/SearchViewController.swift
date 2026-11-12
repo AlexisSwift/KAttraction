@@ -1,8 +1,9 @@
+import RxCocoa
 import RxSwift
 
 final class SearchViewController: BaseViewController {
     typealias ViewModel = SearchViewModel
-    typealias Event = InputEvent
+    typealias Event = SearchViewModel.Event
     
     private var viewModel: ViewModel
     
@@ -17,7 +18,6 @@ final class SearchViewController: BaseViewController {
         searchController.searchBar.searchBarStyle = .minimal
         searchController.searchBar.layer.cornerRadius = 12
         searchController.searchBar.keyboardAppearance = .dark
-        searchController.searchResultsUpdater = self
         return searchController
     }()
     
@@ -41,12 +41,12 @@ final class SearchViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.handle(.getCity)
+        viewModel.handle(.load)
     }
     
     private func setupView() {
-        title = L10n.chooseYourCity()
-        view.backgroundColor = Color.backgroundPrimary()
+        title = R.string.localizable.chooseYourCity()
+        view.backgroundColor = R.color.backgroundPrimary()
         setupSearchBar()
         setupTableView()
         
@@ -63,18 +63,25 @@ final class SearchViewController: BaseViewController {
             self?.handle(event)
         }
         .disposed(by: disposeBag)
+
+        searchController.searchBar.rx.text.orEmpty
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] text in
+                self?.viewModel.handle(.search(text: text))
+            })
+            .disposed(by: disposeBag)
     }
     
     func handle(_ event: Event) {
         switch event {
-        case .none:
+        case .idle:
             break
         case let .updateTable(source):
             buildTable(source: source)
         }
     }
 }
-
 // MARK: - UI
 private extension SearchViewController {
     private func body(state: ViewModel.State) -> UIView {
@@ -117,31 +124,11 @@ private extension SearchViewController {
     }
 }
 
-// MARK: - SearchView
-extension SearchViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        viewModel.handle(.search(text: searchController.searchBar.text))
-    }
-}
-
 // MARK: - Actions
 @objc
 private extension SearchViewController {
     private func refresh(_ sender: AnyObject) {
-        viewModel.handle(.getCity)
+        viewModel.handle(.load)
         sender.endRefreshing()
-    }
-}
-
-// MARK: - Action, Event
-extension SearchViewController {
-    enum Action {
-        case search(text: String?)
-        case getCity
-    }
-    
-    enum InputEvent {
-        case none
-        case updateTable(source: [City])
     }
 }

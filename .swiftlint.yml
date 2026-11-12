@@ -2,7 +2,6 @@ disabled_rules: # rule identifiers to exclude from running
   - comment_spacing
   - empty_enum_arguments
   - cyclomatic_complexity
-  - identifier_name
   - force_cast
   - force_try
   - nesting
@@ -19,15 +18,15 @@ warning_threshold: 300
 line_length: 150
 
 function_parameter_count:
-warning: 10
-error: 15
+  warning: 10
+  error: 15
 
 file_length:
-warning: 400
+  warning: 400
 
 type_body_length:
-warning: 400
-error: 450
+  warning: 400
+  error: 450
 
 identifier_name:
   excluded:
@@ -46,4 +45,4 @@ identifier_name:
     - !str ip
     - !str x
     - !str y
-    - !srt no
+    - !str no

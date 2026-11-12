@@ -1,13 +1,8 @@
 import Foundation
 
 final class CityWeatherViewModel: ViewModel {
-    
-    typealias ControllerState = State
-    typealias OutputEvent = CityWeatherViewContoller.InputEvent
-    typealias InputAction = CityWeatherViewContoller.Action
-    
-    @DriverValue private(set) var state: ControllerState
-    @DriverValue private(set) var event: OutputEvent = .loading
+    @DriverValue private(set) var state: State
+    @DriverValue private(set) var event: Event = .loading
     
     private let weatherService: WeatherServiceAbstract
     
@@ -16,7 +11,7 @@ final class CityWeatherViewModel: ViewModel {
         self.weatherService = weatherService
     }
     
-    func handle(_ action: InputAction) {
+    func handle(_ action: Action) {
         switch action {
         case .load:
             loadWeather()
@@ -28,27 +23,31 @@ final class CityWeatherViewModel: ViewModel {
             guard let self = self else { return }
             switch result {
             case let .success(response):
-                var dataToday: [WeatherView.WeatherConfig] = []
-                var dataTomorrow: [WeatherView.WeatherConfig] = []
+                var dataToday: [CityWeatherViewModel.ForecastItem] = []
+                var dataTomorrow: [CityWeatherViewModel.ForecastItem] = []
                 
-                let calendar = Calendar.current
-                let formatter = DateFormatter()
-                formatter.locale = Locale(identifier: "ru")
-                formatter.dateStyle = .medium
-                
-                guard let hourlyDataTime = response.hourly.first?.dateTime else {
+                guard !response.hourly.isEmpty else {
+                    self.event = .empty
                     return
                 }
+
+                var calendar = Calendar(identifier: .gregorian)
+                calendar.timeZone = TimeZone(secondsFromGMT: response.timezoneOffset) ?? .current
+                let formatter = DateFormatter()
+                formatter.locale = .current
+                formatter.timeZone = calendar.timeZone
+                formatter.dateStyle = .medium
                 
-                let todayDate = Date(timeIntervalSince1970: TimeInterval(hourlyDataTime))
+                let todayDate = Date(timeIntervalSince1970: TimeInterval(response.hourly[0].dateTime))
                 let tomorrowDate = calendar.date(byAdding: .day, value: 1, to: todayDate)
                 
                 for hourly in response.hourly {
                     let responseDate = Date(timeIntervalSince1970: TimeInterval(hourly.dateTime))
-                    if todayDate.day() == responseDate.day() {
-                        dataToday.append(self.convertResponse(data: hourly))
-                    } else if responseDate.day() == tomorrowDate?.day() {
-                        dataTomorrow.append(self.convertResponse(data: hourly))
+                    if calendar.isDate(todayDate, inSameDayAs: responseDate) {
+                        dataToday.append(self.convertResponse(data: hourly, timeZone: calendar.timeZone))
+                    } else if let tomorrowDate = tomorrowDate,
+                              calendar.isDate(tomorrowDate, inSameDayAs: responseDate) {
+                        dataTomorrow.append(self.convertResponse(data: hourly, timeZone: calendar.timeZone))
                     }
                 }
                 
@@ -58,7 +57,7 @@ final class CityWeatherViewModel: ViewModel {
                 }
                 self.state.todayWeather = dataToday
                 self.state.tomorrowWeather = dataTomorrow
-                self.event = .setBackground(weatherStatus: self.state.todayWeather.first?.weatherStatus ?? .clear)
+                self.event = .content(weatherStatus: self.state.todayWeather.first?.weatherStatus ?? .unknown)
             case let .failure(error):
                 self.event = .error(error: error)
             }
@@ -72,8 +71,8 @@ extension CityWeatherViewModel {
         @DriverValue fileprivate(set) var city: City
         @DriverValue fileprivate(set) var todayDate: String = ""
         @DriverValue fileprivate(set) var tomorrowDate: String = ""
-        @DriverValue fileprivate(set) var todayWeather: [WeatherView.WeatherConfig] = []
-        @DriverValue fileprivate(set) var tomorrowWeather: [WeatherView.WeatherConfig] = []
+        @DriverValue fileprivate(set) var todayWeather: [ForecastItem] = []
+        @DriverValue fileprivate(set) var tomorrowWeather: [ForecastItem] = []
         
         init (city: City) {
             self.city = city
@@ -84,17 +83,36 @@ extension CityWeatherViewModel {
 // MARK: - Formatter for Time And WeatherResponse
 extension CityWeatherViewModel {
     
-    private func formatterSecondsInDataString(sec: Double) -> String {
+    private func formatterSecondsInDataString(sec: Double, timeZone: TimeZone) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
+        formatter.timeZone = timeZone
         let time = Date(timeIntervalSince1970: TimeInterval(sec))
         return formatter.string(from: time)
     }
     
-    private func convertResponse(data: Hourly) -> WeatherView.WeatherConfig {
-        let weatherType = WeatherType(rawValue: data.weather.first?.main ?? "") ?? .clear
-        let time = formatterSecondsInDataString(sec: data.dateTime)
+    private func convertResponse(data: Hourly, timeZone: TimeZone) -> ForecastItem {
+        let weatherType = WeatherType(apiValue: data.weather.first?.main)
+        let time = formatterSecondsInDataString(sec: data.dateTime, timeZone: timeZone)
         
-        return WeatherView.WeatherConfig.init(weatherStatus: weatherType, time: time)
+        return ForecastItem(weatherStatus: weatherType, time: time)
+    }
+}
+
+extension CityWeatherViewModel {
+    struct ForecastItem {
+        let weatherStatus: WeatherType
+        let time: String
+    }
+
+    enum Action {
+        case load
+    }
+
+    enum Event {
+        case loading
+        case content(weatherStatus: WeatherType)
+        case empty
+        case error(error: Error)
     }
 }

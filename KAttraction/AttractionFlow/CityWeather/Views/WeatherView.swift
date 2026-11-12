@@ -2,7 +2,7 @@ import UIKit
 
 final class WeatherView: UIView {
     
-    init(config: WeatherConfig) {
+    init(config: CityWeatherViewModel.ForecastItem) {
         super.init(frame: .zero)
         body(config: config).embedIn(self)
     }
@@ -14,7 +14,7 @@ final class WeatherView: UIView {
 
 // MARK: - UI
 private extension WeatherView {
-    private func body(config: WeatherConfig) -> UIView {
+    private func body(config: CityWeatherViewModel.ForecastItem) -> UIView {
         VStack {
             UIImageView(image: config.weatherStatus.weatherIcon)
             Label(text: config.time)
@@ -29,14 +29,6 @@ private extension WeatherView {
         }
         .cornerRadius(8)
         .size(.init(width: 80, height: 120))
-        .background(Color.backgroundViewColorPrimary())
-    }
-}
-
-// MARK: - Config
-extension WeatherView {
-    struct WeatherConfig {
-        let weatherStatus: WeatherType
-        let time: String
+        .background(R.color.backgroundViewColorPrimary())
     }
 }

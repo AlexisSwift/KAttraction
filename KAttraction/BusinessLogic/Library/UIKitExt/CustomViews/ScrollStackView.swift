@@ -4,6 +4,7 @@ import UIKit
 open class ScrollStackView: UIScrollView {
 
     public var stackView: UIStackView!
+    private var didSetupConstraints = false
 
     public var spacing: CGFloat {
         get { return stackView.spacing }
@@ -56,6 +57,12 @@ open class ScrollStackView: UIScrollView {
     }
 
     override open func updateConstraints() {
+        guard !didSetupConstraints else {
+            super.updateConstraints()
+            return
+        }
+        didSetupConstraints = true
+
         if #available(iOS 11.0, *) {
             let padding: CGFloat = 16
             stackView.translatesAutoresizingMaskIntoConstraints = false

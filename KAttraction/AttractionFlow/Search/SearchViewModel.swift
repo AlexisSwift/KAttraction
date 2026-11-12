@@ -1,24 +1,17 @@
-import Foundation
-
 final class SearchViewModel: ViewModel {
-    
-    typealias ControllerState = State
-    typealias OutputEvent = SearchViewController.InputEvent
-    typealias InputAction = SearchViewController.Action
-    
-    @DriverValue private(set) var state: ControllerState
-    @DriverValue private(set) var event: OutputEvent = .none
+    @DriverValue private(set) var state: State
+    @DriverValue private(set) var event: Event = .idle
     
     override init() {
         state = State()
         super.init()
     }
     
-    func handle (_ action: InputAction) {
+    func handle (_ action: Action) {
         switch action {
         case let .search(text):
             search(searchText: text)
-        case .getCity:
+        case .load:
             state.filteredCity = state.city
             event = .updateTable(source: state.filteredCity)
         }
@@ -26,34 +19,18 @@ final class SearchViewModel: ViewModel {
 }
 
 private extension SearchViewModel {
-    @objc
-    private func loadCitys() {
-        guard state.query != "" else {
+    private func search(searchText: String?) {
+        let query = (searchText ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty else {
             state.filteredCity = state.city
             event = .updateTable(source: state.filteredCity)
             return
         }
-        
-        state.filteredCity = []
-        
-        for city in state.city where city.name.uppercased().contains(state.query.uppercased()) {
-            state.filteredCity.append(city)
+
+        state.filteredCity = state.city.filter {
+            $0.name.range(of: query, options: [.caseInsensitive, .diacriticInsensitive]) != nil
         }
-        
         event = .updateTable(source: state.filteredCity)
-    }
-    
-    private func search(searchText: String?) {
-        state.query = searchText ?? ""
-        state.timerSearch?.invalidate()
-        
-        state.timerSearch = Timer.scheduledTimer(
-            timeInterval: 1,
-            target: self,
-            selector: #selector(loadCitys),
-            userInfo: nil,
-            repeats: false
-        )
     }
 }
 
@@ -69,7 +46,15 @@ extension SearchViewModel {
         ]
         fileprivate(set) var filteredCity: [City] = []
         
-        fileprivate(set) var timerSearch: Timer?
-        fileprivate(set) var query = String()
+    }
+
+    enum Action {
+        case search(text: String?)
+        case load
+    }
+
+    enum Event {
+        case idle
+        case updateTable(source: [City])
     }
 }

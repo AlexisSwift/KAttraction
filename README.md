@@ -10,7 +10,15 @@ KAttraction – это агрегатор достопримечательнос
 
 1. Clone the project
 2. In terminal, go to folder of this project
-3. Write in the terminal – pod install
+3. Run `pod install` and open `KAttraction.xcworkspace`.
+4. Set `OPENWEATHER_API_KEY` in the target's build settings for local development. Do not commit a real key; `KAttraction/Configuration/Secrets.xcconfig.example` documents the expected value. A production build should receive weather data through a backend.
+
+## Quality checks
+
+- `python3 -m json.tool KAttraction/Configuration/Attractions.json`
+- `swiftlint lint --config .swiftlint.yml`
+
+The weather integration uses OpenWeather One Call API 4.0. It requires an active One Call subscription and a valid development key.
 
 ## License
 

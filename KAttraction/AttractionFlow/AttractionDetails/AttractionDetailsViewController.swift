@@ -2,7 +2,7 @@ import RxSwift
 
 final class AttractionDetailsViewController: BaseViewController {
     typealias ViewModel = AttractionDetailsViewModel
-    typealias Event = InputEvent
+    typealias Event = AttractionDetailsViewModel.Event
     
     private var viewModel: ViewModel
     
@@ -32,7 +32,7 @@ final class AttractionDetailsViewController: BaseViewController {
     }
     
     private func setupView() {
-        view.background(Color.backgroundPrimary())
+        view.background(R.color.backgroundPrimary())
         
         viewModel.$state
             .drive { [weak self] state in
@@ -41,8 +41,13 @@ final class AttractionDetailsViewController: BaseViewController {
                 self.body(state: state).embedIn(self.view)
                 self.title = state.attractionName
                 
-                state.$detailAboutAttraction.drive { [weak self] coordinates in
-                    self?.mapView.updateMap(nameAttraction: coordinates.name, latitude: coordinates.latitude, longitude: coordinates.longitude)
+                state.$detailAboutAttraction.drive { [weak self] attraction in
+                    guard let attraction = attraction else { return }
+                    self?.mapView.updateMap(
+                        nameAttraction: attraction.name,
+                        latitude: attraction.latitude,
+                        longitude: attraction.longitude
+                    )
                 }.disposed(by: self.disposeBag)
                 
             }.disposed(by: disposeBag)
@@ -57,18 +62,23 @@ final class AttractionDetailsViewController: BaseViewController {
     
     func handle(_ event: Event) {
         switch event {
-        case .none:
+        case .idle:
             break
+        case .loading:
+            startLoading()
+        case .content:
+            endLoading()
         case let .error(message):
             showAlert(message: message.localizedDescription)
         }
     }
 }
-
 // MARK: - UI
 extension AttractionDetailsViewController {
     private func body(state: ViewModel.State) -> UIView {
-        ScrollView {
+        let disposeBag = self.disposeBag
+
+        return ScrollView {
             VStack {
                 scrollImagesView(state)
                 VStack {
@@ -78,18 +88,19 @@ extension AttractionDetailsViewController {
                         .multilined
                     Spacer(height: 14)
                     ViewWithData(state.$detailAboutAttraction
-                        .map { AttractionDetailsView.Config(description: $0.description, descriptionFull: $0.descriptionFull )}) { description in
+                        .compactMap { $0 }
+                        .map { AttractionDetailsView.Config(description: $0.description, descriptionFull: $0.descriptionFull) }) { description in
                             AttractionDetailsView(config: description)
                         }
                     Spacer(height: 24)
                     ViewWithData(state.$city.map { CheckWeatherView.WeatherConfig(city: $0) }) { [weak self] city in
                         CheckWeatherView(config: city)
-                            .onTap(store: self?.disposeBag ?? DisposeBag()) {
+                            .onTap(store: disposeBag) { [weak self] in
                                 self?.onWeatherScreen?(state.city)
                             }
                     }
                     Spacer(height: 32)
-                    Label(text: L10n.onMap())
+                    Label(text: R.string.localizable.onMap())
                         .setFont(.systemFont(ofSize: 24, weight: .heavy))
                         .setTextColor(.white)
                 }
@@ -103,14 +114,16 @@ extension AttractionDetailsViewController {
     }
     
     private func scrollImagesView(_ state: ViewModel.State) -> UIView {
-        ScrollView {
+        let disposeBag = self.disposeBag
+
+        return ScrollView {
             HStack {
-                ForEach(state.$detailAboutAttraction.map { $0.images }) { [weak self] image in
+                ForEach(state.$detailAboutAttraction.map { $0?.images ?? [] }) { [weak self] image in
                     UIImageView()
                         .userInteractionEnabled(true)
                         .setImage(withUrl: image)
                         .size(CGSize(width: UIScreen.width, height: UIScreen.height / 4))
-                        .onTap(store: self?.disposeBag ?? DisposeBag()) {
+                        .onTap(store: disposeBag) { [weak self] in
                             self?.showImageViewer?()
                         }
                 }
@@ -135,18 +148,5 @@ extension AttractionDetailsViewController: ImageViewerControllerDelegate {
 extension AttractionDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         viewModel.handle(.scrollImage(Int(scrollView.contentOffset.x / scrollView.frame.size.width)))
-    }
-}
-
-// MARK: - Action, Event
-extension AttractionDetailsViewController {
-    enum Action {
-        case load
-        case scrollImage(_ index: Int)
-    }
-    
-    enum InputEvent {
-        case none
-        case error(error: Error)
     }
 }

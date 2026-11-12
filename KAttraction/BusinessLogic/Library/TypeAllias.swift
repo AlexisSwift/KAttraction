@@ -1,9 +1,5 @@
 import UIKit
-
-// MARK: - R.Swift Config
-let L10n = R.string.localizable
-let Color = R.color
-let Image = R.image
+import RswiftResources
 
 typealias VoidHandler = () -> Void
 typealias StringHandler = (String) -> Void

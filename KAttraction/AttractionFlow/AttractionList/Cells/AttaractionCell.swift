@@ -1,31 +1,27 @@
 import RxSwift
 
 final class AttaractionCell: BaseTableViewCell {
-    
-    private let disposeBag: DisposeBag = DisposeBag()
-    
-    // MARK: - Handler
+    private let disposeBag = DisposeBag()
     var onDetails: StringHandler?
-    
+
     func set(model: AttractionConfig) {
         setupUI(model: model)
     }
 }
 
-// MARK: - UI
 private extension AttaractionCell {
-    private func setupUI(model: AttractionConfig) {
+    func setupUI(model: AttractionConfig) {
         body(config: model).embedIn(contentView)
-        
+
         descriptionView(config: model)
             .userInteractionEnabled(false)
             .embedInWithInsets(contentView, left: .zero, top: 100, right: .zero, bottom: .zero)
             .setShadow(radius: 10, color: .black, offsetX: .zero, offsetY: -6)
-        
+
         cornerRadius(16)
     }
-    
-    private func body(config: AttractionConfig) -> UIView {
+
+    func body(config: AttractionConfig) -> UIView {
         VStack {
             UIImageView()
                 .contentMode(.scaleAspectFill)
@@ -36,8 +32,8 @@ private extension AttaractionCell {
             self?.onDetails?(config.attractionName)
         }
     }
-    
-    private func descriptionView(config: AttractionConfig) -> UIView {
+
+    func descriptionView(config: AttractionConfig) -> UIView {
         VStack {
             FlexibleGroupedSpacer(groupId: 1)
             Label(text: config.attractionName)
@@ -56,7 +52,6 @@ private extension AttaractionCell {
     }
 }
 
-// MARK: - Config
 extension AttaractionCell {
     struct AttractionConfig {
         let attractionImage: [String]

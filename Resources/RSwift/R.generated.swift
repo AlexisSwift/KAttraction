@@ -15,6 +15,7 @@ struct _R {
   var string: string { .init(bundle: bundle, preferredLanguages: nil, locale: nil) }
   var color: color { .init(bundle: bundle) }
   var image: image { .init(bundle: bundle) }
+  var info: info { .init(bundle: bundle) }
   var file: file { .init(bundle: bundle) }
   var storyboard: storyboard { .init(bundle: bundle) }
 
@@ -31,6 +32,9 @@ struct _R {
     .init(bundle: bundle)
   }
   func image(bundle: Foundation.Bundle) -> image {
+    .init(bundle: bundle)
+  }
+  func info(bundle: Foundation.Bundle) -> info {
     .init(bundle: bundle)
   }
   func file(bundle: Foundation.Bundle) -> file {
@@ -59,9 +63,72 @@ struct _R {
     }
 
 
-    /// This `_R.string.localizable` struct is generated, and contains static references to 21 localization keys.
+    /// This `_R.string.localizable` struct is generated, and contains static references to 30 localization keys.
     struct localizable {
       let source: RswiftResources.StringResource.Source
+
+      /// en translation: No attractions are available for this city.
+      ///
+      /// Key: No attractions are available for this city.
+      ///
+      /// Locales: en, ru
+      var noAttractionsAreAvailableForThisCity: RswiftResources.StringResource { .init(key: "No attractions are available for this city.", tableName: "Localizable", source: source, developmentValue: "No attractions are available for this city.", comment: nil) }
+
+      /// en translation: No forecast is available for this city.
+      ///
+      /// Key: No forecast is available for this city.
+      ///
+      /// Locales: en, ru
+      var noForecastIsAvailableForThisCity: RswiftResources.StringResource { .init(key: "No forecast is available for this city.", tableName: "Localizable", source: source, developmentValue: "No forecast is available for this city.", comment: nil) }
+
+      /// en translation: Resource %@ was not found.
+      ///
+      /// Key: Resource %@ was not found.
+      ///
+      /// Locales: en, ru
+      var resourceWasNotFound: RswiftResources.StringResource1<String> { .init(key: "Resource %@ was not found.", tableName: "Localizable", source: source, developmentValue: "Resource %@ was not found.", comment: nil) }
+
+      /// en translation: The requested attraction was not found.
+      ///
+      /// Key: The requested attraction was not found.
+      ///
+      /// Locales: en, ru
+      var theRequestedAttractionWasNotFound: RswiftResources.StringResource { .init(key: "The requested attraction was not found.", tableName: "Localizable", source: source, developmentValue: "The requested attraction was not found.", comment: nil) }
+
+      /// en translation: The server returned error %d.
+      ///
+      /// Key: The server returned error %d.
+      ///
+      /// Locales: en, ru
+      var theServerReturnedErrorD: RswiftResources.StringResource1<Int> { .init(key: "The server returned error %d.", tableName: "Localizable", source: source, developmentValue: "The server returned error %d.", comment: nil) }
+
+      /// en translation: The server returned unsupported data.
+      ///
+      /// Key: The server returned unsupported data.
+      ///
+      /// Locales: en, ru
+      var theServerReturnedUnsupportedData: RswiftResources.StringResource { .init(key: "The server returned unsupported data.", tableName: "Localizable", source: source, developmentValue: "The server returned unsupported data.", comment: nil) }
+
+      /// en translation: Unable to connect to the server. Please try again.
+      ///
+      /// Key: Unable to connect to the server. Please try again.
+      ///
+      /// Locales: en, ru
+      var unableToConnectToTheServerPleaseTryAgain: RswiftResources.StringResource { .init(key: "Unable to connect to the server. Please try again.", tableName: "Localizable", source: source, developmentValue: "Unable to connect to the server. Please try again.", comment: nil) }
+
+      /// en translation: Unknown
+      ///
+      /// Key: Unknown
+      ///
+      /// Locales: en, ru
+      var unknown: RswiftResources.StringResource { .init(key: "Unknown", tableName: "Localizable", source: source, developmentValue: "Unknown", comment: nil) }
+
+      /// en translation: Weather service is not configured.
+      ///
+      /// Key: Weather service is not configured.
+      ///
+      /// Locales: en, ru
+      var weatherServiceIsNotConfigured: RswiftResources.StringResource { .init(key: "Weather service is not configured.", tableName: "Localizable", source: source, developmentValue: "Weather service is not configured.", comment: nil) }
 
       /// en translation: Attractions
       ///
@@ -274,6 +341,54 @@ struct _R {
 
     /// Image `thunderstorm`.
     var thunderstorm: RswiftResources.ImageResource { .init(name: "thunderstorm", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+  }
+
+  /// This `_R.info` struct is generated, and contains static references to 1 properties.
+  struct info {
+    let bundle: Foundation.Bundle
+    var uiApplicationSceneManifest: uiApplicationSceneManifest { .init(bundle: bundle) }
+
+    func uiApplicationSceneManifest(bundle: Foundation.Bundle) -> uiApplicationSceneManifest {
+      .init(bundle: bundle)
+    }
+
+    struct uiApplicationSceneManifest {
+      let bundle: Foundation.Bundle
+
+      let uiApplicationSupportsMultipleScenes: Bool = false
+
+      var _key: String { bundle.infoDictionaryString(path: ["UIApplicationSceneManifest"], key: "_key") ?? "UIApplicationSceneManifest" }
+      var uiSceneConfigurations: uiSceneConfigurations { .init(bundle: bundle) }
+
+      func uiSceneConfigurations(bundle: Foundation.Bundle) -> uiSceneConfigurations {
+        .init(bundle: bundle)
+      }
+
+      struct uiSceneConfigurations {
+        let bundle: Foundation.Bundle
+        var _key: String { bundle.infoDictionaryString(path: ["UIApplicationSceneManifest", "UISceneConfigurations"], key: "_key") ?? "UISceneConfigurations" }
+        var uiWindowSceneSessionRoleApplication: uiWindowSceneSessionRoleApplication { .init(bundle: bundle) }
+
+        func uiWindowSceneSessionRoleApplication(bundle: Foundation.Bundle) -> uiWindowSceneSessionRoleApplication {
+          .init(bundle: bundle)
+        }
+
+        struct uiWindowSceneSessionRoleApplication {
+          let bundle: Foundation.Bundle
+          var defaultConfiguration: defaultConfiguration { .init(bundle: bundle) }
+
+          func defaultConfiguration(bundle: Foundation.Bundle) -> defaultConfiguration {
+            .init(bundle: bundle)
+          }
+
+          struct defaultConfiguration {
+            let bundle: Foundation.Bundle
+            var uiSceneConfigurationName: String { bundle.infoDictionaryString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication"], key: "UISceneConfigurationName") ?? "Default Configuration" }
+            var uiSceneDelegateClassName: String { bundle.infoDictionaryString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication"], key: "UISceneDelegateClassName") ?? "$(PRODUCT_MODULE_NAME).AppDelegate" }
+          }
+        }
+      }
+    }
   }
 
   /// This `_R.file` struct is generated, and contains static references to 1 resource files.

@@ -6,6 +6,16 @@ protocol WeatherServiceAbstract {
 
 final class WeatherService: WeatherServiceAbstract {
     func getWeather(city: City, completion: @escaping (Result<WeatherResponse, AppError>) -> Void) {
-        NetworkRequestManager.request(BasicEndpoints.getWeather(latitude: city.latitude, longitude: city.longitude), completion: completion)
+        guard let apiKey = AppConfiguration.weatherAPIKey else {
+            completion(.failure(.configuration))
+            return
+        }
+
+        let endpoint = BasicEndpoints.weatherTimeline(
+            latitude: city.latitude,
+            longitude: city.longitude,
+            apiKey: apiKey
+        )
+        NetworkRequestManager.request(endpoint, completion: completion)
     }
 }

@@ -55,7 +55,7 @@ private extension MainFlowCoordinator {
         
         controller.showImageViewer = { [weak self, weak controller] in
             self?.showImageViewer(
-                images: viewModel.state.detailAboutAttraction.images,
+                images: viewModel.state.detailAboutAttraction?.images ?? [],
                 pageIndex: viewModel.state.pageIndex,
                 delegate: controller
             )
@@ -67,7 +67,13 @@ private extension MainFlowCoordinator {
 
 extension MainFlowCoordinator {
     func showImageViewer(images: [String], pageIndex: Int, delegate: ImageViewerControllerDelegate?) {
-        let controller = ImageViewerController(imageURLs: images, pageIndex: pageIndex, delegate: delegate)
+        let validImages = images.filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+        guard !validImages.isEmpty else { return }
+        let controller = ImageViewerController(
+            imageURLs: validImages,
+            pageIndex: min(max(pageIndex, 0), validImages.count - 1),
+            delegate: delegate
+        )
         router.present(controller)
     }
 }
