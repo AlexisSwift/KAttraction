@@ -23,8 +23,8 @@ final class CityWeatherViewModel: ViewModel {
             guard let self = self else { return }
             switch result {
             case let .success(response):
-                var dataToday: [WeatherView.WeatherConfig] = []
-                var dataTomorrow: [WeatherView.WeatherConfig] = []
+                var dataToday: [CityWeatherViewModel.ForecastItem] = []
+                var dataTomorrow: [CityWeatherViewModel.ForecastItem] = []
                 
                 guard !response.hourly.isEmpty else {
                     self.event = .empty
@@ -44,12 +44,10 @@ final class CityWeatherViewModel: ViewModel {
                 for hourly in response.hourly {
                     let responseDate = Date(timeIntervalSince1970: TimeInterval(hourly.dateTime))
                     if calendar.isDate(todayDate, inSameDayAs: responseDate) {
-                        let data = self.convertResponse(data: hourly, timeZone: calendar.timeZone)
-                        dataToday.append(WeatherView.WeatherConfig(weatherStatus: data.weatherStatus, time: data.time))
+                        dataToday.append(self.convertResponse(data: hourly, timeZone: calendar.timeZone))
                     } else if let tomorrowDate = tomorrowDate,
                               calendar.isDate(tomorrowDate, inSameDayAs: responseDate) {
-                        let data = self.convertResponse(data: hourly, timeZone: calendar.timeZone)
-                        dataTomorrow.append(WeatherView.WeatherConfig(weatherStatus: data.weatherStatus, time: data.time))
+                        dataTomorrow.append(self.convertResponse(data: hourly, timeZone: calendar.timeZone))
                     }
                 }
                 
@@ -57,8 +55,8 @@ final class CityWeatherViewModel: ViewModel {
                 if let tomorrowDate = tomorrowDate {
                     self.state.tomorrowDate = formatter.string(from: tomorrowDate)
                 }
-                self.state.todayWeather = dataToday as! [CityWeatherViewModel.ForecastItem]
-                self.state.tomorrowWeather = dataTomorrow as! [CityWeatherViewModel.ForecastItem]
+                self.state.todayWeather = dataToday
+                self.state.tomorrowWeather = dataTomorrow
                 self.event = .content(weatherStatus: self.state.todayWeather.first?.weatherStatus ?? .unknown)
             case let .failure(error):
                 self.event = .error(error: error)
